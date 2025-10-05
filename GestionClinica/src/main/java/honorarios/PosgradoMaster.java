@@ -1,7 +1,7 @@
 package honorarios;
 
 public class PosgradoMaster extends HonorarioDecorator {
-	public PosgradoMaster(IHonorario honorario) {
+    public PosgradoMaster(IMedico honorario) {
 		super(honorario);
 	}
 	

@@ -1,10 +1,10 @@
 package honorarios;
 
 //Clase abstracta --> Decorator
-public abstract class HonorarioDecorator implements IHonorario {
-	private IHonorario honorario;
+public abstract class HonorarioDecorator implements IMedico {
+    private IMedico honorario;
 
-	public HonorarioDecorator(IHonorario honorario) {
+    public HonorarioDecorator(IMedico honorario) {
 		this.honorario = honorario;
 	}
 	

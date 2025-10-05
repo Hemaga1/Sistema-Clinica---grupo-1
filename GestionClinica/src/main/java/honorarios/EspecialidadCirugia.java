@@ -1,7 +1,7 @@
 package honorarios;
 
 public class EspecialidadCirugia extends HonorarioDecorator {
-	public EspecialidadCirugia(IHonorario honorario) {
+    public EspecialidadCirugia(IMedico honorario) {
 		super(honorario);
 	}
 	

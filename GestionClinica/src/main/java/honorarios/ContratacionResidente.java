@@ -1,7 +1,7 @@
 package honorarios;
 
 public class ContratacionResidente extends HonorarioDecorator {
-	public ContratacionResidente(IHonorario honorario) {
+    public ContratacionResidente(IMedico honorario) {
 		super(honorario);
 	}
 	

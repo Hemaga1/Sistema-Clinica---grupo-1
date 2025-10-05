@@ -2,7 +2,7 @@ package personas;
 
 import honorarios.*;
 
-public class Medico extends Persona implements IHonorario{
+public class Medico extends Persona implements IMedico{
 	private String matricula;
 
 	public Medico(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, String matricula) {

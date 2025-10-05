@@ -16,9 +16,11 @@ public class Main {
 		Clinica clinica = new Clinica("Clinica San Juan", "Av. Principal 123", "555-1234", "Buenos Aires");
 		System.out.println(clinica);
 		
-		// Testing FactoryMedic
-		IHonorario medico = factoryMedico.crearMedico( "412421412", "Pablo", "Gonzalez", "Colon", "Mar del Plata", "32132321", "32132321", "CLINICA", "PERMANENTE", "MASTER");
-		System.out.println("Sueldo del medico creado con factory: $" + medico.calcularHonorarios());
+		// Testing FactoryMedico
+		IMedico medico = factoryMedico.crearMedico( "412421412", "Pablo", "Gonzalez", "Colon", "Mar del Plata", "32132321", "32132321", "CLINICA", "PERMANENTE", "MASTER");
+		IMedico medico2 = factoryMedico.crearMedico( "523523523", "Ana", "Perez", "Rivadavia", "Buenos Aires", "111222333", "987654", "CIRUGIA", "RESIDENTE", "DOCTORADO");
+		System.out.println("Sueldo del medico 1: $" + medico.calcularHonorarios());
+		System.out.println("Sueldo del medico 2: $" + medico2.calcularHonorarios());
 
 //		clinica.registraMedico((Medico)medico);
 //		System.out.println("Medicos registrados: " + medico1.getNombre() + " y " + medico2.getNombre());
@@ -26,9 +28,29 @@ public class Main {
 //
         Paciente paciente = factoryPaciente.crearPaciente("Ninio", "43543554", "Martina", "Lopez", "Independencia", "Mar del Plata", 1,"NINIO");
 
-        System.out.print(medico);
-        System.out.print("\n");
-        System.out.print(paciente);
+		// Registro en Clinica
+		clinica.registraMedico(medico);
+		clinica.registraMedico(medico2);
+		clinica.registraPaciente(paciente);
+
+		System.out.print(medico);
+		System.out.print("\n");
+		System.out.print(medico2);
+		System.out.print("\n");
+		System.out.print(paciente);
+
+		clinica.ingresaPaciente(paciente);
+
+		clinica.atiendePaciente(medico, paciente);
+
+		HabitacionCompartida habitacion = new HabitacionCompartida(500.0);
+		System.out.println("\n--- Internando paciente ---");
+		clinica.internaPaciente(paciente, habitacion);
+		double arancel = habitacion.calculaCosto(5);
+		System.out.println("Arancel por 5 dias: $" + arancel);
+
+		Factura factura = clinica.egresaPaciente(paciente);
+		System.out.println("Factura generada N° " + factura.getNumeroFactura());
         
 //		clinica.registraPaciente((Paciente)ninio1);
 //		clinica.registraPaciente((Paciente)joven1);

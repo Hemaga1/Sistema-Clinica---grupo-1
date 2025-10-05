@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import facturacion.Factura;
 import lugares.Habitacion;
 import lugares.SalaDeEspera;
-import personas.Medico;
+import honorarios.IMedico;
 import personas.Paciente;
 
 public class Clinica {
@@ -16,8 +16,8 @@ public class Clinica {
 	
 	private SalaDeEspera salaDeEspera;
 	
-	private ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-	private ArrayList<Medico> medicos = new ArrayList<Medico>();
+    private ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+    private ArrayList<IMedico> medicos = new ArrayList<IMedico>();
 	
 	public Clinica(String nombre, String direccion, String telefono, String ciudad) {
 		this.nombre = nombre;
@@ -27,7 +27,7 @@ public class Clinica {
 		this.salaDeEspera = new SalaDeEspera();
 	}
 
-	public void registraMedico(Medico medico) {
+    public void registraMedico(IMedico medico) {
 		medicos.add(medico);
 	}
 	
@@ -35,7 +35,7 @@ public class Clinica {
 		pacientes.add(paciente);
 	}
 	
-	public void removeMedico(Medico medico) {
+    public void removeMedico(IMedico medico) {
 		medicos.remove(medico);
 	}
 	
@@ -43,7 +43,7 @@ public class Clinica {
 		salaDeEspera.ingresar(paciente);
 	}
 	
-	public void atiendePaciente(Medico medico, Paciente paciente) {
+    public void atiendePaciente(IMedico medico, Paciente paciente) {
 		salaDeEspera.sacarPaciente(paciente);
 	}
 	

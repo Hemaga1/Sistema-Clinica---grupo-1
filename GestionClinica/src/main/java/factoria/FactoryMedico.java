@@ -5,15 +5,15 @@ import personas.Medico;
 
 public class FactoryMedico {
 
-	public IHonorario crearMedico(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, String matricula, String especialidad, String contratacion, String posgrado) {
-		IHonorario medico = new Medico(DNI, nombre, apellido, domicilio, ciudad, telefono, matricula);
+    public IMedico crearMedico(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, String matricula, String especialidad, String contratacion, String posgrado) {
+        IMedico medico = new Medico(DNI, nombre, apellido, domicilio, ciudad, telefono, matricula);
 		medico = getEspecialidad(especialidad, medico);
 		medico = getContratacion(contratacion, medico);
 		medico = getPosgrado(posgrado, medico);
 		return medico;
 	}
 	
-	public IHonorario getEspecialidad(String tipo, IHonorario medico) {
+    public IMedico getEspecialidad(String tipo, IMedico medico) {
 		if (tipo.equalsIgnoreCase("CLINICA"))
 			return new EspecialidadClinica(medico);
 		else
@@ -25,7 +25,7 @@ public class FactoryMedico {
 				else return medico;
 	}
 	
-	public IHonorario getContratacion(String tipo, IHonorario medico) {
+    public IMedico getContratacion(String tipo, IMedico medico) {
 		if (tipo.equalsIgnoreCase("PERMANENTE"))
 			return new ContratacionPermanente(medico);
 		else
@@ -34,7 +34,7 @@ public class FactoryMedico {
 			else return medico;	
 	}
 
-	public IHonorario getPosgrado(String tipo, IHonorario medico) {
+    public IMedico getPosgrado(String tipo, IMedico medico) {
 		if (tipo.equalsIgnoreCase("MASTER"))
 			return new PosgradoMaster(medico);
 		else
