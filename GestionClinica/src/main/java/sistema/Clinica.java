@@ -1,11 +1,12 @@
 package sistema;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-import facturacion.Factura;
-import lugares.Habitacion;
-import lugares.SalaDeEspera;
-import honorarios.IMedico;
-import personas.Paciente;
+import facturacion.*;
+import honorarios.*;
+import personas.*;
+import lugares.*;
 
 public class Clinica {
 	
@@ -44,6 +45,7 @@ public class Clinica {
 	}
 	
     public void atiendePaciente(IMedico medico, Paciente paciente) {
+        paciente.agregarMedico(medico);
 		salaDeEspera.sacarPaciente(paciente);
 	}
 	
@@ -52,16 +54,29 @@ public class Clinica {
 	}
 	
 	   public Factura egresaPaciente(Paciente paciente)/* throws PacienteInvalidoException*/ {
-	        if (!pacientes.contains(paciente)) {
-	            //throw new PacienteInvalidoException("El paciente no está registrado en la clínica");
-	        }
+           if (!pacientes.contains(paciente)) {
+               //throw new PacienteInvalidoException("El paciente no está registrado en la clínica");
+           }
 
-	        Factura facturaNueva = new Factura(paciente);
-	        pacientes.remove(paciente);
-	        System.out.println("Nº Factura: " + facturaNueva.getNumeroFactura());
-	        System.out.println(facturaNueva.ImprimeFactura());
-	        return facturaNueva;
-	    }
+           Factura facturaNueva = new Factura(paciente);
+
+           Set<IMedico> medicosPaciente = new HashSet<>();
+           medicosPaciente.addAll(paciente.getConsultasMedicos());
+
+
+           //simple iteration
+           String fecha = "99/99/9999"; //habría que poner la fecha de la factura
+
+           for (IMedico medico : medicosPaciente) {
+               medico.agregarAtendido(new Reporte(paciente, fecha, medico.calcularHonorarios()));
+           }
+
+           paciente.sacarMedicos(); //vaciar la lista de medicos para la proxima vez que venga el paciente
+           pacientes.remove(paciente);
+           System.out.println("Nº Factura: " + facturaNueva.getNumeroFactura());
+           System.out.println(facturaNueva.ImprimeFactura());
+           return facturaNueva;
+       }
 
 	   @Override
 	   public String toString() {

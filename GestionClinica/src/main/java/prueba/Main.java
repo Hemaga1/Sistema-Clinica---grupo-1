@@ -26,7 +26,7 @@ public class Main {
 //		System.out.println("Medicos registrados: " + medico1.getNombre() + " y " + medico2.getNombre());
 //
 //
-        Paciente paciente = factoryPaciente.crearPaciente("Ninio", "43543554", "Martina", "Lopez", "Independencia", "Mar del Plata", 1,"NINIO");
+        Paciente paciente = factoryPaciente.crearPaciente("Ninio", "Martina", "Lopez", "Independencia", "Mar del Plata", "312321321", 1,"NINIO");
 
 		// Registro en Clinica
 		clinica.registraMedico(medico);

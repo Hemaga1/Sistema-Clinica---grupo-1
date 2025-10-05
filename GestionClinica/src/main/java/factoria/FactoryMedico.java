@@ -6,7 +6,7 @@ import personas.Medico;
 public class FactoryMedico {
 
     public IMedico crearMedico(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, String matricula, String especialidad, String contratacion, String posgrado) {
-        IMedico medico = new Medico(DNI, nombre, apellido, domicilio, ciudad, telefono, matricula);
+        IMedico medico = new Medico(DNI, nombre, apellido, domicilio, ciudad, telefono, matricula, especialidad);
 		medico = getEspecialidad(especialidad, medico);
 		medico = getContratacion(contratacion, medico);
 		medico = getPosgrado(posgrado, medico);
