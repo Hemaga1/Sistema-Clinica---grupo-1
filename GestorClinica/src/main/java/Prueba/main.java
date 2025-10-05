@@ -28,9 +28,9 @@ public class main {
 //		Mayor mayor1 = new Mayor("33333333", "Roberto", "Silva", "Calle 5", "Buenos Aires", "555-0005", 1003);
 //
 //
-//		clinica.registraPaciente(ninio1);
-//		clinica.registraPaciente(joven1);
-//		clinica.registraPaciente(mayor1);
+//		clinica.registraPaciente((Paciente)ninio1);
+//		clinica.registraPaciente((Paciente)joven1);
+//		clinica.registraPaciente((Paciente)mayor1);
 //		System.out.println("Pacientes registrados: " + ninio1.toString() + ", " +
 //						   joven1.toString() + ", " + mayor1.toString());
 //

@@ -11,10 +11,7 @@ public class HabitacionTerapiaIntensiva extends Habitacion {
         if (cantDias <= 0) {
             // throw new DiasInvalidosException("La cantidad de días debe ser mayor a 0");
         }
-        
-        
-        return 0; //completar
-
+        return Math.pow(costoInicial,cantDias);
     }
 
 }

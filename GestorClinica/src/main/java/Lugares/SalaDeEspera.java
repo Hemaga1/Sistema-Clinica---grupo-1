@@ -24,7 +24,7 @@ public class SalaDeEspera {
 			}
 			else {
 				patio.agregarPaciente(otroPaciente);
-				System.out.println(paciente.toString() + "ingresado a Sala de espera");
+				System.out.println(paciente.toString() + "ingresado al Patio");
 			}
 			
 	}
