@@ -24,4 +24,8 @@ public class ConsultaMedica {
     public String getEspecialidad() {
         return especialidad;
     }
+    
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }

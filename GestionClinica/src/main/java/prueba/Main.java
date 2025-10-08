@@ -10,85 +10,62 @@ import sistema.*;
 public class Main {
 
 	public static void main(String[] args) {
-        FactoryMedico factoryMedico = new FactoryMedico();
-        FactoryPaciente factoryPaciente = new FactoryPaciente();
+		Clinica clinica = Clinica.getInstancia("Clinica Central", "Av. Salud 123", "+54 11 1234-5678", "Buenos Aires");
+		SistemaFacade sistema = new SistemaFacade(clinica);
 
-		Clinica clinica = new Clinica("Clinica San Juan", "Av. Principal 123", "555-1234", "Buenos Aires");
-		System.out.println(clinica);
-		
-		// Testing FactoryMedico
-		IMedico medico = factoryMedico.crearMedico( "412421412", "Pablo", "Gonzalez", "Colon", "Mar del Plata", "32132321", "32132321", "CLINICA", "PERMANENTE", "MASTER");
-		IMedico medico2 = factoryMedico.crearMedico( "523523523", "Ana", "Perez", "Rivadavia", "Buenos Aires", "111222333", "987654", "CIRUGIA", "RESIDENTE", "DOCTORADO");
-		System.out.println("Sueldo del medico 1: $" + medico.calcularHonorarios());
-		System.out.println("Sueldo del medico 2: $" + medico2.calcularHonorarios());
+		FactoryMedico factoryMedico = new FactoryMedico();
+		FactoryPaciente factoryPaciente = new FactoryPaciente();
 
-//		clinica.registraMedico((Medico)medico);
-//		System.out.println("Medicos registrados: " + medico1.getNombre() + " y " + medico2.getNombre());
-//
-//
-        Paciente paciente = factoryPaciente.crearPaciente("Ninio", "Martina", "Lopez", "Independencia", "Mar del Plata", "312321321", 1,"NINIO");
+		// Médicos
+		IMedico medClinica = factoryMedico.crearMedico("10000000", "Ana", "García", "Calle 1", "CABA", "111-1111", "M-123", "CLINICA", "PERMANENTE", "MASTER");
+		IMedico medCirugia = factoryMedico.crearMedico("10000001", "Bruno", "Lopez", "Calle 2", "CABA", "222-2222", "M-456", "CIRUGIA", "RESIDENTE", "DOCTORADO");
+		IMedico medPediatra = factoryMedico.crearMedico("10000001", "Bianca", "Gonzalez", "Calle 2", "CABA", "222-2222", "M-456", "PEDIATRIA", "RESIDENTE", "DOCTORADO");
 
-		// Registro en Clinica
-		clinica.registraMedico(medico);
-		clinica.registraMedico(medico2);
-		clinica.registraPaciente(paciente);
+		// Pacientes
+		Paciente p1 = factoryPaciente.crearPaciente("20000000", "Juan", "Pérez", "Calle 10", "CABA", "300-0000", 12345, "JOVEN");
+		Paciente p2 = factoryPaciente.crearPaciente("20000001", "Lucía", "Suárez", "Calle 11", "CABA", "300-0001", 22345, "NINIO");
+		Paciente p3 = factoryPaciente.crearPaciente("20000002", "Mario", "Gómez", "Calle 12", "CABA", "300-0002", 32345, "MAYOR");
+        Paciente p4 = factoryPaciente.crearPaciente("20000002", "Mario", "Gómez", "Calle 9", "CABA", "300-0003", 32346, "MAYOR");
 
-		System.out.print(medico);
-		System.out.print("\n");
-		System.out.print(medico2);
-		System.out.print("\n");
-		System.out.print(paciente);
+		// Registro
+		sistema.registraMedico(medClinica);
+		sistema.registraMedico(medCirugia);
+		sistema.registraMedico(medPediatra);
+		sistema.registraPaciente(p1);
+		sistema.registraPaciente(p2);
+		sistema.registraPaciente(p3);
+        sistema.registraPaciente(p4);
 
-		clinica.ingresaPaciente(paciente);
+		// Ingresos a sala
+		sistema.ingresaPaciente(p1);
+		sistema.ingresaPaciente(p2);
+		sistema.ingresaPaciente(p3);
 
-		clinica.atiendePaciente(medico, paciente);
+		// Atenciones (p1 con clínica, p2 con cirugía)
+		sistema.atiendePaciente(medClinica, p1);
+		sistema.atiendePaciente(medClinica, p2);
+		sistema.atiendePaciente(medPediatra, p2);
+		sistema.atiendePaciente(medCirugia, p2);
+        sistema.atiendePaciente(medCirugia, p3);
+        sistema.atiendePaciente(medCirugia, p4);
 
-		HabitacionCompartida habitacion = new HabitacionCompartida(500.0);
-		System.out.println("\n--- Internando paciente ---");
-		clinica.internaPaciente(paciente, habitacion);
-		double arancel = habitacion.calculaCosto(5);
-		System.out.println("Arancel por 5 dias: $" + arancel);
+		// Internación de p2 (2 días) antes del egreso
+		Habitacion habPrivada = new HabitacionPrivada(2000);
+		sistema.internaPaciente(p2, habPrivada);
 
-		Factura factura = clinica.egresaPaciente(paciente);
-		System.out.println("Factura generada N° " + factura.getNumeroFactura());
-        
-//		clinica.registraPaciente((Paciente)ninio1);
-//		clinica.registraPaciente((Paciente)joven1);
-//		clinica.registraPaciente((Paciente)mayor1);
-//		System.out.println("Pacientes registrados: " + ninio1.toString() + ", " +
-//						   joven1.toString() + ", " + mayor1.toString());
-//
-//
-//		clinica.ingresaPaciente(ninio1);
-//
-//		clinica.ingresaPaciente(joven1);
-//
-//		clinica.ingresaPaciente(mayor1);
-//
-//
-//		System.out.println("\n--- Atendiendo pacientes ---");
-//		clinica.atiendePaciente(medico1, ninio1);
-//		System.out.println("Dr. " + medico1.getApellido() + " atendio al nino");
-//
-//		clinica.atiendePaciente(medico2, joven1);
-//		System.out.println("Dra. " + medico2.getApellido() + " atendio al joven");
-//
-//		HabitacionCompartida habitacion = new HabitacionCompartida(500.0);
-//		System.out.println("\n--- Internando paciente ---");
-//		clinica.internaPaciente(mayor1, habitacion);
-//		System.out.println("Mayor internado en habitacion compartida");
-//
-//		double arancel = habitacion.calculaCosto(5);
-//		System.out.println("Arancel por 5 dias: $" + arancel);
-//
-//
-//		Factura factura1 = clinica.egresaPaciente(ninio1);
-//
-//
-//		Factura factura2 = clinica.egresaPaciente(joven1);
-//
-//		Factura factura3 = clinica.egresaPaciente(mayor1);
+		// Egresos
+		Factura f1 = sistema.egresaPaciente(p1);
+		Factura f2 = sistema.egresaPaciente(p2, 2);
+        Factura f3 = sistema.egresaPaciente(p3);
 
+		System.out.println("==== FACTURA P1 ====");
+		System.out.println(f1.ImprimeFactura());
+
+		System.out.println("==== FACTURA P2 (con internación) ====");
+		System.out.println(f2.ImprimeFactura());
+
+        System.out.println("==== FACTURA P3 ====");
+        System.out.println(f3.ImprimeFactura());
 	}
 
 }

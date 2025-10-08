@@ -1,38 +1,56 @@
 package lugares;
 
+import excepciones.PacienteNoEstaEsperandoExcepcion;
+import excepciones.SalaEsperaVaciaExcepcion;
 import personas.Paciente;
 
 public class SalaDeEspera {
-	private Paciente paciente;
-	private Patio patio;
-	
-	public SalaDeEspera() {
-		super();
-		this.patio = new Patio();
-	}
+    Patio patio;
+    SalaDeEsperaPrivada salaPrivada;
 
-	public void ingresar(Paciente otroPaciente) {
-		if (paciente == null) {
-			this.paciente = otroPaciente;
-			System.out.println(paciente.toString() + "ingresado a Sala de espera");
-		}
-		else
-			if (otroPaciente.reemplaza(this.paciente)) {
-				patio.agregarPaciente(this.paciente);
-				this.paciente = otroPaciente;
-				System.out.println(paciente.toString() + "ingresado a Sala de espera");
-			}
-			else {
-				patio.agregarPaciente(otroPaciente);
-				System.out.println(paciente.toString() + "ingresado al Patio");
-			}
-			
-	}
-	
-	public void sacarPaciente(Paciente otroPaciente) {
-		if (otroPaciente == this.paciente) {
-			this.paciente = null;
-		}
-		else patio.sacarPaciente(otroPaciente);
-	}
+    public SalaDeEspera(){
+        this.patio = new Patio();
+        this.salaPrivada = new SalaDeEsperaPrivada();
+    }
+
+    public void ingresar(Paciente paciente) {
+        Paciente pacienteSalaPrivada = salaPrivada.getPaciente();
+        if (!salaPrivada.Ocupado()){
+            salaPrivada.setPaciente(paciente);
+        }else{
+            if (paciente.reemplaza(pacienteSalaPrivada)){
+                patio.agregarPaciente(pacienteSalaPrivada);
+                salaPrivada.setPaciente(paciente);
+            }else{
+                patio.agregarPaciente(paciente);
+            }
+        }
+    }
+
+    public void sacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
+        if (this.salaPrivada.Ocupado() && this.salaPrivada.getPaciente().equals(paciente)){
+            this.salaPrivada.setPaciente(null);
+        }
+        else {
+            this.patio.sacarPaciente(paciente);
+        }
+    }
+
+    public Paciente sacarPacienteConMenorOrden() throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion{
+        Paciente candidato = null;
+        // Considerar sala privada
+        if (this.salaPrivada.Ocupado()) {
+            candidato = this.salaPrivada.getPaciente();
+        }
+        // Considerar patio
+        for (Paciente p : this.patio.getPacientes()) {
+            if (candidato == null || p.getNroOrden() < candidato.getNroOrden()) {
+                candidato = p;
+            }
+        }
+        if (candidato != null) {
+            this.sacarPaciente(candidato);
+        }
+        return candidato;
+    }
 }
