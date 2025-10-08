@@ -1,7 +1,6 @@
 package honorarios;
 import java.util.ArrayList;
 
-import facturacion.Reporte;
 
 
 //Clase abstracta --> Decorator
@@ -17,19 +16,17 @@ public abstract class HonorarioDecorator implements IMedico {
 		return honorario.calcularHonorarios();
 	}
 
+    public String getNombre(){
+        return honorario.getNombre();
+    }
+
+    public String getEspecialidad(){
+        return honorario.getEspecialidad();
+    }
+
     @Override
     public String toString() {
         return this.honorario.toString();
-    }
-
-    @Override
-    public void agregarAtendido(Reporte atendido){
-        honorario.agregarAtendido(atendido);
-    }
-
-    @Override
-    public ArrayList<Reporte> getAtendidos(){
-        return honorario.getAtendidos();
     }
 }
 

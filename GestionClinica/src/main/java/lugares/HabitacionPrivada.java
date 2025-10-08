@@ -25,4 +25,9 @@ public class HabitacionPrivada extends Habitacion {
 
     }
 
+    @Override
+    public String toString() {
+        return "Habitacion Privada";
+    }
+
 }

@@ -15,4 +15,9 @@ public class HabitacionCompartida extends Habitacion {
         return costoAsignacion + costoInicial * cantDias;
     }
 
+    @Override
+    public String toString() {
+        return "Habitacion Compartida";
+    }
+
 }

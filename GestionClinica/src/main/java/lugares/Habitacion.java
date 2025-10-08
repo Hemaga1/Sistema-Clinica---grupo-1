@@ -15,4 +15,8 @@ public abstract class Habitacion {
         return costoAsignacion;
     }
 
+    @Override
+    public String toString() {
+        return "Habitacion";
+    }
 }

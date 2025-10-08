@@ -1,7 +1,5 @@
 package sistema;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import facturacion.*;
 import honorarios.*;
@@ -18,7 +16,9 @@ public class Clinica {
 	private SalaDeEspera salaDeEspera;
 	
     private ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-    private ArrayList<IMedico> medicos = new ArrayList<IMedico>();
+
+    Map<IMedico, List<PacienteAtendido>> medicos = new HashMap<>();
+    Map<Paciente, RegistroPaciente> pacientesAtendidos = new HashMap<>();
 	
 	public Clinica(String nombre, String direccion, String telefono, String ciudad) {
 		this.nombre = nombre;
@@ -29,7 +29,7 @@ public class Clinica {
 	}
 
     public void registraMedico(IMedico medico) {
-		medicos.add(medico);
+		medicos.put(medico, new ArrayList<>());
 	}
 	
 	public void registraPaciente(Paciente paciente) {
@@ -45,45 +45,56 @@ public class Clinica {
 	}
 	
     public void atiendePaciente(IMedico medico, Paciente paciente) {
-        paciente.agregarMedico(medico);
+        if (pacientesAtendidos.get(paciente) == null){
+            pacientesAtendidos.put(paciente, new RegistroPaciente());
+        }
+        pacientesAtendidos.get(paciente).agregarConsultaMedica(new ConsultaMedica(medico, medico.calcularHonorarios()));
+        //String fecha = Date();
+        String fecha = "99/99/9999";
+        medicos.get(medico).add(new PacienteAtendido(paciente, fecha, medico.calcularHonorarios()));
 		salaDeEspera.sacarPaciente(paciente);
 	}
 	
 	public void internaPaciente(Paciente paciente, Habitacion habitacion) {
-		
+        pacientesAtendidos.get(paciente).setHabitacion(habitacion);
 	}
 	
-	   public Factura egresaPaciente(Paciente paciente)/* throws PacienteInvalidoException*/ {
-           if (!pacientes.contains(paciente)) {
+    public Factura egresaPaciente(Paciente paciente)/* throws PacienteInvalidoException*/ {
+        if (!pacientes.contains(paciente)) {
                //throw new PacienteInvalidoException("El paciente no está registrado en la clínica");
-           }
+        }
 
-           Factura facturaNueva = new Factura(paciente);
+        //Indice paciente
 
-           Set<IMedico> medicosPaciente = new HashSet<>();
-           medicosPaciente.addAll(paciente.getConsultasMedicos());
+        Factura facturaNueva = new Factura(paciente,pacientesAtendidos.get(paciente));
 
+        pacientesAtendidos.remove(paciente);
+        System.out.println("Nº Factura: " + facturaNueva.getNumeroFactura());
+        System.out.println(facturaNueva.ImprimeFactura());
+        return facturaNueva;
+    }
 
-           //simple iteration
-           String fecha = "99/99/9999"; //habría que poner la fecha de la factura
+    public Factura egresaPaciente(Paciente paciente, int cantDiasInternado)/* throws PacienteInvalidoException*/ {
+        if (!pacientes.contains(paciente)) {
+            //throw new PacienteInvalidoException("El paciente no está registrado en la clínica");
+        }
 
-           for (IMedico medico : medicosPaciente) {
-               medico.agregarAtendido(new Reporte(paciente, fecha, medico.calcularHonorarios()));
-           }
+        //Indice paciente
 
-           paciente.sacarMedicos(); //vaciar la lista de medicos para la proxima vez que venga el paciente
-           pacientes.remove(paciente);
-           System.out.println("Nº Factura: " + facturaNueva.getNumeroFactura());
-           System.out.println(facturaNueva.ImprimeFactura());
-           return facturaNueva;
-       }
+        pacientesAtendidos.get(paciente).setCantDiasInternado(cantDiasInternado);
 
-	   @Override
-	   public String toString() {
+        Factura facturaNueva = new Factura(paciente,pacientesAtendidos.get(paciente));
+
+        pacientesAtendidos.remove(paciente);
+        System.out.println("Nº Factura: " + facturaNueva.getNumeroFactura());
+        System.out.println(facturaNueva.ImprimeFactura());
+        return facturaNueva;
+    }
+
+    @Override
+    public String toString() {
 		return "Clinica nombre: " + nombre + " direccion: " + direccion + " telefono: " + telefono + " ciudad: " + ciudad;
-	   }
+    }
 
-	   
-	
 
 }
