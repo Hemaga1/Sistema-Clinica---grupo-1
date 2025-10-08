@@ -28,5 +28,9 @@ public abstract class Paciente extends Persona{
         return " Paciente Historia Clinica: " + historiaClinica + super.toString();
     }
 
+    public int getNroOrden() {
+        return nroOrden;
+    }
+
 	
 }

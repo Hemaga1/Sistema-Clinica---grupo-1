@@ -1,5 +1,7 @@
 package personas;
 
+import java.util.Objects;
+
 public abstract class Persona {
 	private String DNI;
 	private String nombre;
@@ -46,7 +48,16 @@ public abstract class Persona {
     public String toString() {
         return " DNI: " + DNI + " nombre: " + nombre + " apellido: " + apellido + " domicilio: " + domicilio + " ciudad: " + ciudad + " telefono: " + telefono;
     }
-	
-	
-	
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return Objects.equals(DNI, persona.DNI) && Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

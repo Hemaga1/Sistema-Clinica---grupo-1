@@ -2,7 +2,10 @@ package facturacion;
 
 import lugares.Habitacion;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RegistroPaciente {
     private Habitacion habitacion;
@@ -12,7 +15,7 @@ public class RegistroPaciente {
 
     public RegistroPaciente() {
         this.habitacion = null;
-        this.fechaIngreso = "99/99/9999";
+        this.fechaIngreso = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
         this.cantDiasInternado = 0;
     }
 
