@@ -2,9 +2,9 @@ package personas;
 
 public class Ninio extends Paciente{
 
-	public Ninio(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono,
+	public Ninio(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono,
 			int historiaClinica) {
-		super(DNI, nombre, apellido, domicilio, ciudad, telefono, historiaClinica);
+		super(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
 	}
 	
 	public boolean reemplaza(Paciente otroPaciente) {
@@ -27,6 +27,6 @@ public class Ninio extends Paciente{
 
     @Override
     public String toString() {
-        return " Ninio" +super.toString();
+        return "Ninio: " +super.toString();
     }
 }

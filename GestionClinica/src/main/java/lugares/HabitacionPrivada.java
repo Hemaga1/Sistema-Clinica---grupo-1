@@ -3,7 +3,7 @@ package lugares;
 public class HabitacionPrivada extends Habitacion {
     
     public HabitacionPrivada(double costoInicial) {
-        super(costoInicial);
+        super(costoInicial, 1);
     }
 
     @Override

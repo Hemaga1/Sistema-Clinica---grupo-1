@@ -9,10 +9,12 @@ import facturacion.PacienteAtendido;
 import honorarios.IMedico;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import lugares.Habitacion;
 import facturacion.RegistroPaciente;
 import personas.Paciente;
 import excepciones.PacienteSinAtenderExcepcion;
+import excepciones.InternacionCapacidadExcedidaExcepcion;
 
 public class SistemaAtencion {
 
@@ -41,8 +43,8 @@ public class SistemaAtencion {
         servicioMedicos.agregarAtencion(medico, atencion);
     }
 
-    public void internaPaciente(Paciente paciente, Habitacion habitacion) throws PacienteSinAtenderExcepcion {
-        servicioInternaciones.internar(servicioPacientes.getRegistroPaciente(paciente), habitacion);
+    public void internaPaciente(Paciente paciente, Habitacion habitacion) throws PacienteSinAtenderExcepcion, InternacionCapacidadExcedidaExcepcion {
+        servicioInternaciones.internar(paciente, servicioPacientes.getRegistroPaciente(paciente), habitacion);
     }
 
     public void establecerDiasInternado(Paciente paciente, int cantDiasInternado) throws PacienteSinAtenderExcepcion {
@@ -67,6 +69,15 @@ public class SistemaAtencion {
 
     public void registrarPaciente(Paciente paciente) throws PacienteDuplicadoExcepcion {
         servicioPacientes.registrarPaciente(paciente);
+    }
+
+
+    public List<PacienteAtendido> getAtencionesDelMedico(IMedico medico) {
+        return servicioMedicos.getAtencionesDelMedico(medico);
+    }
+
+    public List<PacienteAtendido> getAtencionesDelMedicoPorPeriodo(IMedico medico, String fechaInicio, String fechaFin) {
+        return servicioMedicos.getAtencionesDelMedicoPorPeriodo(medico, fechaInicio, fechaFin);
     }
 }
 

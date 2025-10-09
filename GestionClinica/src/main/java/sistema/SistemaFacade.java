@@ -9,6 +9,8 @@ import sistema.ModuloIngreso.*;
 import sistema.ModuloAtencion.*;
 import sistema.ModuloEgreso.*;
 
+import java.util.List;
+
 public class SistemaFacade {
     
     private final Clinica clinica;
@@ -74,6 +76,9 @@ public class SistemaFacade {
         catch (PacienteSinAtenderExcepcion e) {
             System.out.print(e.getMessage() + "\n");
         }
+        catch (InternacionCapacidadExcedidaExcepcion e) {
+            System.out.print(e.getMessage() + "\n");
+        }
     }
 
     public Factura egresaPaciente(Paciente paciente) {
@@ -83,6 +88,10 @@ public class SistemaFacade {
             return factura;
         }
         catch (PacienteSinAtenderExcepcion e) {
+            System.out.print(e.getMessage() + "\n");
+            return null;
+        }
+        catch (DesocupacionPacienteInexistenteExcepcion e) {
             System.out.print(e.getMessage() + "\n");
             return null;
         }
@@ -99,6 +108,15 @@ public class SistemaFacade {
             System.out.print(e.getMessage() + "\n");
             return null;
         }
+        catch (DesocupacionPacienteInexistenteExcepcion e) {
+            System.out.print(e.getMessage() + "\n");
+            return null;
+        }
     }
-    
+
+    public ReporteActividadMedica generarReporteActividadMedica(IMedico medico, String fechaInicio, String fechaFin) {
+        List<PacienteAtendido> atenciones = sistemaAtencion.getAtencionesDelMedicoPorPeriodo(medico, fechaInicio, fechaFin);
+        return new ReporteActividadMedica(medico, fechaInicio, fechaFin, atenciones);
+    }
+
 }

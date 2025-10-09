@@ -8,8 +8,8 @@ public class Medico extends Persona implements IMedico{
 	private String matricula;
     private String especialidad;
 
-	public Medico(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, String matricula, String especialidad) {
-		super(DNI, nombre, apellido, domicilio, ciudad, telefono);
+	public Medico(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, String matricula, String especialidad) {
+		super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
 		this.matricula = matricula;
         this.especialidad = especialidad;
 	}

@@ -3,7 +3,7 @@ package lugares;
 public class HabitacionTerapiaIntensiva extends Habitacion {
     
     public HabitacionTerapiaIntensiva(double costoInicial) {
-        super(costoInicial);
+        super(costoInicial, 1);
     }
 
     @Override

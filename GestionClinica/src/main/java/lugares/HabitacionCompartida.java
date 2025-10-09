@@ -2,8 +2,8 @@ package lugares;
 
 public class HabitacionCompartida extends Habitacion {
     
-    public HabitacionCompartida(double costoInicial) {
-        super(costoInicial);
+    public HabitacionCompartida(double costoInicial, int maximoPacientes) {
+        super(costoInicial, maximoPacientes);
     }
 
     @Override

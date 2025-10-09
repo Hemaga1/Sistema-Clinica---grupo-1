@@ -2,9 +2,9 @@ package personas;
 
 public class Mayor extends Paciente{
 
-	public Mayor(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono,
+	public Mayor(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono,
 			int historiaClinica) {
-		super(DNI, nombre, apellido, domicilio, ciudad, telefono, historiaClinica);
+		super(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
 	}
 	
 	public boolean reemplaza(Paciente otroPaciente) {
@@ -25,6 +25,6 @@ public class Mayor extends Paciente{
 
     @Override
     public String toString() {
-        return " Mayor" +super.toString();
+        return "Mayor: " +super.toString();
     }
 }

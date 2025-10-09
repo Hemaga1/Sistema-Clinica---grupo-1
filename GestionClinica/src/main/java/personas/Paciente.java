@@ -8,8 +8,8 @@ public abstract class Paciente extends Persona{
 	public static int siguienteNro = 0;
 	private int nroOrden;
 
-	public Paciente(String DNI, String nombre, String apellido, String domicilio, String ciudad, String telefono, int historiaClinica) {
-		super(DNI, nombre, apellido, domicilio, ciudad, telefono);
+	public Paciente(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, int historiaClinica) {
+		super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
 		this.historiaClinica = historiaClinica;
 		siguienteNro++;
 		nroOrden=siguienteNro;
@@ -25,7 +25,7 @@ public abstract class Paciente extends Persona{
 
     @Override
     public String toString() {
-        return " Paciente Historia Clinica: " + historiaClinica + super.toString();
+        return "Paciente HC: " + historiaClinica + " - " + super.toString();
     }
 
     public int getNroOrden() {
