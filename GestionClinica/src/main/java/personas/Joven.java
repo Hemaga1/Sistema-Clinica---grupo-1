@@ -14,8 +14,8 @@ public class Joven extends Paciente{
 	 * Se verifica si se reemplaza el joven que esta en la sala de espera privada segun el paciente nuevo que ingrese
 	 * @return true or false
 	 */
-	public boolean reemplaza(Paciente otroPaciente) {
-		return !otroPaciente.reemplazaAJoven();
+	public boolean esReemplazado(Paciente otroPaciente) {
+		return otroPaciente.reemplazaAJoven();
 	}
 
 	/**
