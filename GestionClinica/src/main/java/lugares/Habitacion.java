@@ -6,6 +6,9 @@ import personas.Paciente;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase abstracta habitacion que será extendida de los distintos tipos de habitaciones
+ */
 public abstract class Habitacion {
 
     private int maximoPacientes;
@@ -14,6 +17,11 @@ public abstract class Habitacion {
     protected static double costoAsignacion = 15000;
     private List<Paciente> pacientes;
 
+    /**
+     * Constructor para los diferentes tipos de habitacion
+     * @param costoInicial Costo inicial de internacion en la habitacion, costoInicial >= 0
+     * @param maximoPacientes Maximo de pacientes que puede haber en la habitacionn maximoPacientes>0
+     */
     public Habitacion(double costoInicial, int maximoPacientes) {
         this.costoInicial = costoInicial;
         this.cantidadPacientes = 0;
@@ -27,6 +35,13 @@ public abstract class Habitacion {
         return costoAsignacion;
     }
 
+    /**
+     * Si hay lugar en la habitacion se ingresa al paciente>br>
+     * <b>Precondición: </b> Debe haber lugar en la habitacion para poder ingresar al paciente<br>
+     * <b>Postcondición: </b> Se ingresa al paciente en la habitacion y se actualiza la cantidad de paciente dentro de la misma
+     * @param paciente paciente!=null, paciente!=""
+     * @throws InternacionCapacidadExcedidaExcepcion
+     */
     public void ocuparHabitacion(Paciente paciente) throws InternacionCapacidadExcedidaExcepcion {
         if (cantidadPacientes >= maximoPacientes)
             throw new InternacionCapacidadExcedidaExcepcion(this, paciente);
@@ -34,6 +49,17 @@ public abstract class Habitacion {
         cantidadPacientes += 1;
     }
 
+    /**
+     * El paciente egresa entonces desocupa la habitación<br>
+     * <b>Precondiciones: </b>
+     * <ul>
+     *     <li>La habitación no debe estar vacía</li>
+     *     <li>El paciente debe estar en la habitación</li>
+     * </ul>
+     * <b>Postcondición: </b> Se saca al paciente de la habitación, actualizando el la cantidad de pacientes en la misma
+     * @param paciente
+     * @throws DesocupacionPacienteInexistenteExcepcion
+     */
     public void desocuparHabitacion(Paciente paciente) throws DesocupacionPacienteInexistenteExcepcion {
         if (!pacientes.remove(paciente))
             throw new DesocupacionPacienteInexistenteExcepcion(paciente);

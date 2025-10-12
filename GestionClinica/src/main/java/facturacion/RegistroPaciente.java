@@ -7,6 +7,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase donde se genera el registro del paciente, siendo o no internado, contiene todas las consultas médicas de un paciente
+ */
+
 public class RegistroPaciente {
     private Habitacion habitacion;
     private String fechaIngreso;
@@ -23,6 +27,10 @@ public class RegistroPaciente {
         return consultasMedicas;
     }
 
+    /**
+     * Consultas médicas que ha tenido un paciente
+     * @param consultaMedica consultaMedica!=null
+     */
     public void agregarConsultaMedica(ConsultaMedica consultaMedica){
         consultasMedicas.add(consultaMedica);
     }

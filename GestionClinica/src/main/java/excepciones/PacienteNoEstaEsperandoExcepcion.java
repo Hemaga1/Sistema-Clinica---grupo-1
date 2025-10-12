@@ -1,5 +1,9 @@
 package excepciones;
 
+/**
+ * Cuando un paciente va a ser atendido, se saca de espera. Si al querer sacarlo no está tenemos esta excepción
+ */
+
 public class PacienteNoEstaEsperandoExcepcion extends Exception {
 
     public PacienteNoEstaEsperandoExcepcion(){

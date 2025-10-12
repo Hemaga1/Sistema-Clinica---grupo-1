@@ -7,10 +7,13 @@ import personas.*;
 import lugares.*;
 import sistema.*;
 
+/**
+ * Clase principal donde se simulan las distintas operaciones de la clínica a través de llamadas a los métodos del sistema
+ */
 public class Main {
 
 	public static void main(String[] args) {
-		Clinica clinica = Clinica.getInstancia("Clinica Central", "Av. Salud 123", "+54 11 1234-5678", "Buenos Aires");
+		Clinica clinica = Clinica.getInstancia("Clinica Central", "Avenida Salud", 105, "+54 11 1234-5678", "Buenos Aires");
 		SistemaFacade sistema = new SistemaFacade(clinica);
 
 		FactoryMedico factoryMedico = new FactoryMedico();
@@ -41,7 +44,7 @@ public class Main {
 		sistema.ingresaPaciente(p2);
 		sistema.ingresaPaciente(p3);
 
-		// Atenciones (p1 con clínica, p2 con cirugía)
+		// Atenciones
 		sistema.atiendePaciente(medClinica, p1);
 		sistema.atiendePaciente(medClinica, p2);
 		sistema.atiendePaciente(medPediatra, p2);
@@ -49,7 +52,7 @@ public class Main {
         sistema.atiendePaciente(medCirugia, p3);
         sistema.atiendePaciente(medCirugia, p4);
 
-		// Internación de p2 (2 días) antes del egreso
+		// Internación de p2
 		Habitacion habPrivada = new HabitacionPrivada(2000);
 		sistema.internaPaciente(p2, habPrivada);
 
@@ -87,9 +90,9 @@ public class Main {
 		sistema.atiendePaciente(medCirugia, p3);
 
 		// Egresar pacientes
-//		Factura f6 = sistema.egresaPaciente(p6);
-//		Factura f4 = sistema.egresaPaciente(p5);
-//		Factura f5 = sistema.egresaPaciente(p3);
+		Factura f6 = sistema.egresaPaciente(p6);
+		Factura f4 = sistema.egresaPaciente(p5);
+		Factura f5 = sistema.egresaPaciente(p3);
 
 		ReporteActividadMedica reporteClinica = sistema.generarReporteActividadMedica(medClinica, "01/01/2024", "31/12/2027");
 		System.out.println(reporteClinica.generarReporte());

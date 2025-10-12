@@ -3,6 +3,10 @@ package facturacion;
 import honorarios.IMedico;
 import java.util.*;
 
+/**
+ * Clase con el reporte de la actividad Medica de un médico en un rango de fechas, con el listado de pacientes atendidos
+ */
+
 public class ReporteActividadMedica {
 
     private final IMedico medico;
@@ -19,12 +23,20 @@ public class ReporteActividadMedica {
         this.totalHonorarios = calcularTotalHonorarios();
     }
 
+    /**
+     * Cálculo del honorario total por cada médico
+     * @return honorario total del médico
+     */
     private double calcularTotalHonorarios() {
         return consultas.stream()
                 .mapToDouble(PacienteAtendido::getHonorario)
                 .sum();
     }
 
+    /**
+     * Muestra del reporte
+     * @return reporte del médico
+     */
     public String generarReporte() {
         StringBuilder sb = new StringBuilder();
 

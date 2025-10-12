@@ -1,14 +1,22 @@
 package honorarios;
 
+/**
+ * Clase para el calculo del honorario de especialidad Cirguia
+ */
+
 public class EspecialidadCirugia extends HonorarioDecorator {
     public EspecialidadCirugia(IMedico honorario) {
 		super(honorario);
 	}
-	
-	@Override
-	public double calcularHonorarios() {
-		return super.calcularHonorarios() * 1.1;
-	}
+
+    /**
+     * Cuando la especialidad es Cirugía, hay un 10% de aumento del valor base
+     * @return honorario con el aumento de la especialidad
+     */
+    @Override
+    public double calcularHonorarios() {
+        return super.calcularHonorarios() * 1.1;
+    }
 
     @Override
     public String toString() {

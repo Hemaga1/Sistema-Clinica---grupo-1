@@ -2,6 +2,10 @@ package facturacion;
 
 import personas.Paciente;
 
+/**
+ * Clase de un paciente atendido que será agregado a la lista de los atendidos, incluye fecha en que es atendido el mismo
+ */
+
 public class PacienteAtendido {
     private String fecha;
     private String nombrePaciente;

@@ -5,6 +5,12 @@ public class Domicilio {
     private int numero;
     private String ciudad;
 
+    /**
+     * Constructor para una dirección, utilizado para la clínica, pacientes y médicos
+     * @param calle calle!=null, calle!=""
+     * @param numero numero>=o
+     * @param ciudad ciudad!=null, cidudad!=""
+     */
     public Domicilio(String calle, int numero, String ciudad) {
         this.calle = calle;
         this.numero = numero;

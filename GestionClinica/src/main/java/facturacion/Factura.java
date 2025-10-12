@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase para generar y mostrar la factura del paciente que invoque el método ImprimeFactura
+ */
+
 public class Factura {
     private static int numeroFacturaSig = 1;
     private final int numeroFactura;
@@ -23,6 +27,11 @@ public class Factura {
     private final double total;
     private final ArrayList<ConsultaMedica> consultasMedicas;
 
+    /**
+     * Constructor de la factura para luego ser mostrada
+     * @param paciente Paciente del cual se quiere generar la factura, paciente!=null
+     * @param registro Registro del paciente, registro!= null
+     */
     public Factura(Paciente paciente, RegistroPaciente registro) {
         this.nombrePaciente = paciente.getNombre();
         this.apellidoPaciente = paciente.getApellido();
@@ -36,6 +45,7 @@ public class Factura {
             this.tipoHabitacion = registro.getHabitacion().toString();
             this.cantDias = registro.getCantDiasInternado();
             this.costoHabitacion = registro.getHabitacion().calculaCosto(cantDias);
+
         }
         else {
             this.tipoHabitacion = "";
@@ -56,6 +66,10 @@ public class Factura {
         this.monto = this.total;
     }
 
+    /**
+     * Muestra de la factura
+     * @return factura del paciente del cual se invoque el método
+     */
     public StringBuilder ImprimeFactura() {
         StringBuilder sb = new StringBuilder();
         sb.append("Nº Factura: ").append(numeroFactura).append("\n");
@@ -79,49 +93,5 @@ public class Factura {
         sb.append("\nTotal:                $").append(String.format("%.0f", total)).append("\n");
         
         return sb;
-    }
-
-    public int getNumeroFactura() {
-        return numeroFactura;
-    }
-    
-    public double getMonto() {
-        return monto;
-    }
-    
-    public String getNombrePaciente() {
-        return nombrePaciente;
-    }
-    
-    public String getApellidoPaciente() {
-        return apellidoPaciente;
-    }
-    
-    public String getFechaIngreso() {
-        return fechaIngreso;
-    }
-    
-    public String getFechaEgreso() {
-        return fechaEgreso;
-    }
-    
-    public int getCantDias() {
-        return cantDias;
-    }
-    
-    public String getTipoHabitacion() {
-        return tipoHabitacion;
-    }
-    
-    public double getCostoHabitacion() {
-        return costoHabitacion;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-    
-    public ArrayList<ConsultaMedica> getConsultasMedicas() {
-        return consultasMedicas;
     }
 }

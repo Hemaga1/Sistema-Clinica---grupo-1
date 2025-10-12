@@ -1,5 +1,9 @@
 package excepciones;
 
+/**
+ * Al registrar un médico, este no pudo estar registrado antes, si lo estuvo tenemos esta excepción
+ */
+
 public class MedicoDuplicadoExcepcion extends Exception {
 
     public MedicoDuplicadoExcepcion() {

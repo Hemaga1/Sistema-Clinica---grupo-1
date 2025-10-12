@@ -4,15 +4,27 @@ import excepciones.PacienteNoEstaEsperandoExcepcion;
 import excepciones.SalaEsperaVaciaExcepcion;
 import personas.Paciente;
 
+/**
+ * Clase utilizada para la sela de espera en general, incluye la sala de espera privada y el patio
+ */
 public class SalaDeEspera {
-    Patio patio;
-    SalaDeEsperaPrivada salaPrivada;
+    private Patio patio;
+    private SalaDeEsperaPrivada salaPrivada;
 
     public SalaDeEspera(){
         this.patio = new Patio();
         this.salaPrivada = new SalaDeEsperaPrivada();
     }
 
+    /**
+     * Se ingresa al paciente segun corresponda en la sala de espera privada o en el patio<br>
+     * <b>Postcondiciones:</b>
+     * <ul>
+     *     <li>Si la sala Privada esta vacia se ingresa al paciente</li>
+     *     <li>Si la sala Privada no esta vacía, se verifica segun rangos etarios si se reemplaza o se ingresa al patio</li>
+     * </ul>
+     * @param paciente Paciente a ingresar, paciente!=null, paciente!=""
+     */
     public void ingresar(Paciente paciente) {
         Paciente pacienteSalaPrivada = salaPrivada.getPaciente();
         if (!salaPrivada.Ocupado()){
@@ -27,6 +39,18 @@ public class SalaDeEspera {
         }
     }
 
+    /**
+     * El paciente será atendido entonces se quita de espera<br>
+     * <b>Precondición: </b>
+     * <ul>
+     *     <li>La sala de espera no debe estar vacía</li>
+     *     <li>El paciente debe encontrarse en la sala de espera</li>
+     * </ul><br>
+     * <b>Postcondición: </b> Se quita al paciente de la sala de espera para ser atendido
+     * @param paciente Paciente que será atendido, paciente!=null, paciente!=""
+     * @throws SalaEsperaVaciaExcepcion
+     * @throws PacienteNoEstaEsperandoExcepcion
+     */
     public void sacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
         if (this.salaPrivada.Ocupado() && this.salaPrivada.getPaciente().equals(paciente)){
             this.salaPrivada.setPaciente(null);

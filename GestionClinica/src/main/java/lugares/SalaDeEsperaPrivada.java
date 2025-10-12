@@ -2,6 +2,9 @@ package lugares;
 
 import personas.Paciente;
 
+/**
+ * Sala de espera proivada, unicamente puede haber un paciente
+ */
 public class SalaDeEsperaPrivada {
 
     private Paciente paciente;
