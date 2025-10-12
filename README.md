@@ -44,9 +44,10 @@
             │   ├── © EspecialidadClinica
             │   ├── © EspecialidadPediatria
             │   ├── © HonorarioDecorator
-            │   ├── Ⓘ IMedico
             │   ├── © PosgradoDecorator
             │   └── © PosgradoMagister
+            ├── 📦interfaces
+            │   ├── Ⓘ IMedico
             ├── 📦lugares
             │   ├── © Habitacion
             │   ├── © HabitacionCompartida
