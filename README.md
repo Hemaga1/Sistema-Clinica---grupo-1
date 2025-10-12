@@ -7,9 +7,10 @@
 
 &nbsp;&nbsp;A lo largo del proyecto se han utilizado diferentes patrones de diseño:
 - Patrón Facade: para simplificar la interacción entre las distintas partes del sistema.
-- Patrón Singleton: para garantizar que exista una única instancia de la clase Clinica.
-- Patrón Factory: con el objetivo de centralizar y simplificar la creación de aquellos objetos que presentas múltiples varientes según sus características, como lo son los médicos y los pacientes.
+- Patrón Singleton: para garantizar que exista una única instancia de la clase Clinica y SistemaFacade.
+- Patrón Factory: con el objetivo de centralizar y simplificar la creación de aquellos objetos que presentan múltiples variantes según sus características, como lo son los médicos y los pacientes.
 - Patrón Decorator: utilizado para calcular los honorarios de los médicos de acuerdo con las distintas combinaciones de características (especialidad, contratación y posgrado).
+- Patrón Double Dispatch: para controlar el ingreso de pacientes a la sala de espera, de acuerdo a su rango etario y el del paciente que se encuentra actualmente en la sala privada se decide si el que ingresa toma su lugar o va al patio.
 
 ## Estructura del proyecto
 ```
