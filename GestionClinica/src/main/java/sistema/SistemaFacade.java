@@ -87,7 +87,7 @@ public class SistemaFacade {
     public void ingresaPaciente(Paciente paciente) {
         if (sistemaAtencion.estaRegistrado(paciente)) {
             sistemaIngreso.ingresarPaciente(paciente);
-            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " ingresado\n");
+            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " ingresado correctamente\n");
         }
         else System.out.print("Paciente no registrado\n");
     }
@@ -109,7 +109,7 @@ public class SistemaFacade {
         if (sistemaAtencion.getRegistroPaciente(paciente) == null)
             try {
                 sistemaIngreso.SacarPaciente(paciente);
-                System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " sacado correctamente\n");
+                System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " sacado de sala de espera correctamente\n");
             }
             catch (Exception e) {
                 System.out.print(e.getMessage() + "\n");
@@ -154,15 +154,16 @@ public class SistemaFacade {
      */
     public Factura egresaPaciente(Paciente paciente) {
         try {
+            if (sistemaAtencion.getRegistroPaciente(paciente).getHabitacion() != null) {
+                sistemaAtencion.establecerDiasInternado(paciente);
+            }
+
             Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
             sistemaAtencion.removerRegistroPaciente(paciente);
+            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
             return factura;
         }
-        catch (PacienteSinAtenderExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-            return null;
-        }
-        catch (DesocupacionPacienteInexistenteExcepcion e) {
+        catch (PacienteSinAtenderExcepcion | DesocupacionPacienteInexistenteExcepcion e) {
             System.out.print(e.getMessage() + "\n");
             return null;
         }
@@ -185,6 +186,7 @@ public class SistemaFacade {
             sistemaAtencion.establecerDiasInternado(paciente, cantDiasInternado);
             Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
             sistemaAtencion.removerRegistroPaciente(paciente);
+            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
             return factura;
         }
         catch (PacienteSinAtenderExcepcion e) {
@@ -196,7 +198,7 @@ public class SistemaFacade {
             return null;
         }
     }
-
+   
     /**
      * Comienza el proceso de muestra del reporte de un médico de una fecha indicada a otra también indicada<br>
      * @param medico Medico del cual se mostrará el reporte de actividad, medico != null
@@ -209,4 +211,11 @@ public class SistemaFacade {
         return new ReporteActividadMedica(medico, fechaInicio, fechaFin, atenciones);
     }
 
+    /**
+     * Agrega una habitación a la lista de habitaciones de la clínica
+     * @param habitacion La habitación a agregar
+     */
+    public void agregarHabitacion(Habitacion habitacion) {
+        sistemaAtencion.agregarHabitacion(habitacion);
+    }
 }

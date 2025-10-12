@@ -5,11 +5,22 @@ import facturacion.RegistroPaciente;
 import excepciones.PacienteSinAtenderExcepcion;
 import excepciones.InternacionCapacidadExcedidaExcepcion;
 import personas.Paciente;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase utilizada cuando el paciente debe ser internado, se lo lleva a la habitacion que corresponda y se indica la cantidad de días
  */
 public class ServicioInternaciones {
+
+    private List<Habitacion> habitaciones;
+
+    /**
+     * Constructor del servicio de internaciones
+     */
+    public ServicioInternaciones() {
+        this.habitaciones = new ArrayList<>();
+    }
 
     /**
      * Internacion del paciente, se lo agrega en la habitacion que corresponda y se setea esta en el registro del paciente<br>
@@ -46,6 +57,22 @@ public class ServicioInternaciones {
         else registro.setCantDiasInternado(cantDiasInternado);
     }
     
+    /**
+     * Agrega una habitación a la lista de habitaciones de la clínica
+     * @param habitacion La habitación a agregar
+     */
+    public void agregarHabitacion(Habitacion habitacion) {
+        habitaciones.add(habitacion);
+    }
+    /**
+     * Quita una habitación de la lista de habitaciones de la clínica
+     * @param habitacion La habitación a quitar
+     * @return true si la habitación fue removida, false si no estaba en la lista
+     */
+    public boolean quitarHabitacion(Habitacion habitacion) {
+        return habitaciones.remove(habitacion);
+    }
+
     /*public boolean estaInternado(RegistroPaciente registro) {
         if (registro == null) {
             return false;

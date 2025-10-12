@@ -4,17 +4,23 @@ import excepciones.MedicoDuplicadoExcepcion;
 import excepciones.MedicoNoRegistradoExcepcion;
 import excepciones.PacienteDuplicadoExcepcion;
 import excepciones.PacienteNoRegistradoExcepcion;
+import excepciones.PacienteSinAtenderExcepcion;
+import excepciones.InternacionCapacidadExcedidaExcepcion;
+
 import facturacion.ConsultaMedica;
 import facturacion.PacienteAtendido;
+import facturacion.RegistroPaciente;
+
 import honorarios.IMedico;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import lugares.Habitacion;
-import facturacion.RegistroPaciente;
+
 import personas.Paciente;
-import excepciones.PacienteSinAtenderExcepcion;
-import excepciones.InternacionCapacidadExcedidaExcepcion;
+
 
 /**
  * En esta clase se encuentra todo lo que corresponde con la atención al paciente
@@ -83,8 +89,28 @@ public class SistemaAtencion {
      * @param cantDiasInternado canDiasInternado>=0
      * @throws PacienteSinAtenderExcepcion
      */
+
     public void establecerDiasInternado(Paciente paciente, int cantDiasInternado) throws PacienteSinAtenderExcepcion {
         servicioInternaciones.establecerDiasInternado(servicioPacientes.getRegistroPaciente(paciente), cantDiasInternado);
+    }
+
+    public void establecerDiasInternado(Paciente paciente) throws PacienteSinAtenderExcepcion {
+        int dias;
+        try {
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date fechaIngresoDate = sdf.parse(servicioPacientes.getRegistroPaciente(paciente).getFechaIngreso());
+                java.util.Date fechaActual = new java.util.Date();
+
+                long diferenciaEnMillis = fechaActual.getTime() - fechaIngresoDate.getTime();
+                dias = (int) (diferenciaEnMillis / (1000 * 60 * 60 * 24));
+                if (dias < 1) {
+                    dias = 1;
+                }
+
+        } catch (Exception e) {
+                dias =  1;
+        }
+        servicioInternaciones.establecerDiasInternado(servicioPacientes.getRegistroPaciente(paciente), dias);
     }
 
     public boolean estaRegistrado(Paciente paciente) {
@@ -143,6 +169,14 @@ public class SistemaAtencion {
      */
     public List<PacienteAtendido> getAtencionesDelMedicoPorPeriodo(IMedico medico, String fechaInicio, String fechaFin) {
         return servicioMedicos.getAtencionesDelMedicoPorPeriodo(medico, fechaInicio, fechaFin);
+    }
+
+    /**
+     * Agrega una habitación a la lista de habitaciones de la clínica
+     * @param habitacion La habitación a agregar
+     */ 
+    public void agregarHabitacion(Habitacion habitacion) {
+        servicioInternaciones.agregarHabitacion(habitacion);
     }
 }
 

@@ -15,7 +15,7 @@ public class Mayor extends Paciente{
 	 * @return true or false
 	 */
 	public boolean reemplaza(Paciente otroPaciente) {
-		return otroPaciente.reemplazaAMayor();
+        return !otroPaciente.reemplazaAMayor();
 	}
 
 	/**
