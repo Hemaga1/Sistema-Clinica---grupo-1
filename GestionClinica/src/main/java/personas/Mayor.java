@@ -14,8 +14,8 @@ public class Mayor extends Paciente{
 	 * Se verifica si se reemplaza el mayor que esta en la sala de espera privada segun el paciente nuevo que ingrese
 	 * @return true or false
 	 */
-	public boolean reemplaza(Paciente otroPaciente) {
-        return !otroPaciente.reemplazaAMayor();
+	public boolean esReemplazado(Paciente otroPaciente) {
+        return otroPaciente.reemplazaAMayor();
 	}
 
 	/**
