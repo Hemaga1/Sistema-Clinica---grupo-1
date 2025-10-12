@@ -15,10 +15,8 @@ public class Ninio extends Paciente{
 	 * @param otroPaciente
 	 * @return true or false
 	 */
-	public boolean reemplaza(Paciente otroPaciente) {
-		if (otroPaciente.reemplazaANinio())
-			return false;
-		else return true;
+	public boolean esReemplazado(Paciente otroPaciente) {
+		return otroPaciente.reemplazaANinio();
 	}
 
 	/**
