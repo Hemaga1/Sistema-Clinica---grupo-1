@@ -18,7 +18,7 @@ public class Main {
 		System.out.println("============================================================");
 		
 		Clinica clinica = Clinica.getInstancia("Clinica Central", "Avenida San Martin", 105, "+54 11 1234-5678", "Buenos Aires");
-		SistemaFacade sistema = new SistemaFacade(clinica);
+		SistemaFacade sistema = SistemaFacade.getInstancia(clinica);
 
 		FactoryMedico factoryMedico = new FactoryMedico();
 		FactoryPaciente factoryPaciente = new FactoryPaciente();
