@@ -30,7 +30,7 @@ public class SalaDeEspera {
         if (!salaPrivada.Ocupado()){
             salaPrivada.setPaciente(paciente);
         }else{
-            if (paciente.reemplaza(pacienteSalaPrivada)){
+            if (pacienteSalaPrivada.esReemplazado(paciente)){
                 patio.agregarPaciente(pacienteSalaPrivada);
                 salaPrivada.setPaciente(paciente);
             }else{
