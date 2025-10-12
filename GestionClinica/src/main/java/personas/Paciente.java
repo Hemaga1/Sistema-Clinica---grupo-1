@@ -34,7 +34,7 @@ public abstract class Paciente extends Persona{
 	 * @param otroPaciente otroPaciente!=null
 	 * @return true or false
 	 */
-	public abstract boolean reemplaza(Paciente otroPaciente);
+	public abstract boolean esReemplazado(Paciente otroPaciente);
 
 	/**
 	 * Se verifica si se reemplaza el niño que esta en la sala de espera privada segun el paciente nuevo que ingrese
