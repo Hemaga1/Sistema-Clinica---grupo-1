@@ -1,7 +1,4 @@
 package personas;
-import honorarios.IMedico;
-
-import java.util.ArrayList;
 
 /**
  * Clase extendida de Persona, correspondiente al paciente

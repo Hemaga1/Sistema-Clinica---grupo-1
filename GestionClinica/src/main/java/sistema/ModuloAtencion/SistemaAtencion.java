@@ -11,7 +11,7 @@ import facturacion.ConsultaMedica;
 import facturacion.PacienteAtendido;
 import facturacion.RegistroPaciente;
 
-import honorarios.IMedico;
+import interfaces.IMedico;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

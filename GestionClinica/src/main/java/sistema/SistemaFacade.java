@@ -2,7 +2,7 @@ package sistema;
 
 import excepciones.*;
 import facturacion.*;
-import honorarios.*;
+import interfaces.IMedico;
 import personas.*;
 import lugares.*;
 import sistema.ModuloIngreso.*;

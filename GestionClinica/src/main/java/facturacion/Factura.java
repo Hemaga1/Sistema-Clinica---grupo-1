@@ -1,8 +1,6 @@
 package facturacion;
 
-import honorarios.IMedico;
 import personas.Paciente;
-import lugares.Habitacion;
 
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;

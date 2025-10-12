@@ -1,5 +1,7 @@
 package honorarios;
 
+import interfaces.IMedico;
+
 /**
  * Clase para el calculo del honorario de especialidad: Clínica
  */

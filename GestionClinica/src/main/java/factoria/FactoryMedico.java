@@ -1,6 +1,7 @@
 package factoria;
 
 import honorarios.*;
+import interfaces.IMedico;
 import personas.Medico;
 
 /**

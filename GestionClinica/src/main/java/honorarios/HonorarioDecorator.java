@@ -1,5 +1,5 @@
 package honorarios;
-import java.util.ArrayList;
+import interfaces.IMedico;
 
 /**
  * Clase abstracta que implementa el patrón Decorator para agregar responsabilidades de cálculo de honorarios de manera dinámica.<br>

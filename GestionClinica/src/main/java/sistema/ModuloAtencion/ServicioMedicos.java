@@ -1,7 +1,7 @@
 package sistema.ModuloAtencion;
 
 import excepciones.MedicoDuplicadoExcepcion;
-import honorarios.IMedico;
+import interfaces.IMedico;
 import facturacion.PacienteAtendido;
 import java.util.*;
 import java.text.ParseException;

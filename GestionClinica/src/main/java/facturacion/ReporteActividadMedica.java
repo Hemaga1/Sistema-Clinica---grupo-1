@@ -1,6 +1,6 @@
 package facturacion;
 
-import honorarios.IMedico;
+import interfaces.IMedico;
 import java.util.*;
 
 /**

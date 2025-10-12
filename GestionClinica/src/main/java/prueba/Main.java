@@ -2,7 +2,7 @@ package prueba;
 
 import facturacion.*;
 import factoria.*;
-import honorarios.*;
+import interfaces.IMedico;
 import personas.*;
 import lugares.*;
 import sistema.*;

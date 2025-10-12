@@ -1,13 +1,11 @@
 package personas;
 
-import honorarios.*;
-
-import java.util.ArrayList;
+import interfaces.IMedico;
 
 /**
  * Clase extendida de Persona, correspondiente al médico
  */
-public class Medico extends Persona implements IMedico{
+public class Medico extends Persona implements IMedico {
 	private String matricula;
     private String especialidad;
 

@@ -1,6 +1,6 @@
 package facturacion;
 
-import honorarios.IMedico;
+import interfaces.IMedico;
 
 /**
  * Clase que especifica la consulta médica que tenga un paciente, para luego además ser agregada a todas las consultas médicas que pueda tener un paciente
