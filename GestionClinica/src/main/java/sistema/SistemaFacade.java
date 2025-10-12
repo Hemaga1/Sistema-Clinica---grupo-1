@@ -22,15 +22,24 @@ public class SistemaFacade {
     private final SistemaIngreso sistemaIngreso;
     private final SistemaEgreso sistemaEgreso;
 
+    private static SistemaFacade instancia;
+
     /**
      * Constructor del sistema
      * @param clinica Es el objeto clinica. clinica!=null
      */
-    public SistemaFacade(Clinica clinica) {
+    private SistemaFacade(Clinica clinica) {
         this.clinica = clinica;
         this.sistemaIngreso = new SistemaIngreso();
         this.sistemaAtencion = new SistemaAtencion();
         this.sistemaEgreso = new SistemaEgreso();
+    }
+
+    public static SistemaFacade getInstancia(Clinica clinica) {
+        if (instancia == null) {
+            instancia = new SistemaFacade(clinica);
+        }
+        return instancia;
     }
 
     /**
