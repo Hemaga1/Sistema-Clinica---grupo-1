@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Cumple el rol de fachada utilizando Patrón Facade, centralizando la comunicación entre: SistemaIngreso, SistemaAtencion y SistemaEgreso.
+ * Implementa el patrón Singleton para garantizar que solo exista una instancia del sistema durante toda la ejecución del programa.
  */
 public class SistemaFacade {
     
@@ -25,7 +26,7 @@ public class SistemaFacade {
     private static SistemaFacade instancia;
 
     /**
-     * Constructor del sistema
+     * Constructor privado para impedir la creacion de un objeto fuera de la clase
      * @param clinica Es el objeto clinica. clinica!=null
      */
     private SistemaFacade(Clinica clinica) {
@@ -35,6 +36,9 @@ public class SistemaFacade {
         this.sistemaEgreso = new SistemaEgreso();
     }
 
+    /**
+     * Metodo público estático que retorna la única instancia existente, creándola en el caso de que no exista.
+     */
     public static SistemaFacade getInstancia(Clinica clinica) {
         if (instancia == null) {
             instancia = new SistemaFacade(clinica);
