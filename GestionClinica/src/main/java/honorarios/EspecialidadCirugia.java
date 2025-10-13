@@ -3,7 +3,7 @@ package honorarios;
 import interfaces.IMedico;
 
 /**
- * Clase para el calculo del honorario de especialidad Cirguia
+ * Clase para el cálculo del honorario de especialidad Cirugía
  */
 
 public class EspecialidadCirugia extends HonorarioDecorator {

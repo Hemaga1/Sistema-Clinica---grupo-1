@@ -5,7 +5,11 @@ package lugares;
  */
 
 public class HabitacionTerapiaIntensiva extends Habitacion {
-    
+
+    /**
+     * Constructor indicando el costo inicial de la habitacion de terapia intensiva
+     * @param costoInicial costoInicial>0
+     */
     public HabitacionTerapiaIntensiva(double costoInicial) {
         super(costoInicial, 1);
     }

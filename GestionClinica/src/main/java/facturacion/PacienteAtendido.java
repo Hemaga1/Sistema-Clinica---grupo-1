@@ -12,6 +12,12 @@ public class PacienteAtendido {
     private String apellidoPaciente;
     private double honorario;
 
+    /**
+     * Constructor del paciente atendido para hacer agregado a la lista de pacientes atendidos
+     * @param paciente Paciente a ser atendido, paciente!=null
+     * @param fecha fecha de atencion, fecha!=null, fecha!=""
+     * @param honorario honorario>0
+     */
     public PacienteAtendido(Paciente paciente, String fecha, double honorario) {
         this.fecha = fecha;
         this.nombrePaciente = paciente.getNombre();

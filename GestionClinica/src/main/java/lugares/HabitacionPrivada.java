@@ -5,7 +5,11 @@ package lugares;
  */
 
 public class HabitacionPrivada extends Habitacion {
-    
+
+    /**
+     * Constructor indicando el costo inicial de la habitacion Privada
+     * @param costoInicial costoInicial>0
+     */
     public HabitacionPrivada(double costoInicial) {
         super(costoInicial, 1);
     }

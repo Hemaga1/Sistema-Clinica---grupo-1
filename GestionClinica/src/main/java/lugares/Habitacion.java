@@ -29,6 +29,10 @@ public abstract class Habitacion {
         this.pacientes = new ArrayList<>();
     }
 
+    /**
+     * Método abstracto del cálculo de costos segun la cantidad de días de internacion
+     * @param cantDias cantDias>0
+     */
     public abstract double calculaCosto(int cantDias);
 
     public double getCostoAsignacion() {

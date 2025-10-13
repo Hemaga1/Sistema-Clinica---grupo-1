@@ -5,6 +5,9 @@ import personas.Paciente;
 import facturacion.RegistroPaciente;
 import java.util.*;
 
+/**
+ * Clase que contiene operaciones del paciente
+ */
 public class ServicioPacientes {
     
     private final Set<Paciente> pacientesRegistrados = new HashSet<>();
@@ -48,6 +51,11 @@ public class ServicioPacientes {
         }
     }
 
+    /**
+     * Se obtiene el registro del paciente
+     * @param paciente Paciente del cual se quiere obtener el registro, paciente!=null
+     * @return registro del paciente indicado
+     */
     public RegistroPaciente getRegistroPaciente(Paciente paciente) {
         return pacientesAtendidos.get(paciente);
     }
@@ -60,6 +68,11 @@ public class ServicioPacientes {
         pacientesAtendidos.remove(paciente);
     }
 
+    /**
+     * Verifica si el paciente esta en atención
+     * @param paciente Paciente del cual queremos saber si esta siendo atendido, paciente!=null
+     * @return true or false
+     */
     public boolean estaEnAtencion(Paciente paciente) {
         return pacientesAtendidos.containsKey(paciente);
     }

@@ -11,6 +11,9 @@ public class SalaDeEspera {
     private Patio patio;
     private SalaDeEsperaPrivada salaPrivada;
 
+    /**
+     * Constructor de la sala de espera que vendría a ser genérica: incluye la Sala de Espera Privada y el Patio
+     */
     public SalaDeEspera(){
         this.patio = new Patio();
         this.salaPrivada = new SalaDeEsperaPrivada();
@@ -62,11 +65,9 @@ public class SalaDeEspera {
 
     public Paciente sacarPacienteConMenorOrden() throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion{
         Paciente candidato = null;
-        // Considerar sala privada
         if (this.salaPrivada.Ocupado()) {
             candidato = this.salaPrivada.getPaciente();
         }
-        // Considerar patio
         for (Paciente p : this.patio.getPacientes()) {
             if (candidato == null || p.getNroOrden() < candidato.getNroOrden()) {
                 candidato = p;

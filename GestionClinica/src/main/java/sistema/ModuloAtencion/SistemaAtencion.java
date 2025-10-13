@@ -94,6 +94,11 @@ public class SistemaAtencion {
         servicioInternaciones.establecerDiasInternado(servicioPacientes.getRegistroPaciente(paciente), cantDiasInternado);
     }
 
+    /**
+     * Se establecen la cantidad de días que estuvo internado el paciente
+     * @param paciente paciente!=null
+     * @throws PacienteSinAtenderExcepcion
+     */
     public void establecerDiasInternado(Paciente paciente) throws PacienteSinAtenderExcepcion {
         int dias;
         try {
@@ -113,10 +118,20 @@ public class SistemaAtencion {
         servicioInternaciones.establecerDiasInternado(servicioPacientes.getRegistroPaciente(paciente), dias);
     }
 
+    /**
+     * Verifica si el paciente esta registrado
+     * @param paciente Paciente a verificar, paciente!=null
+     * @return true or false
+     */
     public boolean estaRegistrado(Paciente paciente) {
         return  servicioPacientes.estaRegistrado(paciente);
     }
-    
+
+    /**
+     * Retorna el registro del paciente indicado
+     * @param paciente Paciente del cual se quiere obtener el registro, paciente!=null
+     * @return registro del paciente que contiene la habitacion en caso de que sea internado con la cantidad de dias, fecha de ingreso y una lista con sus consultas medicas
+     */
     public RegistroPaciente getRegistroPaciente(Paciente paciente) {
         return servicioPacientes.getRegistroPaciente(paciente);
     }
@@ -132,7 +147,7 @@ public class SistemaAtencion {
     /**
      * Registra un médico<br>
      * <b>Precondición: </b> El médico no debe haberse registrado anteriormente<br>
-     * <b>Postcondición:</b> Se registra al médico
+     * <b>Postcondición:</b> Se registra al médico en caso de no haber sido registrado anteriormente
      * @param medico El objeto medico a registrar, medico != null
      * @throws MedicoDuplicadoExcepcion
      */
@@ -143,7 +158,7 @@ public class SistemaAtencion {
     /**
      * Registra un paciente<br>
      * <b>Precondición: </b> El paciente no debe haberse registrado anteriormente<br>
-     * <b>Postcondición:</b> Se registra al paciente
+     * <b>Postcondición:</b> Se registra al paciente en caso de no haber sido registrado anteriormente
      * @param paciente El objeto paciente a registrar, paciente != null
      * @throws PacienteDuplicadoExcepcion
      */
@@ -161,7 +176,7 @@ public class SistemaAtencion {
     }
 
     /**
-     * Muestra de atenciones del médico de cierta fecha a otra fecha
+     * Muestra de atenciones del médico de cierta fecha a otra fecha, ambas indicadas por parámetro
      * @param medico Médico del cual se mostrarán las atenciones, medico != null
      * @param fechaInicio Fecha de inicio, fechaInicio!=null, fechaInicio!=""
      * @param fechaFin Fecha de fin, fechaFin!=null, fechaFin!=""

@@ -8,6 +8,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 // imports de java.time y streams removidos para simplificar la lectura
 
+/**
+ * Clase que contiene operaciones del médico
+ */
 public class ServicioMedicos {
     
     private final Map<IMedico, List<PacienteAtendido>> medicos = new HashMap<>();
@@ -59,15 +62,6 @@ public class ServicioMedicos {
         medicos.get(medico).add(atencion);
     }
 
-    /*public int getCantidadPacientesAtendidos(IMedico medico) {
-        List<PacienteAtendido> atenciones = medicos.get(medico);
-        return atenciones == null ? 0 : atenciones.size();
-    }*/
-
-    public Set<IMedico> getMedicosRegistrados() {
-        return medicos.keySet();
-    }
-
     /**
      * Muestra de atenciones del médico
      * @param medico Médico del cual se mostrarán las atenciones, medico != null
@@ -103,7 +97,7 @@ public class ServicioMedicos {
                         resultado.add(atencion);
                     }
                 } catch (ParseException ignored) {
-                    // si una fecha individual es inválida, se omite esa entrada
+                    return null;
                 }
             }
 
@@ -122,7 +116,7 @@ public class ServicioMedicos {
 
             return resultado;
         } catch (ParseException e) {
-            throw new IllegalArgumentException("Formato de fecha inválido. Use dd/MM/yyyy");
+            return null;
         }
     }
     

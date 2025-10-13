@@ -27,6 +27,10 @@ public class Medico extends Persona implements IMedico {
         this.especialidad = especialidad;
 	}
 
+    /**
+     * Se retorna la especialidad de un médico
+     * @return string de la especialidad
+     */
     public String getEspecialidad(){
         return this.especialidad;
     }

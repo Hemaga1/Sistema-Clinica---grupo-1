@@ -8,7 +8,7 @@ public class HabitacionCompartida extends Habitacion {
 
     /**
      * Constructor indicando el costo inicial y el maximo de personas en la habitacion compartida
-     * @param costoInicial costoInicial>=0
+     * @param costoInicial costoInicial>0
      * @param maximoPacientes maximoPaciente>0
      */
     public HabitacionCompartida(double costoInicial, int maximoPacientes) {

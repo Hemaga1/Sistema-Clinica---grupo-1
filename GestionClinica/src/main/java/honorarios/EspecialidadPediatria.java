@@ -3,7 +3,7 @@ package honorarios;
 import interfaces.IMedico;
 
 /**
- * Clase para el calculo del honorario de especialidad: Pediatría
+ * Clase para el caálculo del honorario de especialidad: Pediatría
  */
 
 public class EspecialidadPediatria extends HonorarioDecorator {

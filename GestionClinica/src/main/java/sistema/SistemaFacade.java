@@ -12,7 +12,7 @@ import sistema.ModuloEgreso.*;
 import java.util.List;
 
 /**
- * Cumple el rol de fachada utilizando Patrón Facade, centralizando la comunicación entre: SistemaIngreso, SistemaAtencion y SistemaEgreso.
+ * Cumple el rol de fachada utilizando Patrón Facade, centralizando la comunicación entre: ModuloIngreso, ModuloAtencion y ModuloEgreso.
  * Implementa el patrón Singleton para garantizar que solo exista una instancia del sistema durante toda la ejecución del programa.
  */
 public class SistemaFacade {
@@ -27,7 +27,7 @@ public class SistemaFacade {
 
     /**
      * Constructor privado para impedir la creacion de un objeto fuera de la clase
-     * @param clinica Es el objeto clinica. clinica!=null
+     * @param clinica clinica!=null
      */
     private SistemaFacade(Clinica clinica) {
         this.clinica = clinica;
@@ -38,6 +38,8 @@ public class SistemaFacade {
 
     /**
      * Metodo público estático que retorna la única instancia existente, creándola en el caso de que no exista.
+     * @param clinica clinica!=null
+     * @return
      */
     public static SistemaFacade getInstancia(Clinica clinica) {
         if (instancia == null) {
@@ -143,7 +145,7 @@ public class SistemaFacade {
      * <li>La habitación debe tener lugar para poder internar al paciente</li>
      * </ul><br>
      * <b>Postcondición: </b> Comienza la internación del paciente a la habitación correspondiente<br>
-     * @param paciente Es el objeto paciente, y ha sido derivado para internación, paciente!=null
+     * @param paciente Es el objeto paciente que ha sido derivado para internación, paciente!=null
      * @param habitacion La habitación a la que corresponde ser internado el paciente, habitacion != null
      */
     public void internaPaciente(Paciente paciente, Habitacion habitacion) {
@@ -213,7 +215,7 @@ public class SistemaFacade {
     }
    
     /**
-     * Comienza el proceso de muestra del reporte de un médico de una fecha indicada a otra también indicada<br>
+     * Comienza el proceso de muestra del reporte de un médico de una fecha a otra ya indicadas<br>
      * @param medico Medico del cual se mostrará el reporte de actividad, medico != null
      * @param fechaInicio fechaInicio != null, fechaInicio != ""
      * @param fechaFin fechaFin != null, fechaFin != ""

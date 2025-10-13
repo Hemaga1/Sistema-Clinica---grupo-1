@@ -3,7 +3,7 @@ package honorarios;
 import interfaces.IMedico;
 
 /**
- * Clase para el calculo del honorario de Posgrado: Doctorado
+ * Clase para el cálculo del honorario de Posgrado: Doctorado
  */
 
 public class PosgradoDoctorado extends HonorarioDecorator {

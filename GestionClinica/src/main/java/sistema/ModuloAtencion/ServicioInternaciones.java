@@ -64,6 +64,7 @@ public class ServicioInternaciones {
     public void agregarHabitacion(Habitacion habitacion) {
         habitaciones.add(habitacion);
     }
+
     /**
      * Quita una habitación de la lista de habitaciones de la clínica
      * @param habitacion La habitación a quitar
@@ -72,11 +73,4 @@ public class ServicioInternaciones {
     public boolean quitarHabitacion(Habitacion habitacion) {
         return habitaciones.remove(habitacion);
     }
-
-    /*public boolean estaInternado(RegistroPaciente registro) {
-        if (registro == null) {
-            return false;
-        }
-        return registro.getHabitacion() != null;
-    }*/
 }

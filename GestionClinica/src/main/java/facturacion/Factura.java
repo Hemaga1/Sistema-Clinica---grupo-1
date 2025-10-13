@@ -54,7 +54,6 @@ public class Factura {
         // Calcular totales con 20% de incremento en honorarios médicos
         double totalConsultas = 0;
         for (ConsultaMedica consulta : consultasMedicas) {
-            // Aplicar 20% de incremento sobre el precio base del médico
             double precioConIncremento = consulta.getPrecio() * 1.20;
             consulta.setPrecio(precioConIncremento);
             totalConsultas += precioConIncremento;

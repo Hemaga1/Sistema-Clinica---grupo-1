@@ -10,7 +10,6 @@ public class Clinica {
     private String nombre;
     private Domicilio direccion;
     private String telefono;
-    private String ciudad;
 
     private static Clinica instancia;
 
@@ -26,7 +25,6 @@ public class Clinica {
         this.nombre = nombre;
         this.direccion = new Domicilio(calle,numero,ciudad);
         this.telefono = telefono;
-        this.ciudad = ciudad;
     }
 
     /**
@@ -47,6 +45,6 @@ public class Clinica {
 
     @Override
     public String toString() {
-        return "Clinica nombre: " + nombre + " direccion: " + direccion + " telefono: " + telefono + " ciudad: " + ciudad;
+        return "Clinica nombre: " + nombre + " direccion: " + direccion + " telefono: " + telefono;
     }
 }
