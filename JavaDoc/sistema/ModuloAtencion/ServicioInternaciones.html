@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2025-10-12">
-<meta name="description" content="declaration: package: sistema.ModuloAtencion, class: ServicioInternaciones">
+<meta name="description" content="declaration: package: modelo.sistema.ModuloAtencion, class: ServicioInternaciones">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">sistema.ModuloAtencion</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">modelo.sistema.ModuloAtencion</a></div>
 <h1 title="Class ServicioInternaciones" class="title">Class ServicioInternaciones</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">sistema.ModuloAtencion.ServicioInternaciones</div>
+<div class="inheritance">modelo.sistema.ModuloAtencion.ServicioInternaciones</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -123,12 +123,12 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#agregarHabitacion(lugares.Habitacion)" class="member-name-link">agregarHabitacion</a><wbr>(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#agregarHabitacion(modelo.lugares.Habitacion)" class="member-name-link">agregarHabitacion</a><wbr>(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Agrega una habitación a la lista de habitaciones de la clínica</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(facturacion.RegistroPaciente,int)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(modelo.facturacion.RegistroPaciente,int)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro,
  int&nbsp;cantDiasInternado)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se establece en el registro del paciente la cantidad de días internado<br>
@@ -136,16 +136,16 @@ loadScripts(document, 'script');</script>
  <b>Postcondición: </b> Se setea la cantidad de días de internación en el registro del paciente</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#internar(personas.Paciente,facturacion.RegistroPaciente,lugares.Habitacion)" class="member-name-link">internar</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro,
- <a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#internar(modelo.personas.Paciente,modelo.facturacion.RegistroPaciente,modelo.lugares.Habitacion)" class="member-name-link">internar</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro,
+ <a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Internacion del paciente, se lo agrega en la habitacion que corresponda y se setea esta en el registro del paciente<br>
  <b>Precondición: </b> El paciente debe estar atendido y la habitacion no debe estar llena<br>
  <b>Postcondición: </b> Paciente internado</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#quitarHabitacion(lugares.Habitacion)" class="member-name-link">quitarHabitacion</a><wbr>(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#quitarHabitacion(modelo.lugares.Habitacion)" class="member-name-link">quitarHabitacion</a><wbr>(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Quita una habitación de la lista de habitaciones de la clínica</div>
 </div>
@@ -182,13 +182,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="internar(personas.Paciente,facturacion.RegistroPaciente,lugares.Habitacion)">
+<section class="detail" id="internar(modelo.personas.Paciente,modelo.facturacion.RegistroPaciente,modelo.lugares.Habitacion)">
 <h3>internar</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">internar</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro,
- <a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</span>
-              throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a>,
-<a href="../../excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in excepciones">InternacionCapacidadExcedidaExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">internar</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro,
+ <a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</span>
+              throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a>,
+<a href="../../modelo.excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in modelo.excepciones">InternacionCapacidadExcedidaExcepcion</a></span></div>
 <div class="block">Internacion del paciente, se lo agrega en la habitacion que corresponda y se setea esta en el registro del paciente<br>
  <b>Precondición: </b> El paciente debe estar atendido y la habitacion no debe estar llena<br>
  <b>Postcondición: </b> Paciente internado</div>
@@ -198,17 +198,17 @@ loadScripts(document, 'script');</script>
 <dd><code>registro</code> - Registro del paciente, registro !=null</dd>
 <dd><code>habitacion</code> - Habitacion donde será internado el paciente, habitacion != null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in excepciones">InternacionCapacidadExcedidaExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in modelo.excepciones">InternacionCapacidadExcedidaExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="establecerDiasInternado(facturacion.RegistroPaciente,int)">
+<section class="detail" id="establecerDiasInternado(modelo.facturacion.RegistroPaciente,int)">
 <h3>establecerDiasInternado</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro,
  int&nbsp;cantDiasInternado)</span>
-                             throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></span></div>
+                             throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></span></div>
 <div class="block">Se establece en el registro del paciente la cantidad de días internado<br>
  <b>Precondición: </b> El paciente debe estar atendido<br>
  <b>Postcondición: </b> Se setea la cantidad de días de internación en el registro del paciente</div>
@@ -217,14 +217,14 @@ loadScripts(document, 'script');</script>
 <dd><code>registro</code> - Registro paciente, registro != null</dd>
 <dd><code>cantDiasInternado</code> - canDiasInternado&gt;=0</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="agregarHabitacion(lugares.Habitacion)">
+<section class="detail" id="agregarHabitacion(modelo.lugares.Habitacion)">
 <h3>agregarHabitacion</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">agregarHabitacion</span><wbr><span class="parameters">(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">agregarHabitacion</span><wbr><span class="parameters">(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</span></div>
 <div class="block">Agrega una habitación a la lista de habitaciones de la clínica</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -233,9 +233,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="quitarHabitacion(lugares.Habitacion)">
+<section class="detail" id="quitarHabitacion(modelo.lugares.Habitacion)">
 <h3>quitarHabitacion</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">quitarHabitacion</span><wbr><span class="parameters">(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">quitarHabitacion</span><wbr><span class="parameters">(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</span></div>
 <div class="block">Quita una habitación de la lista de habitaciones de la clínica</div>
 <dl class="notes">
 <dt>Parameters:</dt>

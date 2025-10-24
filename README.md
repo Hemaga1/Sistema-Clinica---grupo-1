@@ -1,15 +1,15 @@
 # Sistema de Gestión de una Clínica
-&nbsp;&nbsp;El sistema desarrollado corresponde a la primera etapa de un Sistema de Gestión de una Clínica Privada, que permite manejar información de médicos y pacientes, así como gestionar el ingreso, atención, internación, egreso y facturación de los pacientes.
+&nbsp;&nbsp;El modelo.sistema desarrollado corresponde a la primera etapa de un Sistema de Gestión de una Clínica Privada, que permite manejar información de médicos y pacientes, así como gestionar el ingreso, atención, internación, egreso y facturación de los pacientes.
 
 &nbsp;&nbsp;El objetivo principal fue modelar el dominio de la clínica aplicando los principios de la Programación Orientada a Objetos, junto con patrones de diseño para estructurar el código de manera extensible y modular, los cuales serán explicados más adelante.
 
-&nbsp;&nbsp;El sistema se ejecuta mediante un método main sin interfaz gráfica (en esta primera parte), simulando las distintas operaciones de la clínica a través de llamadas a los métodos del sistema.
+&nbsp;&nbsp;El modelo.sistema se ejecuta mediante un método main sin interfaz gráfica (en esta primera parte), simulando las distintas operaciones de la clínica a través de llamadas a los métodos del modelo.sistema.
 
 &nbsp;&nbsp;A lo largo del proyecto se han utilizado diferentes patrones de diseño:
-- Patrón Facade: para simplificar la interacción entre las distintas partes del sistema.
+- Patrón Facade: para simplificar la interacción entre las distintas partes del modelo.sistema.
 - Patrón Singleton: para garantizar que exista una única instancia de la clase Clinica y SistemaFacade.
 - Patrón Factory: con el objetivo de centralizar y simplificar la creación de aquellos objetos que presentan múltiples variantes según sus características, como lo son los médicos y los pacientes.
-- Patrón Decorator: utilizado para calcular los honorarios de los médicos de acuerdo con las distintas combinaciones de características (especialidad, contratación y posgrado).
+- Patrón Decorator: utilizado para calcular los modelo.honorarios de los médicos de acuerdo con las distintas combinaciones de características (especialidad, contratación y posgrado).
 - Patrón Double Dispatch: para controlar el ingreso de pacientes a la sala de espera, de acuerdo a su rango etario y el del paciente que se encuentra actualmente en la sala privada se decide si el que ingresa toma su lugar o va al patio.
 
 ## Estructura del proyecto
@@ -18,7 +18,7 @@
 └── 📁src/
     └── 📁main/
         └── 📁java/
-            ├── 📦excepciones
+            ├── 📦modelo.excepciones
             │   ├── ⓔ DesocupacionPacienteInexistenteExcepcion
             │   ├── ⓔ InternacionCapacidadExcedidadExcepcion
             │   ├── ⓔ MedicoDuplicadoExcepcion
@@ -28,16 +28,16 @@
             │   ├── ⓔ PacienteNoRegistradoExcepcion
             │   ├── ⓔ PacienteSinAtenderExcepcion
             │   └── ⓔ SalaEsperaVaciaExcepcion
-            ├── 📦factoria
+            ├── 📦modelo.factoria
             │   ├── © FactoryMedico
             │   └── © FactoryPaciente
-            ├── 📦facturacion
+            ├── 📦modelo.facturacion
             │   ├── © ConsultaMedica
             │   ├── © Factura
             │   ├── © PacienteAtendido
             │   ├── © RegistroPaciente
             │   └── © ReporteActividadMedica
-            ├── 📦honorarios
+            ├── 📦modelo.honorarios
             │   ├── © ContratacionPermanente
             │   ├── © ContratacionResidente
             │   ├── © EspecialidadCirugia
@@ -46,9 +46,9 @@
             │   ├── © HonorarioDecorator
             │   ├── © PosgradoDecorator
             │   └── © PosgradoMagister
-            ├── 📦interfaces
+            ├── 📦modelo.interfaces
             │   ├── Ⓘ IMedico
-            ├── 📦lugares
+            ├── 📦modelo.lugares
             │   ├── © Habitacion
             │   ├── © HabitacionCompartida
             │   ├── © HabitacionPrivada
@@ -56,7 +56,7 @@
             │   ├── © Patio
             │   ├── © SalaDeEspera
             │   └── © SalaDeEsperaPrivada
-            ├── 📦personas
+            ├── 📦modelo.personas
             │   ├── © Domicilio
             │   ├── © Joven
             │   ├── © Mayor
@@ -64,9 +64,9 @@
             │   ├── © Ninio
             │   ├── © Paciente
             │   └── © Persona
-            ├── 📦prueba
+            ├── 📦modelo.prueba
             │   └── © Main
-            └── 📦sistema
+            └── 📦modelo.sistema
                 ├── 📦ModuloAtencion
                 │   ├── © ServicioInternaciones
                 │   ├── © ServicioMedicos

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2025-10-12">
-<meta name="description" content="declaration: package: sistema.ModuloIngreso, class: SistemaIngreso">
+<meta name="description" content="declaration: package: modelo.sistema.ModuloIngreso, class: SistemaIngreso">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">sistema.ModuloIngreso</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">modelo.sistema.ModuloIngreso</a></div>
 <h1 title="Class SistemaIngreso" class="title">Class SistemaIngreso</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">sistema.ModuloIngreso.SistemaIngreso</div>
+<div class="inheritance">modelo.sistema.ModuloIngreso.SistemaIngreso</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -121,13 +121,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ingresarPaciente(personas.Paciente)" class="member-name-link">ingresarPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#ingresarPaciente(modelo.personas.Paciente)" class="member-name-link">ingresarPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se procede a ingresar al paciente a la sala de espera luego de haber sido registrado<br>
  <b>Precondición: </b>Debe haber sido registrado anteriormente<br>
  <b>Postcondición: </b>Se ingresa el paciente a espera</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../personas/Paciente.html" title="class in personas">Paciente</a></code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#SacarPaciente()" class="member-name-link">SacarPaciente</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se saca al paciente con menor numero de orden de la sala de espera cuando va a ser atendido<br>
@@ -135,7 +135,7 @@ loadScripts(document, 'script');</script>
  <b>Postcondición: </b> Se quita de espera, ya sea de la Sala Privada o del Patio</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#SacarPaciente(personas.Paciente)" class="member-name-link">SacarPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#SacarPaciente(modelo.personas.Paciente)" class="member-name-link">SacarPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se saca al paciente de la sala de espera cuando va a ser atendido<br>
  <b>Precondición: </b> La sala de espera no está vacía y el paciente indicado esta en ella<br>
@@ -173,9 +173,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="ingresarPaciente(personas.Paciente)">
+<section class="detail" id="ingresarPaciente(modelo.personas.Paciente)">
 <h3>ingresarPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">ingresarPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">ingresarPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span></div>
 <div class="block">Se procede a ingresar al paciente a la sala de espera luego de haber sido registrado<br>
  <b>Precondición: </b>Debe haber sido registrado anteriormente<br>
  <b>Postcondición: </b>Se ingresa el paciente a espera</div>
@@ -186,11 +186,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="SacarPaciente(personas.Paciente)">
+<section class="detail" id="SacarPaciente(modelo.personas.Paciente)">
 <h3>SacarPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">SacarPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span>
-                   throws <span class="exceptions"><a href="../../excepciones/SalaEsperaVaciaExcepcion.html" title="class in excepciones">SalaEsperaVaciaExcepcion</a>,
-<a href="../../excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in excepciones">PacienteNoEstaEsperandoExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">SacarPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span>
+                   throws <span class="exceptions"><a href="../../modelo.excepciones/SalaEsperaVaciaExcepcion.html" title="class in modelo.excepciones">SalaEsperaVaciaExcepcion</a>,
+<a href="../../modelo.excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in modelo.excepciones">PacienteNoEstaEsperandoExcepcion</a></span></div>
 <div class="block">Se saca al paciente de la sala de espera cuando va a ser atendido<br>
  <b>Precondición: </b> La sala de espera no está vacía y el paciente indicado esta en ella<br>
  <b>Postcondición: </b> Se quita de espera, ya sea de la Sala Privada o del Patio</div>
@@ -198,24 +198,24 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>paciente</code> - Paciente que será sacado de espera, paciente != null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/SalaEsperaVaciaExcepcion.html" title="class in excepciones">SalaEsperaVaciaExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in excepciones">PacienteNoEstaEsperandoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/SalaEsperaVaciaExcepcion.html" title="class in modelo.excepciones">SalaEsperaVaciaExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in modelo.excepciones">PacienteNoEstaEsperandoExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="SacarPaciente()">
 <h3>SacarPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../personas/Paciente.html" title="class in personas">Paciente</a></span>&nbsp;<span class="element-name">SacarPaciente</span>()
-                       throws <span class="exceptions"><a href="../../excepciones/SalaEsperaVaciaExcepcion.html" title="class in excepciones">SalaEsperaVaciaExcepcion</a>,
-<a href="../../excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in excepciones">PacienteNoEstaEsperandoExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a></span>&nbsp;<span class="element-name">SacarPaciente</span>()
+                       throws <span class="exceptions"><a href="../../modelo.excepciones/SalaEsperaVaciaExcepcion.html" title="class in modelo.excepciones">SalaEsperaVaciaExcepcion</a>,
+<a href="../../modelo.excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in modelo.excepciones">PacienteNoEstaEsperandoExcepcion</a></span></div>
 <div class="block">Se saca al paciente con menor numero de orden de la sala de espera cuando va a ser atendido<br>
  <b>Precondición: </b> La sala de espera no está vacía<br>
  <b>Postcondición: </b> Se quita de espera, ya sea de la Sala Privada o del Patio</div>
 <dl class="notes">
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/SalaEsperaVaciaExcepcion.html" title="class in excepciones">SalaEsperaVaciaExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in excepciones">PacienteNoEstaEsperandoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/SalaEsperaVaciaExcepcion.html" title="class in modelo.excepciones">SalaEsperaVaciaExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteNoEstaEsperandoExcepcion.html" title="class in modelo.excepciones">PacienteNoEstaEsperandoExcepcion</a></code></dd>
 </dl>
 </section>
 </li>

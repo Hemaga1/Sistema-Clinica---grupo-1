@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2025-10-12">
-<meta name="description" content="declaration: package: sistema.ModuloEgreso, class: SistemaEgreso">
+<meta name="description" content="declaration: package: modelo.sistema.ModuloEgreso, class: SistemaEgreso">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">sistema.ModuloEgreso</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">modelo.sistema.ModuloEgreso</a></div>
 <h1 title="Class SistemaEgreso" class="title">Class SistemaEgreso</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">sistema.ModuloEgreso.SistemaEgreso</div>
+<div class="inheritance">modelo.sistema.ModuloEgreso.SistemaEgreso</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -120,9 +120,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../facturacion/Factura.html" title="class in facturacion">Factura</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#egresar(personas.Paciente,facturacion.RegistroPaciente)" class="member-name-link">egresar</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../modelo.facturacion/Factura.html" title="class in modelo.facturacion">Factura</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#egresar(modelo.personas.Paciente,modelo.facturacion.RegistroPaciente)" class="member-name-link">egresar</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se egresa al paciente y se realiza su facturación correspondiente con la información sobre su actividad siendo atendido</div>
 </div>
@@ -158,12 +158,12 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="egresar(personas.Paciente,facturacion.RegistroPaciente)">
+<section class="detail" id="egresar(modelo.personas.Paciente,modelo.facturacion.RegistroPaciente)">
 <h3>egresar</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../facturacion/Factura.html" title="class in facturacion">Factura</a></span>&nbsp;<span class="element-name">egresar</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a>&nbsp;registro)</span>
-                throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a>,
-<a href="../../excepciones/DesocupacionPacienteInexistenteExcepcion.html" title="class in excepciones">DesocupacionPacienteInexistenteExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../modelo.facturacion/Factura.html" title="class in modelo.facturacion">Factura</a></span>&nbsp;<span class="element-name">egresar</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a>&nbsp;registro)</span>
+                throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a>,
+<a href="../../modelo.excepciones/DesocupacionPacienteInexistenteExcepcion.html" title="class in modelo.excepciones">DesocupacionPacienteInexistenteExcepcion</a></span></div>
 <div class="block">Se egresa al paciente y se realiza su facturación correspondiente con la información sobre su actividad siendo atendido</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -172,8 +172,8 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>Instanciación a la facturación</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/DesocupacionPacienteInexistenteExcepcion.html" title="class in excepciones">DesocupacionPacienteInexistenteExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/DesocupacionPacienteInexistenteExcepcion.html" title="class in modelo.excepciones">DesocupacionPacienteInexistenteExcepcion</a></code></dd>
 </dl>
 </section>
 </li>

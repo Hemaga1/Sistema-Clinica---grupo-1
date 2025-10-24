@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2025-10-12">
-<meta name="description" content="declaration: package: factoria, class: FactoryMedico">
+<meta name="description" content="declaration: package: modelo.factoria, class: FactoryMedico">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../script-dir/jquery-ui.min.css" title="Style">
@@ -82,18 +82,18 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">factoria</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">modelo.factoria</a></div>
 <h1 title="Class FactoryMedico" class="title">Class FactoryMedico</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">factoria.FactoryMedico</div>
+<div class="inheritance">modelo.factoria.FactoryMedico</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">FactoryMedico</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
 <div class="block">Clase Factory encargada de la creación de objetos IMedico.<br>
- Utiliza el patrón Factory para centralizar la instanciación de un objeto Medico base y aplica de forma secuencial y transparente los Decoradores de honorarios (Especialidad, Contratación y Posgrado).</div>
+ Utiliza el patrón Factory para centralizar la instanciación de un objeto Medico base y aplica de forma secuencial y transparente los Decoradores de modelo.honorarios (Especialidad, Contratación y Posgrado).</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -121,7 +121,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#crearMedico(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)" class="member-name-link">crearMedico</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;DNI,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nombre,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;apellido,
@@ -137,21 +137,21 @@ loadScripts(document, 'script');</script>
 <div class="block">El método instancia un objeto Medico base y luego le aplica las tres capas de decoración (Especialidad, Contratacion y Posgrado) basándose en los tipos de String de entrada.<br>
  <b>Precondición: </b> Los parámetros DNI, nombre, apellido, matrícula y especialidad son válidos para crear un objeto Medico base.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getContratacion(java.lang.String,interfaces.IMedico)" class="member-name-link">getContratacion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getContratacion(java.lang.String,modelo.interfaces.IMedico)" class="member-name-link">getContratacion</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Aplica el Decorador de Contratación al objeto IMedico.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEspecialidad(java.lang.String,interfaces.IMedico)" class="member-name-link">getEspecialidad</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEspecialidad(java.lang.String,modelo.interfaces.IMedico)" class="member-name-link">getEspecialidad</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Aplica el Decorador de Especialidad al objeto IMedico base.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosgrado(java.lang.String,interfaces.IMedico)" class="member-name-link">getPosgrado</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosgrado(java.lang.String,modelo.interfaces.IMedico)" class="member-name-link">getPosgrado</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Aplica el Decorador de Posgrado al objeto IMedico.</div>
 </div>
@@ -189,7 +189,7 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="crearMedico(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)">
 <h3>crearMedico</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></span>&nbsp;<span class="element-name">crearMedico</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;DNI,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></span>&nbsp;<span class="element-name">crearMedico</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;DNI,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;nombre,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;apellido,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;calle,
@@ -221,10 +221,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getEspecialidad(java.lang.String,interfaces.IMedico)">
+<section class="detail" id="getEspecialidad(java.lang.String,modelo.interfaces.IMedico)">
 <h3>getEspecialidad</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></span>&nbsp;<span class="element-name">getEspecialidad</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></span>&nbsp;<span class="element-name">getEspecialidad</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</span></div>
 <div class="block">Aplica el Decorador de Especialidad al objeto IMedico base.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -236,10 +236,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getContratacion(java.lang.String,interfaces.IMedico)">
+<section class="detail" id="getContratacion(java.lang.String,modelo.interfaces.IMedico)">
 <h3>getContratacion</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></span>&nbsp;<span class="element-name">getContratacion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></span>&nbsp;<span class="element-name">getContratacion</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</span></div>
 <div class="block">Aplica el Decorador de Contratación al objeto IMedico.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -251,10 +251,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getPosgrado(java.lang.String,interfaces.IMedico)">
+<section class="detail" id="getPosgrado(java.lang.String,modelo.interfaces.IMedico)">
 <h3>getPosgrado</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a></span>&nbsp;<span class="element-name">getPosgrado</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
- <a href="../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a></span>&nbsp;<span class="element-name">getPosgrado</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tipo,
+ <a href="../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</span></div>
 <div class="block">Aplica el Decorador de Posgrado al objeto IMedico.</div>
 <dl class="notes">
 <dt>Parameters:</dt>

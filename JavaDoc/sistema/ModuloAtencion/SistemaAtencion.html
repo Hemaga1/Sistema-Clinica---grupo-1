@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="dc.created" content="2025-10-12">
-<meta name="description" content="declaration: package: sistema.ModuloAtencion, class: SistemaAtencion">
+<meta name="description" content="declaration: package: modelo.sistema.ModuloAtencion, class: SistemaAtencion">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../script-dir/jquery-ui.min.css" title="Style">
@@ -82,11 +82,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">sistema.ModuloAtencion</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">modelo.sistema.ModuloAtencion</a></div>
 <h1 title="Class SistemaAtencion" class="title">Class SistemaAtencion</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">sistema.ModuloAtencion.SistemaAtencion</div>
+<div class="inheritance">modelo.sistema.ModuloAtencion.SistemaAtencion</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -121,25 +121,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#agregarHabitacion(lugares.Habitacion)" class="member-name-link">agregarHabitacion</a><wbr>(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#agregarHabitacion(modelo.lugares.Habitacion)" class="member-name-link">agregarHabitacion</a><wbr>(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Agrega una habitación a la lista de habitaciones de la clínica</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atender(interfaces.IMedico,personas.Paciente)" class="member-name-link">atender</a><wbr>(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico,
- <a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#atender(modelo.interfaces.IMedico,modelo.personas.Paciente)" class="member-name-link">atender</a><wbr>(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico,
+ <a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Inicia el proceso de atención médica entre un médico y un paciente, registrando la consulta, actualizando los registros de ambos y el historial del sistema.<br>
+<div class="block">Inicia el proceso de atención médica entre un médico y un paciente, registrando la consulta, actualizando los registros de ambos y el historial del modelo.sistema.<br>
  <b>Precondición: </b> El médico y el paciente deben estar previamente registrados<br>
  <b>Postcondiciones:</b> Se inicia el registro del paciente y se agrega la consulta al médico</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(personas.Paciente)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(modelo.personas.Paciente)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se establecen la cantidad de días que estuvo internado el paciente</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(personas.Paciente,int)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#establecerDiasInternado(modelo.personas.Paciente,int)" class="member-name-link">establecerDiasInternado</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
  int&nbsp;cantDiasInternado)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Se establece en el registro del paciente la cantidad de días internado<br>
@@ -147,30 +147,30 @@ loadScripts(document, 'script');</script>
  <b>Postcondición: </b> Se establecen los dias que se interna el paciente</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#estaRegistrado(personas.Paciente)" class="member-name-link">estaRegistrado</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#estaRegistrado(modelo.personas.Paciente)" class="member-name-link">estaRegistrado</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Verifica si el paciente esta registrado</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../facturacion/PacienteAtendido.html" title="class in facturacion">PacienteAtendido</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAtencionesDelMedico(interfaces.IMedico)" class="member-name-link">getAtencionesDelMedico</a><wbr>(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../modelo.facturacion/PacienteAtendido.html" title="class in modelo.facturacion">PacienteAtendido</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAtencionesDelMedico(modelo.interfaces.IMedico)" class="member-name-link">getAtencionesDelMedico</a><wbr>(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Muestra de atenciones del médico</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../facturacion/PacienteAtendido.html" title="class in facturacion">PacienteAtendido</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAtencionesDelMedicoPorPeriodo(interfaces.IMedico,java.lang.String,java.lang.String)" class="member-name-link">getAtencionesDelMedicoPorPeriodo</a><wbr>(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="../../modelo.facturacion/PacienteAtendido.html" title="class in modelo.facturacion">PacienteAtendido</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAtencionesDelMedicoPorPeriodo(modelo.interfaces.IMedico,java.lang.String,java.lang.String)" class="member-name-link">getAtencionesDelMedicoPorPeriodo</a><wbr>(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fechaInicio,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fechaFin)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Muestra de atenciones del médico de cierta fecha a otra fecha, ambas indicadas por parámetro</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRegistroPaciente(personas.Paciente)" class="member-name-link">getRegistroPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRegistroPaciente(modelo.personas.Paciente)" class="member-name-link">getRegistroPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retorna el registro del paciente indicado</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#internaPaciente(personas.Paciente,lugares.Habitacion)" class="member-name-link">internaPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#internaPaciente(modelo.personas.Paciente,modelo.lugares.Habitacion)" class="member-name-link">internaPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Internación del paciente<br>
  <b>Precondiciones: </b>
@@ -181,21 +181,21 @@ loadScripts(document, 'script');</script>
  <b>Postcondición: </b> Se procede a internar al paciente en la habitacion que se indique</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registrarMedico(interfaces.IMedico)" class="member-name-link">registrarMedico</a><wbr>(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registrarMedico(modelo.interfaces.IMedico)" class="member-name-link">registrarMedico</a><wbr>(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Registra un médico<br>
  <b>Precondición: </b> El médico no debe haberse registrado anteriormente<br>
  <b>Postcondición:</b> Se registra al médico en caso de no haber sido registrado anteriormente</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registrarPaciente(personas.Paciente)" class="member-name-link">registrarPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registrarPaciente(modelo.personas.Paciente)" class="member-name-link">registrarPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Registra un paciente<br>
  <b>Precondición: </b> El paciente no debe haberse registrado anteriormente<br>
  <b>Postcondición:</b> Se registra al paciente en caso de no haber sido registrado anteriormente</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removerRegistroPaciente(personas.Paciente)" class="member-name-link">removerRegistroPaciente</a><wbr>(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#removerRegistroPaciente(modelo.personas.Paciente)" class="member-name-link">removerRegistroPaciente</a><wbr>(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">El paciente egresa y deja de ser uno de los pacientes en atención.</div>
 </div>
@@ -231,13 +231,13 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="atender(interfaces.IMedico,personas.Paciente)">
+<section class="detail" id="atender(modelo.interfaces.IMedico,modelo.personas.Paciente)">
 <h3>atender</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">atender</span><wbr><span class="parameters">(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico,
- <a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span>
-             throws <span class="exceptions"><a href="../../excepciones/PacienteNoRegistradoExcepcion.html" title="class in excepciones">PacienteNoRegistradoExcepcion</a>,
-<a href="../../excepciones/MedicoNoRegistradoExcepcion.html" title="class in excepciones">MedicoNoRegistradoExcepcion</a></span></div>
-<div class="block">Inicia el proceso de atención médica entre un médico y un paciente, registrando la consulta, actualizando los registros de ambos y el historial del sistema.<br>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">atender</span><wbr><span class="parameters">(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico,
+ <a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span>
+             throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteNoRegistradoExcepcion.html" title="class in modelo.excepciones">PacienteNoRegistradoExcepcion</a>,
+<a href="../../modelo.excepciones/MedicoNoRegistradoExcepcion.html" title="class in modelo.excepciones">MedicoNoRegistradoExcepcion</a></span></div>
+<div class="block">Inicia el proceso de atención médica entre un médico y un paciente, registrando la consulta, actualizando los registros de ambos y el historial del modelo.sistema.<br>
  <b>Precondición: </b> El médico y el paciente deben estar previamente registrados<br>
  <b>Postcondiciones:</b> Se inicia el registro del paciente y se agrega la consulta al médico</div>
 <dl class="notes">
@@ -245,18 +245,18 @@ loadScripts(document, 'script');</script>
 <dd><code>medico</code> - Médico que atiende, medico!=null</dd>
 <dd><code>paciente</code> - Paciente a ser atendido, paciente!=null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteNoRegistradoExcepcion.html" title="class in excepciones">PacienteNoRegistradoExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/MedicoNoRegistradoExcepcion.html" title="class in excepciones">MedicoNoRegistradoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteNoRegistradoExcepcion.html" title="class in modelo.excepciones">PacienteNoRegistradoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/MedicoNoRegistradoExcepcion.html" title="class in modelo.excepciones">MedicoNoRegistradoExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="internaPaciente(personas.Paciente,lugares.Habitacion)">
+<section class="detail" id="internaPaciente(modelo.personas.Paciente,modelo.lugares.Habitacion)">
 <h3>internaPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">internaPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
- <a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</span>
-                     throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a>,
-<a href="../../excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in excepciones">InternacionCapacidadExcedidaExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">internaPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
+ <a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</span>
+                     throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a>,
+<a href="../../modelo.excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in modelo.excepciones">InternacionCapacidadExcedidaExcepcion</a></span></div>
 <div class="block">Internación del paciente<br>
  <b>Precondiciones: </b>
  <ul>
@@ -269,17 +269,17 @@ loadScripts(document, 'script');</script>
 <dd><code>paciente</code> - Paciente a ser internado, paciente!=null</dd>
 <dd><code>habitacion</code> - Habitación en la que se internará al paciente, habitación1=null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
-<dd><code><a href="../../excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in excepciones">InternacionCapacidadExcedidaExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/InternacionCapacidadExcedidaExcepcion.html" title="class in modelo.excepciones">InternacionCapacidadExcedidaExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="establecerDiasInternado(personas.Paciente,int)">
+<section class="detail" id="establecerDiasInternado(modelo.personas.Paciente,int)">
 <h3>establecerDiasInternado</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente,
  int&nbsp;cantDiasInternado)</span>
-                             throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></span></div>
+                             throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></span></div>
 <div class="block">Se establece en el registro del paciente la cantidad de días internado<br>
  <b>Precondición: </b> El paciente debe estar atendido<br>
  <b>Postcondición: </b> Se establecen los dias que se interna el paciente</div>
@@ -288,28 +288,28 @@ loadScripts(document, 'script');</script>
 <dd><code>paciente</code> - Paciente a ser internado, paciente != null</dd>
 <dd><code>cantDiasInternado</code> - canDiasInternado&gt;=0</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="establecerDiasInternado(personas.Paciente)">
+<section class="detail" id="establecerDiasInternado(modelo.personas.Paciente)">
 <h3>establecerDiasInternado</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span>
-                             throws <span class="exceptions"><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">establecerDiasInternado</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span>
+                             throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></span></div>
 <div class="block">Se establecen la cantidad de días que estuvo internado el paciente</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>paciente</code> - paciente!=null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteSinAtenderExcepcion.html" title="class in excepciones">PacienteSinAtenderExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteSinAtenderExcepcion.html" title="class in modelo.excepciones">PacienteSinAtenderExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="estaRegistrado(personas.Paciente)">
+<section class="detail" id="estaRegistrado(modelo.personas.Paciente)">
 <h3>estaRegistrado</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">estaRegistrado</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">estaRegistrado</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span></div>
 <div class="block">Verifica si el paciente esta registrado</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -320,9 +320,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getRegistroPaciente(personas.Paciente)">
+<section class="detail" id="getRegistroPaciente(modelo.personas.Paciente)">
 <h3>getRegistroPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../facturacion/RegistroPaciente.html" title="class in facturacion">RegistroPaciente</a></span>&nbsp;<span class="element-name">getRegistroPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../modelo.facturacion/RegistroPaciente.html" title="class in modelo.facturacion">RegistroPaciente</a></span>&nbsp;<span class="element-name">getRegistroPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span></div>
 <div class="block">Retorna el registro del paciente indicado</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -333,9 +333,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="removerRegistroPaciente(personas.Paciente)">
+<section class="detail" id="removerRegistroPaciente(modelo.personas.Paciente)">
 <h3>removerRegistroPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removerRegistroPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">removerRegistroPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span></div>
 <div class="block">El paciente egresa y deja de ser uno de los pacientes en atención.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -344,10 +344,10 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="registrarMedico(interfaces.IMedico)">
+<section class="detail" id="registrarMedico(modelo.interfaces.IMedico)">
 <h3>registrarMedico</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registrarMedico</span><wbr><span class="parameters">(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</span>
-                     throws <span class="exceptions"><a href="../../excepciones/MedicoDuplicadoExcepcion.html" title="class in excepciones">MedicoDuplicadoExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registrarMedico</span><wbr><span class="parameters">(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</span>
+                     throws <span class="exceptions"><a href="../../modelo.excepciones/MedicoDuplicadoExcepcion.html" title="class in modelo.excepciones">MedicoDuplicadoExcepcion</a></span></div>
 <div class="block">Registra un médico<br>
  <b>Precondición: </b> El médico no debe haberse registrado anteriormente<br>
  <b>Postcondición:</b> Se registra al médico en caso de no haber sido registrado anteriormente</div>
@@ -355,15 +355,15 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>medico</code> - El objeto medico a registrar, medico != null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/MedicoDuplicadoExcepcion.html" title="class in excepciones">MedicoDuplicadoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/MedicoDuplicadoExcepcion.html" title="class in modelo.excepciones">MedicoDuplicadoExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="registrarPaciente(personas.Paciente)">
+<section class="detail" id="registrarPaciente(modelo.personas.Paciente)">
 <h3>registrarPaciente</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registrarPaciente</span><wbr><span class="parameters">(<a href="../../personas/Paciente.html" title="class in personas">Paciente</a>&nbsp;paciente)</span>
-                       throws <span class="exceptions"><a href="../../excepciones/PacienteDuplicadoExcepcion.html" title="class in excepciones">PacienteDuplicadoExcepcion</a></span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registrarPaciente</span><wbr><span class="parameters">(<a href="../../modelo.personas/Paciente.html" title="class in modelo.personas">Paciente</a>&nbsp;paciente)</span>
+                       throws <span class="exceptions"><a href="../../modelo.excepciones/PacienteDuplicadoExcepcion.html" title="class in modelo.excepciones">PacienteDuplicadoExcepcion</a></span></div>
 <div class="block">Registra un paciente<br>
  <b>Precondición: </b> El paciente no debe haberse registrado anteriormente<br>
  <b>Postcondición:</b> Se registra al paciente en caso de no haber sido registrado anteriormente</div>
@@ -371,14 +371,14 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>paciente</code> - El objeto paciente a registrar, paciente != null</dd>
 <dt>Throws:</dt>
-<dd><code><a href="../../excepciones/PacienteDuplicadoExcepcion.html" title="class in excepciones">PacienteDuplicadoExcepcion</a></code></dd>
+<dd><code><a href="../../modelo.excepciones/PacienteDuplicadoExcepcion.html" title="class in modelo.excepciones">PacienteDuplicadoExcepcion</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getAtencionesDelMedico(interfaces.IMedico)">
+<section class="detail" id="getAtencionesDelMedico(modelo.interfaces.IMedico)">
 <h3>getAtencionesDelMedico</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../facturacion/PacienteAtendido.html" title="class in facturacion">PacienteAtendido</a>&gt;</span>&nbsp;<span class="element-name">getAtencionesDelMedico</span><wbr><span class="parameters">(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../modelo.facturacion/PacienteAtendido.html" title="class in modelo.facturacion">PacienteAtendido</a>&gt;</span>&nbsp;<span class="element-name">getAtencionesDelMedico</span><wbr><span class="parameters">(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico)</span></div>
 <div class="block">Muestra de atenciones del médico</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -389,9 +389,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getAtencionesDelMedicoPorPeriodo(interfaces.IMedico,java.lang.String,java.lang.String)">
+<section class="detail" id="getAtencionesDelMedicoPorPeriodo(modelo.interfaces.IMedico,java.lang.String,java.lang.String)">
 <h3>getAtencionesDelMedicoPorPeriodo</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../facturacion/PacienteAtendido.html" title="class in facturacion">PacienteAtendido</a>&gt;</span>&nbsp;<span class="element-name">getAtencionesDelMedicoPorPeriodo</span><wbr><span class="parameters">(<a href="../../interfaces/IMedico.html" title="interface in interfaces">IMedico</a>&nbsp;medico,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../../modelo.facturacion/PacienteAtendido.html" title="class in modelo.facturacion">PacienteAtendido</a>&gt;</span>&nbsp;<span class="element-name">getAtencionesDelMedicoPorPeriodo</span><wbr><span class="parameters">(<a href="../../modelo.interfaces/IMedico.html" title="interface in modelo.interfaces">IMedico</a>&nbsp;medico,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fechaInicio,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;fechaFin)</span></div>
 <div class="block">Muestra de atenciones del médico de cierta fecha a otra fecha, ambas indicadas por parámetro</div>
@@ -406,9 +406,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="agregarHabitacion(lugares.Habitacion)">
+<section class="detail" id="agregarHabitacion(modelo.lugares.Habitacion)">
 <h3>agregarHabitacion</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">agregarHabitacion</span><wbr><span class="parameters">(<a href="../../lugares/Habitacion.html" title="class in lugares">Habitacion</a>&nbsp;habitacion)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">agregarHabitacion</span><wbr><span class="parameters">(<a href="../../modelo.lugares/Habitacion.html" title="class in modelo.lugares">Habitacion</a>&nbsp;habitacion)</span></div>
 <div class="block">Agrega una habitación a la lista de habitaciones de la clínica</div>
 <dl class="notes">
 <dt>Parameters:</dt>
