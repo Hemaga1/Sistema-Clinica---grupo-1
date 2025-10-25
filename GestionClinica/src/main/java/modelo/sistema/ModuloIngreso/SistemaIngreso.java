@@ -5,12 +5,16 @@ import modelo.excepciones.SalaEsperaVaciaExcepcion;
 import modelo.personas.Paciente;
 import modelo.lugares.SalaDeEspera;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Clase donde se ingresa y saca al paciente de la sala es espera, ya sea privada o el patio
  */
 public class SistemaIngreso {
 
     private final SalaDeEspera salaDeEspera;
+    private Set<Paciente> listaEspera = new HashSet<Paciente>();
     
     public SistemaIngreso() {
         this.salaDeEspera = new SalaDeEspera();
@@ -23,6 +27,7 @@ public class SistemaIngreso {
      * @param paciente Paciente que sera ingresado a la sala de espera, paciente != null
      */
     public void ingresarPaciente(Paciente paciente) {
+        listaEspera.add(paciente);
         salaDeEspera.ingresar(paciente);
     }
 
@@ -35,6 +40,7 @@ public class SistemaIngreso {
      * @throws PacienteNoEstaEsperandoExcepcion
      */
     public void SacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
+        listaEspera.remove(paciente);
         salaDeEspera.sacarPaciente(paciente);
     }
 
@@ -47,5 +53,9 @@ public class SistemaIngreso {
      */
     public Paciente SacarPaciente() throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion{
         return salaDeEspera.sacarPacienteConMenorOrden();
+    }
+
+    public Set<Paciente> getListaEspera() {
+        return listaEspera;
     }
 }

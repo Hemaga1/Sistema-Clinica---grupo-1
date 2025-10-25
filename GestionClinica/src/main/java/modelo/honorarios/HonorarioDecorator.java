@@ -18,8 +18,16 @@ public abstract class HonorarioDecorator implements IMedico {
         return honorario.calcularHonorarios();
     }
 
+    public String getDNI(){
+        return honorario.getDNI();
+    }
+
     public String getNombre(){
         return honorario.getNombre();
+    }
+
+    public String getApellido(){
+        return honorario.getApellido();
     }
 
     public String getEspecialidad(){

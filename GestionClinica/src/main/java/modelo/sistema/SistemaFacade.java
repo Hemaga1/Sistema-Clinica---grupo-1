@@ -243,4 +243,12 @@ public class SistemaFacade {
     public Map<IMedico, List<PacienteAtendido>> getMedicos() {
         return sistemaAtencion.getMedicos();
     }
+
+    public Set<Paciente> getListaEspera() {
+        return sistemaIngreso.getListaEspera();
+    }
+
+    public Map<Paciente, RegistroPaciente> getPacientesAtendidos() {
+        return sistemaAtencion.getPacientesAtendidos();
+    }
 }

@@ -84,4 +84,8 @@ public class ServicioPacientes {
     public Set<Paciente> getPacientesRegistrados() {
         return pacientesRegistrados;
     }
+
+    public Map<Paciente, RegistroPaciente> getPacientesAtendidos() {
+        return pacientesAtendidos;
+    }
 }

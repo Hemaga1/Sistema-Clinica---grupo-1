@@ -1,8 +1,11 @@
 package vista;
 
 import controlador.IVista;
-import modelo.excepciones.ImputVacioException;
+import modelo.excepciones.InputNumeroInvalidoExcepcion;
+import modelo.excepciones.InputStringInvalidoExcepcion;
+import modelo.excepciones.InputVacioException;
 import modelo.facturacion.PacienteAtendido;
+import modelo.facturacion.RegistroPaciente;
 import modelo.interfaces.IMedico;
 import modelo.personas.Paciente;
 
@@ -64,6 +67,23 @@ public class Ventana extends JFrame implements IVista {
     private JScrollPane MedicoScrollPane;
     private JLabel TelefonoMedicoLabel;
     private JTextField TelefonoMedicoField;
+    private JPanel PanelManejoPaciente;
+    private JLabel IngresarPacienteLabel;
+    private JComboBox<Paciente> IngresarPacienteField;
+    private JButton IngresarPacienteBoton;
+    private JTextField IngresarPacienteBuscarField;
+    private JButton IngresarPacienteBuscarBoton;
+    private JLabel AtenderPacienteLabel;
+    private JComboBox<Paciente> AtenderPacienteField;
+    private JComboBox<IMedico> AtenderMedicoField;
+    private JTextField AtenderPacienteBuscarField;
+    private JTextField AtenderMedicoBuscarField;
+    private JButton AtenderPacienteBuscarBoton;
+    private JButton AtenderMedicoBuscarBoton;
+    private JButton AtenderPacienteBoton;
+    private JLabel IngresarPacienteBuscarLabel;
+    private JLabel AtenderPacienteBuscarLabel;
+    private JLabel AtenderMedicoBuscarLabel;
     private DefaultListModel<String> model = new DefaultListModel<>();
     private JList<String> PacientesRegistradosList = new JList<>(model);
     private JList<String> MedicosRegistradosList = new JList<>(model);
@@ -79,60 +99,109 @@ public class Ventana extends JFrame implements IVista {
         MuestraDeExcepcionMedicoLabel.setVisible(false);
     }
 
+    public JButton getPacienteBotonEnviar (){
+        return PacienteBotonEnviar;
+    }
+
+    public JButton getMedicoBotonEnviar (){
+        return MedicoBotonEnviar;
+    }
+
+    public JButton getIngresarPacienteBoton (){
+        return IngresarPacienteBoton;
+    }
+
+    public JButton getIngresarPacienteBuscarBoton (){
+        return IngresarPacienteBuscarBoton;
+    }
+
+    public JButton getAtenderPacienteBuscarBoton (){
+        return AtenderPacienteBuscarBoton;
+    }
+
+    public JButton getAtenderMedicoBuscarBoton (){
+        return AtenderMedicoBuscarBoton;
+    }
+
+    public JButton getAtenderPacienteBoton (){
+        return AtenderPacienteBoton;
+    }
+
     @Override
-    public String getDNIPaciente() throws ImputVacioException {
+    public String getDNIPaciente() throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.DNIPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.DNIPacienteField.getText();
+            try {
+                Integer.parseInt(this.DNIPacienteField.getText());
+                return this.DNIPacienteField.getText();
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
-    public String getNombrePaciente()  throws ImputVacioException {
+    public String getNombrePaciente()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.NombrePacienteField.getText().isEmpty())
-            throw new ImputVacioException();
-        else
-            return this.NombrePacienteField.getText();
+            throw new InputVacioException();
+        else {
+            if (this.NombrePacienteField.getText().matches("^[ A-Za-z]+$"))
+                return this.NombrePacienteField.getText();
+            else throw new InputStringInvalidoExcepcion();
+        }
     }
 
     @Override
-    public String getApellidoPaciente()  throws ImputVacioException {
+    public String getApellidoPaciente()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.ApellidoPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.ApellidoPacienteField.getText();
+            if (this.ApellidoPacienteField.getText().matches("^[ A-Za-z]+$"))
+                return this.ApellidoPacienteField.getText();
+            else throw new InputStringInvalidoExcepcion();
     }
 
     @Override
-    public String getCallePaciente()  throws ImputVacioException {
+    public String getCallePaciente()  throws InputVacioException {
         if (this.CallePacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
             return this.CallePacienteField.getText();
     }
 
     @Override
-    public int getNumPaciente()  throws ImputVacioException {
+    public int getNumPaciente()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.NumPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return Integer.parseInt(this.NumPacienteField.getText());
+            try {
+                return Integer.parseInt(this.NumPacienteField.getText());
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
-    public String getCiudadPaciente()  throws ImputVacioException {
+    public String getCiudadPaciente()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.CiudadPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.CiudadPacienteField.getText();
+            if (this.CiudadPacienteField.getText().matches("^[ A-Za-z]+$"))
+                return this.CiudadPacienteField.getText();
+            else throw new InputStringInvalidoExcepcion();
     }
 
     @Override
-    public String getTelefonoPaciente()  throws ImputVacioException {
+    public String getTelefonoPaciente()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.TelefonoPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.TelefonoPacienteField.getText();
+            try {
+                Integer.parseInt(this.TelefonoPacienteField.getText());
+                return this.TelefonoPacienteField.getText();
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
@@ -141,11 +210,15 @@ public class Ventana extends JFrame implements IVista {
     }
 
     @Override
-    public int getHistoriaPaciente()  throws ImputVacioException {
+    public int getHistoriaPaciente()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.HistoriaPacienteField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return Integer.parseInt(this.HistoriaPacienteField.getText());
+            try {
+                return Integer.parseInt(this.HistoriaPacienteField.getText());
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
 
@@ -158,69 +231,131 @@ public class Ventana extends JFrame implements IVista {
         PacienteScrollPane.setViewportView(this.PacientesRegistradosList);
     }
 
+    public String getIngresarPacienteBusqueda(){
+        return IngresarPacienteBuscarField.getText();
+    }
+
+    public void actualizarIngresarPacienteLista(Set<Paciente> pacientesRegistrados, String comparar){
+        IngresarPacienteField.removeAllItems();
+        Iterator<Paciente> iterator = pacientesRegistrados.iterator();
+        while(iterator.hasNext()){
+            Paciente p = iterator.next();
+            if ((p.getDNI().contains(comparar)) || (p.getNombre().contains(comparar)) || (p.getApellido().contains(comparar)))
+                IngresarPacienteField.addItem(p);
+        }
+    }
+
+    public String getAtenderPacienteBusqueda(){
+        return AtenderPacienteBuscarField.getText();
+    }
+
+    public String getAtenderMedicoBusqueda(){
+        return AtenderMedicoBuscarField.getText();
+    }
+
+    public void actualizarAtenderPacienteLista(Set<Paciente> pacientesEspera, Map<Paciente, RegistroPaciente> pacientesAtendidos, String comparar){
+        AtenderPacienteField.removeAllItems();
+        Iterator<Paciente> iterator = pacientesEspera.iterator();
+        while(iterator.hasNext()){
+            Paciente p = iterator.next();
+            if ((p.getDNI().contains(comparar)) || (p.getNombre().contains(comparar)) || (p.getApellido().contains(comparar)))
+                AtenderPacienteField.addItem(p);
+        }
+        Iterator<Map.Entry<Paciente, RegistroPaciente>> iterator2 = pacientesAtendidos.entrySet().iterator();
+        while(iterator2.hasNext()){
+            Paciente p = iterator2.next().getKey();
+            if ((p.getDNI().contains(comparar)) || (p.getNombre().contains(comparar)) || (p.getApellido().contains(comparar)))
+                AtenderPacienteField.addItem(p);
+        }
+    }
 
     @Override
-    public String getDNIMedico() throws ImputVacioException {
+    public String getDNIMedico() throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.DNIMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.DNIMedicoField.getText();
+            try {
+                Integer.parseInt(this.DNIMedicoField.getText());
+                return this.DNIMedicoField.getText();
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
-    public String getNombreMedico()  throws ImputVacioException {
+    public String getNombreMedico()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.NombreMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.NombreMedicoField.getText();
+            if (this.NombreMedicoField.getText().matches("^[ A-Za-z]+$"))
+                return this.NombreMedicoField.getText();
+            else throw new InputStringInvalidoExcepcion();
     }
 
     @Override
-    public String getApellidoMedico()  throws ImputVacioException {
+    public String getApellidoMedico()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.ApellidoMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.ApellidoMedicoField.getText();
+            if (this.ApellidoMedicoField.getText().matches("^[ A-Za-z]+$"))
+                return this.ApellidoMedicoField.getText();
+            else throw new InputStringInvalidoExcepcion();
     }
 
     @Override
-    public String getCalleMedico()  throws ImputVacioException {
+    public String getCalleMedico()  throws InputVacioException {
         if (this.CalleMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
             return this.CalleMedicoField.getText();
     }
 
     @Override
-    public int getNumMedico()  throws ImputVacioException {
+    public int getNumMedico()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.NumMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return Integer.parseInt(this.NumMedicoField.getText());
+            try {
+                return Integer.parseInt(this.NumMedicoField.getText());
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
-    public String getCiudadMedico()  throws ImputVacioException {
+    public String getCiudadMedico()  throws InputVacioException, InputStringInvalidoExcepcion {
         if (this.CiudadMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.CiudadMedicoField.getText();
+            if (this.CiudadMedicoField.getText().matches("^[ A-Za-z]+$"))
+                return this.CiudadMedicoField.getText();
+            else throw new InputStringInvalidoExcepcion();
     }
 
     @Override
-    public String getTelefonoMedico()  throws ImputVacioException {
+    public String getTelefonoMedico()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.TelefonoMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.TelefonoMedicoField.getText();
+            try {
+                Integer.parseInt(this.TelefonoMedicoField.getText());
+                return this.TelefonoMedicoField.getText();
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
-    public String getMatriculaMedico()  throws ImputVacioException {
+    public String getMatriculaMedico()  throws InputVacioException, InputNumeroInvalidoExcepcion {
         if (this.MatriculaMedicoField.getText().isEmpty())
-            throw new ImputVacioException();
+            throw new InputVacioException();
         else
-            return this.MatriculaMedicoField.getText();
+            try {
+                Integer.parseInt(this.MatriculaMedicoField.getText());
+                return this.MatriculaMedicoField.getText();
+            } catch (NumberFormatException e) {
+                throw new InputNumeroInvalidoExcepcion();
+            }
     }
 
     @Override
@@ -248,6 +383,28 @@ public class Ventana extends JFrame implements IVista {
         MedicoScrollPane.setViewportView(this.MedicosRegistradosList);
     }
 
+    public void actualizarAtenderMedicoLista(Map<IMedico, List<PacienteAtendido>> medicosRegistrados, String comparar){
+        AtenderMedicoField.removeAllItems();
+        Iterator<Map.Entry<IMedico, List<PacienteAtendido>>> iterator2 = medicosRegistrados.entrySet().iterator();
+        while(iterator2.hasNext()){
+            IMedico m = iterator2.next().getKey();
+            if ((m.getDNI().contains(comparar)) || (m.getNombre().contains(comparar)) || (m.getApellido().contains(comparar)))
+                AtenderMedicoField.addItem(m);
+        }
+    }
+
+    public Paciente getPacienteIngresar() {
+        return (Paciente) IngresarPacienteField.getSelectedItem();
+    }
+
+    public Paciente getPacienteAtender() {
+        return (Paciente) AtenderPacienteField.getSelectedItem();
+    }
+
+    public IMedico getMedicoAtender() {
+        return (IMedico) AtenderMedicoField.getSelectedItem();
+    }
+
     public void mostrarMensajeExcepcionPaciente(Exception e){
         MuestraDeExcepcionPacienteLabel.setText(e.getMessage());
         MuestraDeExcepcionPacienteLabel.setVisible(true);
@@ -269,5 +426,10 @@ public class Ventana extends JFrame implements IVista {
     public void addActionListener(ActionListener actionListener) {
         PacienteBotonEnviar.addActionListener(actionListener);
         MedicoBotonEnviar.addActionListener(actionListener);
+        IngresarPacienteBoton.addActionListener(actionListener);
+        IngresarPacienteBuscarBoton.addActionListener(actionListener);
+        AtenderPacienteBuscarBoton.addActionListener(actionListener);
+        AtenderMedicoBuscarBoton.addActionListener(actionListener);
+        AtenderPacienteBoton.addActionListener(actionListener);
     }
 }

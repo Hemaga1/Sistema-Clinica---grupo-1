@@ -200,6 +200,10 @@ public class SistemaAtencion {
         return servicioPacientes.getPacientesRegistrados();
     }
 
+    public Map<Paciente, RegistroPaciente> getPacientesAtendidos() {
+        return servicioPacientes.getPacientesAtendidos();
+    }
+
     public Map<IMedico, List<PacienteAtendido>> getMedicos() {
         return servicioMedicos.getMedicos();
     }
