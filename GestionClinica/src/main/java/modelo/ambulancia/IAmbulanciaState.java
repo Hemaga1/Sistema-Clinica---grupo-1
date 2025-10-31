@@ -10,4 +10,8 @@ public interface IAmbulanciaState {
 
     void repararAmbulancia();
 
+    boolean puedeIniciarAtencionDomicilio();
+    boolean puedeIniciarTraslado();
+    boolean puedeIniciarReparacion();
+
 }

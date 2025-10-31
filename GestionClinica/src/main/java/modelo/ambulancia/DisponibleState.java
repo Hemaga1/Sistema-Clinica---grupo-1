@@ -9,13 +9,11 @@ public class DisponibleState implements IAmbulanciaState{
 
     @Override
     public void solicitaAtencionDomicilio() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new AtendiendoADomState(ambulancia));
     }
 
     @Override
     public void solicitaTraslado() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new TrasladandoPacienteState(ambulancia));
     }
 
@@ -25,8 +23,22 @@ public class DisponibleState implements IAmbulanciaState{
 
     @Override
     public void repararAmbulancia() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new EnTallerState(ambulancia));
+    }
+
+    @Override
+    public boolean puedeIniciarAtencionDomicilio() {
+        return true;
+    }
+
+    @Override
+    public boolean puedeIniciarTraslado() {
+        return true;
+    }
+
+    @Override
+    public boolean puedeIniciarReparacion() {
+        return true;
     }
 
     @Override

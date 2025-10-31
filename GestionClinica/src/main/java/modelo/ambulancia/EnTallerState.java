@@ -24,8 +24,22 @@ public class EnTallerState implements IAmbulanciaState{
 
     @Override
     public void repararAmbulancia() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new RegresandoDelTallerState(ambulancia));
+    }
+
+    @Override
+    public boolean puedeIniciarAtencionDomicilio() {
+        return false;
+    }
+
+    @Override
+    public boolean puedeIniciarTraslado() {
+        return false;
+    }
+
+    @Override
+    public boolean puedeIniciarReparacion() {
+        return true;
     }
 
     @Override

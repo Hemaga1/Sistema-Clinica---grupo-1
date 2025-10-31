@@ -1,10 +1,12 @@
 package modelo.personas;
 
 import modelo.ambulancia.Ambulancia;
+import util.UTIL;
 
 import java.util.Objects;
+import java.util.Random;
 
-public class Asociado extends Persona {
+public class Asociado extends Persona implements Runnable{
 
     private int cantSolicitudes;
     private Ambulancia ambulancia;
@@ -17,8 +19,14 @@ public class Asociado extends Persona {
 
 
     public void solicitaAmbulancia() {
-        ambulancia.solicitaAtencionDomicilio();
-        cantSolicitudes++;
+        Random r = new Random();
+        if (r.nextBoolean()) {
+            this.ambulancia.solicitaAtencionDomicilio();
+
+        } else {
+            this.ambulancia.solicitaTraslado();
+        }
+        UTIL.tiempoMuerto();
     }
 
     public int getCantSolicitudes() {
@@ -37,5 +45,16 @@ public class Asociado extends Persona {
         return Objects.equals(this.getDNI(), asociado.getDNI());
     }
 
+    @Override
+    public void run() {
+        for (int i = 1; i <= this.cantSolicitudes; i++) {
+            this.solicitaAmbulancia();
+            UTIL.tiempoMuerto();
+            this.ambulancia.retornarAClinica();
+            UTIL.tiempoMuerto();
+            this.ambulancia.retornarAClinica();
+        }
+
+    }
 
 }
