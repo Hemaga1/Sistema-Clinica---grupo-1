@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="vista.Ventana">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
+    <margin top="0" left="200" bottom="0" right="200"/>
+    <constraints>
+      <xy x="20" y="20" width="1044" height="911"/>
+    </constraints>
+    <properties>
+      <alignmentX value="0.5"/>
+      <doubleBuffered value="false"/>
+    </properties>
+    <clientProperties>
+      <html.disable class="java.lang.Boolean" value="false"/>
+    </clientProperties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="c97fc" binding="PanelTabbeado">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1579804"/>
+          <doubleBuffered value="false"/>
+          <font name="Roboto Light"/>
+          <opaque value="false"/>
+          <verifyInputWhenFocusTarget value="true"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="259bc" binding="PanelPacientes" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Pacientes"/>
+            </constraints>
+            <properties>
+              <doubleBuffered value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <tabbedpane id="2270c" binding="PanelPacientesTabbeado">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="200" height="200"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="97601" binding="PanelRegistroPaciente" layout-manager="GridLayoutManager" row-count="20" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Registro"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="76783" class="javax.swing.JLabel" binding="DNIPacienteLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="DNI"/>
+                        </properties>
+                      </component>
+                      <vspacer id="7e8df">
+                        <constraints>
+                          <grid row="2" column="1" row-span="18" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="be98d" class="javax.swing.JTextField" binding="DNIPacienteField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="326dc" class="javax.swing.JLabel" binding="NombrePacienteLabel">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Nombre"/>
+                        </properties>
+                      </component>
+                      <component id="7b958" class="javax.swing.JTextField" binding="NombrePacienteField">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="297ce" class="javax.swing.JLabel" binding="ApellidoPacienteLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Apellido"/>
+                        </properties>
+                      </component>
+                      <component id="38feb" class="javax.swing.JTextField" binding="ApellidoPacienteField">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="7205e" class="javax.swing.JLabel" binding="CallePacienteLabel">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Calle"/>
+                        </properties>
+                      </component>
+                      <component id="c9ccc" class="javax.swing.JTextField" binding="CallePacienteField">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="7676f" class="javax.swing.JLabel" binding="NumPacienteLabel">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Numero"/>
+                        </properties>
+                      </component>
+                      <component id="c55d9" class="javax.swing.JTextField" binding="NumPacienteField">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="d0ccf" class="javax.swing.JLabel" binding="CiudadPacienteLabel">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Ciudad"/>
+                        </properties>
+                      </component>
+                      <component id="94cb1" class="javax.swing.JTextField" binding="CiudadPacienteField">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="2fcfe" class="javax.swing.JLabel" binding="TelefonoPacienteLabel">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Telefono"/>
+                        </properties>
+                      </component>
+                      <component id="17802" class="javax.swing.JTextField" binding="TelefonoPacienteField">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="80b31" class="javax.swing.JLabel" binding="RangoPacienteLabel">
+                        <constraints>
+                          <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Rango Etario"/>
+                        </properties>
+                      </component>
+                      <component id="ce7af" class="javax.swing.JComboBox" binding="RangoPacienteField">
+                        <constraints>
+                          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="NIÑO"/>
+                            <item value="JOVEN"/>
+                            <item value="MAYOR"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="80821" class="javax.swing.JLabel" binding="HistoriaPacienteLabel">
+                        <constraints>
+                          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Historia Clinica"/>
+                        </properties>
+                      </component>
+                      <component id="b8e2b" class="javax.swing.JTextField" binding="HistoriaPacienteField">
+                        <constraints>
+                          <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="16e1e" class="javax.swing.JLabel" binding="MuestraDeExcepcionPacienteLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Label"/>
+                        </properties>
+                      </component>
+                      <component id="a0a8a" class="javax.swing.JButton" binding="PacienteBotonEnviar">
+                        <constraints>
+                          <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="80" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <iconTextGap value="4"/>
+                          <margin top="0" left="0" bottom="0" right="0"/>
+                          <text value="Enviar"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="73938" binding="PanelManejoPaciente" layout-manager="GridLayoutManager" row-count="16" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Manejo"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="138d5" class="javax.swing.JLabel" binding="IngresarPacienteLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el paciente que quiera ingresar"/>
+                        </properties>
+                      </component>
+                      <component id="1c0f7" class="javax.swing.JComboBox" binding="IngresarPacienteField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model/>
+                        </properties>
+                      </component>
+                      <component id="bf3c4" class="javax.swing.JTextField" binding="IngresarPacienteBuscarField">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="5064" class="javax.swing.JButton" binding="IngresarPacienteBuscarBoton">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="82ead" class="javax.swing.JLabel" binding="AtenderPacienteLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el paciente a atender y el medico correspondiente"/>
+                        </properties>
+                      </component>
+                      <component id="cc17c" class="javax.swing.JComboBox" binding="AtenderPacienteField">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="a7af5" class="javax.swing.JComboBox" binding="AtenderMedicoField">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="9aff0" class="javax.swing.JTextField" binding="AtenderPacienteBuscarField">
+                        <constraints>
+                          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="aa83c" class="javax.swing.JTextField" binding="AtenderMedicoBuscarField">
+                        <constraints>
+                          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="bec12" class="javax.swing.JButton" binding="AtenderPacienteBuscarBoton">
+                        <constraints>
+                          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="7ba46" class="javax.swing.JButton" binding="AtenderMedicoBuscarBoton">
+                        <constraints>
+                          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="548e3" class="javax.swing.JButton" binding="AtenderPacienteBoton">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Atender Paciente"/>
+                        </properties>
+                      </component>
+                      <component id="2125b" class="javax.swing.JButton" binding="IngresarPacienteBoton">
+                        <constraints>
+                          <grid row="3" column="0" row-span="2" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <margin top="0" left="0" bottom="0" right="0"/>
+                          <text value="Ingresar Paciente"/>
+                        </properties>
+                      </component>
+                      <component id="295e5" class="javax.swing.JLabel" binding="AtenderPacienteBuscarLabel">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Paciente:"/>
+                        </properties>
+                      </component>
+                      <component id="a9403" class="javax.swing.JLabel" binding="IngresarPacienteBuscarLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Paciente:"/>
+                        </properties>
+                      </component>
+                      <component id="3ea69" class="javax.swing.JLabel" binding="AtenderMedicoBuscarLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Medico:"/>
+                        </properties>
+                      </component>
+                      <component id="4f970" class="javax.swing.JLabel" binding="InternarPacienteLabel">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el paciente a internar y la habitacion"/>
+                        </properties>
+                      </component>
+                      <component id="5c4dd" class="javax.swing.JTextField" binding="InternarPacienteBuscarField">
+                        <constraints>
+                          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="ada87" class="javax.swing.JLabel" binding="InternarPacienteBuscarLabel">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Paciente:"/>
+                        </properties>
+                      </component>
+                      <component id="b29fd" class="javax.swing.JButton" binding="InternarPacienteBuscarBoton">
+                        <constraints>
+                          <grid row="12" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="ffe63" class="javax.swing.JComboBox" binding="InternarPacienteField">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="d6948" class="javax.swing.JComboBox" binding="HabitacionField">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="d8e42" class="javax.swing.JButton" binding="InternarPacienteBoton">
+                        <constraints>
+                          <grid row="15" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Internar Paciente"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="a39da" binding="PanelEgresar" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Egreso"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="d0e44" class="javax.swing.JLabel" binding="EgresarLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el paciente a egresar"/>
+                        </properties>
+                      </component>
+                      <component id="988d4" class="javax.swing.JTextField" binding="EgresarBuscarField">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="c3ffc" class="javax.swing.JButton" binding="EgresarBuscarBoton">
+                        <constraints>
+                          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="ad4c5" class="javax.swing.JLabel" binding="PacienteBuscarLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Paciente:"/>
+                        </properties>
+                      </component>
+                      <component id="528b4" class="javax.swing.JComboBox" binding="EgresarField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="88575" class="javax.swing.JButton" binding="EgresarBoton">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Egresar Paciente"/>
+                        </properties>
+                      </component>
+                      <scrollpane id="de962" binding="FacturaScrollPane">
+                        <constraints>
+                          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children/>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                  <grid id="b0ab7" binding="PanelPacientesLista" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Lista de Pacientes Registrados"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="c616c" binding="PacienteScrollPane">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children/>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                </children>
+              </tabbedpane>
+            </children>
+          </grid>
+          <grid id="793c" binding="PanelMedicos" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Medicos"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <tabbedpane id="f8fc1" binding="PanelMedicosTabbeado">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="200" height="200"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="818d4" binding="PanelRegistroMedico" layout-manager="GridLayoutManager" row-count="24" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Registro"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c0f09" class="javax.swing.JLabel" binding="DNIMedicoLabel">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="DNI"/>
+                        </properties>
+                      </component>
+                      <vspacer id="7be71">
+                        <constraints>
+                          <grid row="2" column="1" row-span="22" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                      </vspacer>
+                      <component id="d78eb" class="javax.swing.JButton" binding="MedicoBotonEnviar">
+                        <constraints>
+                          <grid row="23" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="80" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Enviar"/>
+                        </properties>
+                      </component>
+                      <component id="b0f10" class="javax.swing.JLabel" binding="NombreMedicoLabel">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Nombre"/>
+                        </properties>
+                      </component>
+                      <component id="92b58" class="javax.swing.JTextField" binding="NombreMedicoField">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="f3f30" class="javax.swing.JLabel" binding="ApellidoMedicoLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Apellido"/>
+                        </properties>
+                      </component>
+                      <component id="1b317" class="javax.swing.JTextField" binding="ApellidoMedicoField">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="ed112" class="javax.swing.JLabel" binding="CalleMedicoLabel">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Calle"/>
+                        </properties>
+                      </component>
+                      <component id="b908" class="javax.swing.JTextField" binding="CalleMedicoField">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="1600a" class="javax.swing.JLabel" binding="NumMedicoLabel">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Numero"/>
+                        </properties>
+                      </component>
+                      <component id="88282" class="javax.swing.JTextField" binding="NumMedicoField">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="2415f" class="javax.swing.JLabel" binding="CiudadMedicoLabel">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Ciudad"/>
+                        </properties>
+                      </component>
+                      <component id="13c0" class="javax.swing.JTextField" binding="CiudadMedicoField">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="a2b3a" class="javax.swing.JLabel" binding="MuestraDeExcepcionMedicoLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Label"/>
+                        </properties>
+                      </component>
+                      <component id="69d11" class="javax.swing.JLabel" binding="MatriculaMedicoLabel">
+                        <constraints>
+                          <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Matricula"/>
+                        </properties>
+                      </component>
+                      <component id="b7771" class="javax.swing.JTextField" binding="MatriculaMedicoField">
+                        <constraints>
+                          <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="55973" class="javax.swing.JLabel" binding="EspecialidadMedicoLabel">
+                        <constraints>
+                          <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Especialidad"/>
+                        </properties>
+                      </component>
+                      <component id="a6fc2" class="javax.swing.JComboBox" binding="EspecialidadMedicoField">
+                        <constraints>
+                          <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="CIRUGIA"/>
+                            <item value="CLINICA"/>
+                            <item value="PEDIATRIA"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="cdf7a" class="javax.swing.JLabel" binding="ContratacionMedicoLabel">
+                        <constraints>
+                          <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Contratacion"/>
+                        </properties>
+                      </component>
+                      <component id="83ed7" class="javax.swing.JComboBox" binding="ContratacionMedicoField">
+                        <constraints>
+                          <grid row="20" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="PERMANENTE"/>
+                            <item value="RESIDENTE"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="d9ffd" class="javax.swing.JLabel" binding="PosgradoMedicoLabel">
+                        <constraints>
+                          <grid row="21" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Posgrado"/>
+                        </properties>
+                      </component>
+                      <component id="ec9ad" class="javax.swing.JComboBox" binding="PosgradoMedicoField">
+                        <constraints>
+                          <grid row="22" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <model>
+                            <item value="NINGUNO"/>
+                            <item value="MAGISTER"/>
+                            <item value="DOCTORADO"/>
+                          </model>
+                        </properties>
+                      </component>
+                      <component id="acc2" class="javax.swing.JLabel" binding="TelefonoMedicoLabel">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Telefono"/>
+                        </properties>
+                      </component>
+                      <component id="33b37" class="javax.swing.JTextField" binding="TelefonoMedicoField">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="57bdc" class="javax.swing.JTextField" binding="DNIMedicoField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="516a4" binding="PanelAtendidosMedico" layout-manager="GridLayoutManager" row-count="9" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Reporte"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="e3898" class="javax.swing.JLabel" binding="ReporteMedicoLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el medico"/>
+                        </properties>
+                      </component>
+                      <component id="6cbe8" class="javax.swing.JTextField" binding="ReporteMedicoBuscarField">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="d4dfb" class="javax.swing.JComboBox" binding="ReporteMedicoField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="e5d38" class="javax.swing.JButton" binding="ReporteMedicoBuscarBoton">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="2423d" class="javax.swing.JButton" binding="ReporteMedicoBoton">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="-1" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Mostrar Reporte"/>
+                        </properties>
+                      </component>
+                      <component id="fc9d8" class="javax.swing.JTextField" binding="FechaInicialField">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                          <toolTipText value=""/>
+                        </properties>
+                      </component>
+                      <component id="ead9d" class="javax.swing.JTextField" binding="FechaFinalField">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="33049" class="javax.swing.JLabel" binding="FechaInicialLabel">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Ingrese la fecha inicial - formato: DD/MM/AAAA"/>
+                        </properties>
+                      </component>
+                      <component id="417e8" class="javax.swing.JLabel" binding="FechaFinalLabel">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Ingrese la fecha final - formato: DD/MM/AAAA"/>
+                        </properties>
+                      </component>
+                      <scrollpane id="f6bdb" binding="ReporteMedicoScrollPane">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children/>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                  <grid id="49afe" binding="PanelMedicosLista" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Lista de Medicos"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="49979" binding="MedicoScrollPane">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children/>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                </children>
+              </tabbedpane>
+            </children>
+          </grid>
+          <grid id="60161" binding="PanelAsociados" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Asociados"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <tabbedpane id="4ae7f" binding="PanelTabbeadoAsociado">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="200" height="558"/>
+                  </grid>
+                </constraints>
+                <properties/>
+                <border type="none">
+                  <color color="-15711428"/>
+                </border>
+                <children>
+                  <grid id="3cfbb" binding="PanelRegistroAsociado" layout-manager="GridLayoutManager" row-count="15" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Registro"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="77232" class="javax.swing.JLabel" binding="DNIAsociadoLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="DNI"/>
+                        </properties>
+                      </component>
+                      <component id="e48dc" class="javax.swing.JTextField" binding="DNIAsociadoField">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="8c00c" class="javax.swing.JLabel" binding="NombreAsociadoLabel">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Nombre"/>
+                        </properties>
+                      </component>
+                      <component id="6e74d" class="javax.swing.JTextField" binding="NombreAsociadoField">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="4f09e" class="javax.swing.JLabel" binding="ApellidoAsociadoLabel">
+                        <constraints>
+                          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Apellido"/>
+                        </properties>
+                      </component>
+                      <component id="7d257" class="javax.swing.JTextField" binding="ApellidoAsociadoField">
+                        <constraints>
+                          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="e01a8" class="javax.swing.JLabel" binding="CalleAsociadoLabel">
+                        <constraints>
+                          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Calle"/>
+                        </properties>
+                      </component>
+                      <component id="24a78" class="javax.swing.JTextField" binding="CalleAsociadoField">
+                        <constraints>
+                          <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="74151" class="javax.swing.JLabel" binding="CiudadAsociadoLabel">
+                        <constraints>
+                          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Ciudad"/>
+                        </properties>
+                      </component>
+                      <component id="c33aa" class="javax.swing.JTextField" binding="CiudadAsociadoField">
+                        <constraints>
+                          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="d3bd5" class="javax.swing.JLabel" binding="NumAsociadoLabel">
+                        <constraints>
+                          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Numero"/>
+                        </properties>
+                      </component>
+                      <component id="c7ebd" class="javax.swing.JTextField" binding="NumAsociadoField">
+                        <constraints>
+                          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="58287" class="javax.swing.JLabel" binding="TelefonoAsociadoLabel">
+                        <constraints>
+                          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Telefono"/>
+                        </properties>
+                      </component>
+                      <component id="ed624" class="javax.swing.JTextField" binding="TelefonoAsociadoField">
+                        <constraints>
+                          <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="976a1" class="javax.swing.JButton" binding="AsociadoBotonEnviar">
+                        <constraints>
+                          <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="80" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Enviar"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="4ef68" binding="PanelBajaAsociado" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Baja"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="ccc6b" class="javax.swing.JLabel" binding="BajaAsociadoBuscarLabel">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Elija el Asociado"/>
+                        </properties>
+                      </component>
+                      <component id="1536d" class="javax.swing.JTextField" binding="BajaAsociadoBuscarField">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                            <preferred-size width="150" height="-1"/>
+                          </grid>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="d168d" class="javax.swing.JComboBox" binding="BajaAsociadoField">
+                        <constraints>
+                          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                      </component>
+                      <component id="2e48c" class="javax.swing.JButton" binding="BajaAsociadoBuscarBoton">
+                        <constraints>
+                          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="Buscar"/>
+                        </properties>
+                      </component>
+                      <component id="b35d2" class="javax.swing.JButton" binding="BajaAsociadoBoton">
+                        <constraints>
+                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                            <preferred-size width="80" height="40"/>
+                          </grid>
+                        </constraints>
+                        <properties>
+                          <font size="14"/>
+                          <text value="Bajar"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <grid id="e1012" binding="PanelAsociadosLista" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="0" left="100" bottom="0" right="100"/>
+                    <constraints>
+                      <tabbedpane title="Lista de Asociados"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="c519e" binding="AsociadoScrollPane">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children/>
+                      </scrollpane>
+                    </children>
+                  </grid>
+                </children>
+              </tabbedpane>
+            </children>
+          </grid>
+          <grid id="64923" binding="PanelAmbulancia" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="100" bottom="0" right="100"/>
+            <constraints>
+              <tabbedpane title="Ambulancia"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4ee93" class="javax.swing.JTextArea" binding="EstadoText">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="536" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <alignmentX value="0.3"/>
+                  <editable value="false"/>
+                  <font size="16"/>
+                  <lineWrap value="false"/>
+                  <margin top="100" left="100" bottom="100" right="100"/>
+                  <tabSize value="8"/>
+                </properties>
+              </component>
+              <vspacer id="1d81d">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <preferred-size width="536" height="14"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <component id="b25e6" class="javax.swing.JButton" binding="AmbulanciaBoton">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="14"/>
+                  <horizontalTextPosition value="0"/>
+                  <margin top="0" left="0" bottom="0" right="0"/>
+                  <text value="Botón"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
