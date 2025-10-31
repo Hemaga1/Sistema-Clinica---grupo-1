@@ -1,5 +1,6 @@
 package modelo.honorarios;
 import modelo.interfaces.IMedico;
+import modelo.personas.Medico;
 
 /**
  * Clase abstracta que implementa el patrón Decorator para agregar responsabilidades de cálculo de modelo.honorarios de manera dinámica.<br>
@@ -38,5 +39,13 @@ public abstract class HonorarioDecorator implements IMedico {
     public String toString() {
         return this.honorario.toString();
     }
+
+    public boolean equals(Object o) {
+        return honorario.equals(o);
+    };
+
+    public int hashCode(){
+        return honorario.hashCode();
+    };
 }
 

@@ -48,15 +48,16 @@ public abstract class Persona {
         return nombre + " " + apellido + " (DNI: " + DNI + ") - Domicilio: " + domicilio + " - Tel: " + telefono;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Persona persona = (Persona) o;
-        return Objects.equals(DNI, persona.DNI) && Objects.equals(nombre, persona.nombre) && Objects.equals(apellido, persona.apellido);
+        return Objects.equals(DNI, persona.DNI);
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        return Objects.hashCode(DNI);
     }
 }

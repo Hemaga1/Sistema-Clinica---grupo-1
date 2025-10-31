@@ -1,6 +1,8 @@
 package modelo.ambulancia;
 
-public class Ambulancia {
+import java.util.Observable;
+
+public class Ambulancia extends Observable {
     protected IAmbulanciaState estado;
     private static Ambulancia instance = null;
 
@@ -12,6 +14,11 @@ public class Ambulancia {
         if (instance == null)
             instance = new Ambulancia();
         return instance;
+    }
+
+    protected void cambiaDisponibilidad() {
+        setChanged();
+        notifyObservers();
     }
 
     protected void setEstado(IAmbulanciaState estado) {

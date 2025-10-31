@@ -1,11 +1,6 @@
 package modelo.sistema.ModuloAtencion;
 
-import modelo.excepciones.MedicoDuplicadoExcepcion;
-import modelo.excepciones.MedicoNoRegistradoExcepcion;
-import modelo.excepciones.PacienteDuplicadoExcepcion;
-import modelo.excepciones.PacienteNoRegistradoExcepcion;
-import modelo.excepciones.PacienteSinAtenderExcepcion;
-import modelo.excepciones.InternacionCapacidadExcedidaExcepcion;
+import modelo.excepciones.*;
 
 import modelo.facturacion.ConsultaMedica;
 import modelo.facturacion.PacienteAtendido;
@@ -21,6 +16,7 @@ import java.util.Set;
 
 import modelo.lugares.Habitacion;
 
+import modelo.personas.Asociado;
 import modelo.personas.Paciente;
 
 
@@ -32,11 +28,13 @@ public class SistemaAtencion {
     private final ServicioInternaciones servicioInternaciones;
     private final ServicioMedicos servicioMedicos;
     private final ServicioPacientes servicioPacientes;
+    private final ServicioAsociados servicioAsociados;
 
     public SistemaAtencion() {
         this.servicioMedicos = new ServicioMedicos();
         this.servicioPacientes = new ServicioPacientes();
         this.servicioInternaciones = new ServicioInternaciones();
+        this.servicioAsociados = new ServicioAsociados();
     }
 
     /**
@@ -168,6 +166,14 @@ public class SistemaAtencion {
         servicioPacientes.registrarPaciente(paciente);
     }
 
+    public void registrarAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion {
+        servicioAsociados.registrarAsociado(asociado);
+    }
+
+    public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion {
+        servicioAsociados.eliminarAsociado(asociado);
+    }
+
     /**
      * Muestra de atenciones del médico
      * @param medico Médico del cual se mostrarán las atenciones, medico != null
@@ -207,6 +213,15 @@ public class SistemaAtencion {
     public Map<IMedico, List<PacienteAtendido>> getMedicos() {
         return servicioMedicos.getMedicos();
     }
+
+    public List<Habitacion> getHabitaciones() {
+        return servicioInternaciones.getHabitaciones();
+    }
+
+    public Set<Asociado> getAsociados() {
+        return servicioAsociados.getAsociadosRegistrados();
+    }
+
 }
 
 

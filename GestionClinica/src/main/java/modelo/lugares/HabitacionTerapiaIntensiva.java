@@ -28,7 +28,7 @@ public class HabitacionTerapiaIntensiva extends Habitacion {
 
     @Override
     public String toString() {
-        return "Terapia Intensiva";
+        return "Habitacion Nº" + getNumHabitacion() + ": Terapia Intensiva";
     }
 
 }

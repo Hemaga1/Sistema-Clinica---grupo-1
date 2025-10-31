@@ -11,6 +11,8 @@ public interface IMedico {
     public String getNombre();
     public String getApellido();
     public String getEspecialidad();
+    public boolean equals(Object o);
+    public int hashCode();
 
 }
 

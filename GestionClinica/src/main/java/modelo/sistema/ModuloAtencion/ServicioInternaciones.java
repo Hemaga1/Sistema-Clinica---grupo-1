@@ -73,4 +73,8 @@ public class ServicioInternaciones {
     public boolean quitarHabitacion(Habitacion habitacion) {
         return habitaciones.remove(habitacion);
     }
+
+    public List<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
 }

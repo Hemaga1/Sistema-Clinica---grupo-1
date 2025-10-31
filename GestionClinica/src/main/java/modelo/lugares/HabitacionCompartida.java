@@ -30,7 +30,7 @@ public class HabitacionCompartida extends Habitacion {
 
     @Override
     public String toString() {
-        return "Habitacion Compartida";
+        return "Habitacion Nº" + getNumHabitacion() + ": Compartida";
     }
 
 }

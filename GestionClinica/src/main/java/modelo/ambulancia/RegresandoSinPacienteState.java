@@ -19,6 +19,7 @@ public class RegresandoSinPacienteState implements IAmbulanciaState {
 
     @Override
     public void vuelveClinica() {
+        ambulancia.cambiaDisponibilidad();
         ambulancia.setEstado(new DisponibleState(ambulancia));
     }
 

@@ -2,6 +2,8 @@ package modelo.personas;
 
 import modelo.interfaces.IMedico;
 
+import java.util.Objects;
+
 /**
  * Clase extendida de Persona, correspondiente al médico
  */
@@ -19,7 +21,7 @@ public class Medico extends Persona implements IMedico {
      * @param ciudad ciudad!=null, cidudad!=""
      * @param telefono telefono!=null, telefono !=""
      * @param matricula matricula!=null, matricula !=""
-     * @param especialidad especialidad!=null, especialidad !=""
+     * @param especialidad especialidad!=null, especialidad!=""
      */
 	public Medico(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, String matricula, String especialidad) {
 		super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
@@ -45,7 +47,19 @@ public class Medico extends Persona implements IMedico {
 
     @Override
     public String toString() {
-        return " Medico matricula: " + matricula + super.toString();
+        return " Medico matricula: " + matricula + super.toString() + " ";
     }
-	
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        IMedico persona = (IMedico) o;
+        return Objects.equals(this.getDNI(), persona.getDNI());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.getDNI());
+    }
+
 }

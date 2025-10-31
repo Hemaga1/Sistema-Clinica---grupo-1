@@ -61,13 +61,8 @@ public class SistemaFacade {
      *
      * @param medico El objeto medico a registrar, medico != null
     */
-    public void registraMedico(IMedico medico) {
-        try {
-            sistemaAtencion.registrarMedico(medico);
-        }
-        catch (MedicoDuplicadoExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-        }
+    public void registraMedico(IMedico medico) throws MedicoDuplicadoExcepcion {
+       sistemaAtencion.registrarMedico(medico);
     }
 
     /**
@@ -81,13 +76,16 @@ public class SistemaFacade {
      *
      * @param paciente El objeto Paciente a registrar, paciente != null
      */
-    public void registraPaciente(Paciente paciente) {
-        try {
-            sistemaAtencion.registrarPaciente(paciente);
-        }
-        catch (PacienteDuplicadoExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-        }
+    public void registraPaciente(Paciente paciente) throws PacienteDuplicadoExcepcion{
+        sistemaAtencion.registrarPaciente(paciente);
+    }
+
+    public void registraAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion {
+        sistemaAtencion.registrarAsociado(asociado);
+    }
+
+    public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion {
+        sistemaAtencion.eliminarAsociado(asociado);
     }
 
     /**
@@ -153,6 +151,7 @@ public class SistemaFacade {
     public void internaPaciente(Paciente paciente, Habitacion habitacion) {
         try {
             sistemaAtencion.internaPaciente(paciente, habitacion);
+            System.out.print("Internado\n");
         }
         catch (PacienteSinAtenderExcepcion e) {
             System.out.print(e.getMessage() + "\n");
@@ -198,22 +197,12 @@ public class SistemaFacade {
      * @param cantDiasInternado Cantidad de dias que el paciente estuvo internado, cantDiasInternado > 0
      * @return La factura corespondiente al paciente
      */
-    public Factura egresaPaciente(Paciente paciente, int cantDiasInternado) {
-        try {
-            sistemaAtencion.establecerDiasInternado(paciente, cantDiasInternado);
-            Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
-            sistemaAtencion.removerRegistroPaciente(paciente);
-            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
-            return factura;
-        }
-        catch (PacienteSinAtenderExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-            return null;
-        }
-        catch (DesocupacionPacienteInexistenteExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-            return null;
-        }
+    public Factura egresaPaciente(Paciente paciente, int cantDiasInternado) throws PacienteSinAtenderExcepcion, DesocupacionPacienteInexistenteExcepcion {
+        sistemaAtencion.establecerDiasInternado(paciente, cantDiasInternado);
+        Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
+        sistemaAtencion.removerRegistroPaciente(paciente);
+        System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
+        return factura;
     }
    
     /**
@@ -250,5 +239,13 @@ public class SistemaFacade {
 
     public Map<Paciente, RegistroPaciente> getPacientesAtendidos() {
         return sistemaAtencion.getPacientesAtendidos();
+    }
+
+    public List<Habitacion> getHabitaciones() {
+        return sistemaAtencion.getHabitaciones();
+    }
+
+    public Set<Asociado> getAsociados() {
+        return sistemaAtencion.getAsociados();
     }
 }

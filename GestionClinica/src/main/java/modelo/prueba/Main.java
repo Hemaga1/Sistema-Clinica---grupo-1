@@ -30,7 +30,7 @@ public class Main {
 		// Médicos
 		IMedico medClinica = factoryMedico.crearMedico("10000000", "Ana", "García", "Calle 1", 1, "CABA", "111-1111", "M-123", "CLINICA", "PERMANENTE", "MASTER");
 		IMedico medCirugia = factoryMedico.crearMedico("10000001", "Bruno", "Lopez", "Calle 2", 2, "CABA", "222-2222", "M-456", "CIRUGIA", "RESIDENTE", "DOCTORADO");
-		IMedico medPediatra = factoryMedico.crearMedico("10000001", "Bianca", "Gonzalez", "Calle 2", 2, "CABA", "222-2222", "M-456", "PEDIATRIA", "RESIDENTE", "DOCTORADO");
+		IMedico medPediatra = factoryMedico.crearMedico("10000002", "Bianca", "Gonzalez", "Calle 2", 2, "CABA", "222-2222", "M-456", "PEDIATRIA", "RESIDENTE", "DOCTORADO");
 
 		// Pacientes
 		Paciente p1 = factoryPaciente.crearPaciente("20000000", "Juan", "Pérez", "Calle 10", 10, "CABA", "300-0000", 12345, "JOVEN");
@@ -38,12 +38,22 @@ public class Main {
 		Paciente p3 = factoryPaciente.crearPaciente("20000002", "Mario", "Gómez", "Calle 12", 12, "CABA", "300-0002", 32345, "MAYOR");
 
 		// Registro
-		sistema.registraMedico(medClinica);
-		sistema.registraMedico(medCirugia);
-		sistema.registraMedico(medPediatra);
-		sistema.registraPaciente(p1);
-		sistema.registraPaciente(p2);
-		sistema.registraPaciente(p3);
+        try {
+            sistema.registraMedico(medClinica);
+            sistema.registraMedico(medCirugia);
+            sistema.registraMedico(medPediatra);
+        }
+        catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
+        try {
+            sistema.registraPaciente(p1);
+            sistema.registraPaciente(p2);
+            sistema.registraPaciente(p3);
+        }
+        catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
 
 		System.out.println("\n========================================");
 		System.out.println("2. INGRESO DE PACIENTES AL SISTEMA");
@@ -96,17 +106,24 @@ public class Main {
 		System.out.println("========================================");
 
 		// Egresos
-		Factura f1 = sistema.egresaPaciente(p1, 9);
-		Factura f2 = sistema.egresaPaciente(p2);
-        Factura f3 = sistema.egresaPaciente(p3);
+        try {
+            Factura f1 = sistema.egresaPaciente(p1, 9);
+            Factura f2 = sistema.egresaPaciente(p2);
+            Factura f3 = sistema.egresaPaciente(p3);
 
-		System.out.println("\n--- FACTURAS GENERADAS ---");
+            System.out.println("\n--- FACTURAS GENERADAS ---");
 
-		System.out.println(f1.ImprimeFactura());
+            System.out.println(f1.ImprimeFactura());
 
-		System.out.println(f2.ImprimeFactura());
+            System.out.println(f2.ImprimeFactura());
 
-        System.out.println(f3.ImprimeFactura());
+            System.out.println(f3.ImprimeFactura());
+        }
+        catch (Exception ex) {
+            System.out.print(ex.getMessage());
+        }
+
+
 
 		System.out.println("\n========================================");
 		System.out.println("6. SEGUNDA RONDA DE ATENCIONES");
@@ -117,8 +134,14 @@ public class Main {
 		Paciente p5 = factoryPaciente.crearPaciente("20000004", "Elena", "Martinez", "Calle 14", 14, "CABA", "300-0004", 52345, "MAYOR");
 
 		System.out.println("\n--- NUEVOS PACIENTES ---");
-		sistema.registraPaciente(p6);
-		sistema.registraPaciente(p5);
+        try {
+            sistema.registraPaciente(p6);
+            sistema.registraPaciente(p5);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
 		sistema.ingresaPaciente(p6);
 		sistema.ingresaPaciente(p5);
 
@@ -130,9 +153,14 @@ public class Main {
 
 		System.out.println("\n--- NUEVOS EGRESOS ---");
 		// Egresar pacientes
-		Factura f6 = sistema.egresaPaciente(p6);
-		Factura f4 = sistema.egresaPaciente(p5);
-		Factura f5 = sistema.egresaPaciente(p3);
+        try {
+            Factura f6 = sistema.egresaPaciente(p6);
+            Factura f4 = sistema.egresaPaciente(p5);
+            Factura f5 = sistema.egresaPaciente(p3);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
 		System.out.println("\n========================================");
 		System.out.println("7. REPORTES DE ACTIVIDAD MÉDICA");

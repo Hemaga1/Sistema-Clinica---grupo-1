@@ -10,7 +10,8 @@ import java.util.List;
  * Clase abstracta habitacion que será extendida de los distintos tipos de habitaciones
  */
 public abstract class Habitacion {
-
+    public static int sigNumHabitacion = 0;
+    private int numHabitacion;
     private int maximoPacientes;
     private int cantidadPacientes;
 	protected double costoInicial;
@@ -23,6 +24,8 @@ public abstract class Habitacion {
      * @param maximoPacientes Maximo de pacientes que puede haber en la habitacionn maximoPacientes>0
      */
     public Habitacion(double costoInicial, int maximoPacientes) {
+        sigNumHabitacion++;
+        numHabitacion = sigNumHabitacion;
         this.costoInicial = costoInicial;
         this.cantidadPacientes = 0;
         this.maximoPacientes = maximoPacientes;
@@ -77,8 +80,16 @@ public abstract class Habitacion {
     public int getMaximoPacientes() { return maximoPacientes; }
     public int getCantidadPacientes() { return cantidadPacientes; }
 
+    public boolean estaLlena() {
+        return cantidadPacientes == maximoPacientes;
+    }
+
+    public int getNumHabitacion() {
+        return numHabitacion;
+    }
+
     @Override
     public String toString() {
-        return "Habitacion";
+        return "Habitacion " + numHabitacion;
     }
 }

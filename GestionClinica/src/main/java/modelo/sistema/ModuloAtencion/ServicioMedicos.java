@@ -3,6 +3,8 @@ package modelo.sistema.ModuloAtencion;
 import modelo.excepciones.MedicoDuplicadoExcepcion;
 import modelo.interfaces.IMedico;
 import modelo.facturacion.PacienteAtendido;
+import modelo.personas.Medico;
+
 import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
