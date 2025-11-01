@@ -25,6 +25,8 @@ public class Medico extends Persona implements IMedico {
      */
 	public Medico(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, String matricula, String especialidad) {
 		super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
+        assert matricula!=null && matricula!="" : "La matricula del medico no debe ser null ni tampoco estar vacía";
+        assert especialidad!=null && especialidad!="" : "La especialidad del medico no debe ser null ni tampoco estar vacía";
 		this.matricula = matricula;
         this.especialidad = especialidad;
 	}

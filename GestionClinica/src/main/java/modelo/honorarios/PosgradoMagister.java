@@ -17,7 +17,11 @@ public class PosgradoMagister extends HonorarioDecorator {
 	 */
 	@Override
 	public double calcularHonorarios() {
-		return super.calcularHonorarios() * 1.05;
+		double honorarioConAumento = super.calcularHonorarios() * 1.05;
+
+		assert honorarioConAumento >= 0 : "El honorario calculado no puede ser negativo";
+
+		return honorarioConAumento;
 	}
 
     @Override

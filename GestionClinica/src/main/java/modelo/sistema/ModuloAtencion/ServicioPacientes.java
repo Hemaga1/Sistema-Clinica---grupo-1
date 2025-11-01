@@ -26,6 +26,7 @@ public class ServicioPacientes {
      * @throws PacienteDuplicadoExcepcion
      */
     public void registrarPaciente(Paciente paciente) throws PacienteDuplicadoExcepcion {
+        assert paciente!=null : "El paciente que se quiere registrar no puede ser null";
         if (pacientesRegistrados.contains(paciente)) {
             throw new PacienteDuplicadoExcepcion();
         }
@@ -38,6 +39,7 @@ public class ServicioPacientes {
      * @return true or false
      */
     public boolean estaRegistrado(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere corroborar si esta registrado no puede ser null";
         return pacientesRegistrados.contains(paciente);
     }
 
@@ -46,6 +48,7 @@ public class ServicioPacientes {
      * @param paciente Paciente a ser atendido, paciente != null
      */
     public void iniciarRegistroAtencion(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere iniciar el registro de atencion no puede ser null";
         if (!pacientesAtendidos.containsKey(paciente)) {
             pacientesAtendidos.put(paciente, new RegistroPaciente());
         }
@@ -62,9 +65,12 @@ public class ServicioPacientes {
 
     /**
      * El paciente egresa entonces se lo elimina de la lista de atendidos
+     * <b>Precondición: </b> La lista de atendidos no puede estar vacía<br>
      * @param paciente Paciente que egresa, paciente != null
      */
     public void removerRegistroPaciente(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere remover el registro no puede ser null";
+        assert !pacientesAtendidos.isEmpty() : "De donde se quiere remover el registro de un paciente no puede estar vacío antes de removerlo";
         pacientesAtendidos.remove(paciente);
     }
 
@@ -74,6 +80,7 @@ public class ServicioPacientes {
      * @return true or false
      */
     public boolean estaEnAtencion(Paciente paciente) {
+        assert paciente!=null : "El paciente del cual se quiere ver si esta en atencion o no, no puede ser null";
         return pacientesAtendidos.containsKey(paciente);
     }
 

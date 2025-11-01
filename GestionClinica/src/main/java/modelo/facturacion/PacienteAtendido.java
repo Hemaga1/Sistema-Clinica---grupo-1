@@ -19,6 +19,9 @@ public class PacienteAtendido {
      * @param honorario honorario>0
      */
     public PacienteAtendido(Paciente paciente, String fecha, double honorario) {
+        assert paciente!=null : "El paciente no puede ser null";
+        assert fecha!=null && !fecha.isEmpty() : "La fecha que ingresa el paciente no puede ser null ni estar vacia";
+        assert honorario>=0 : "El honoario no puede ser negativo";
         this.fecha = fecha;
         this.nombrePaciente = paciente.getNombre();
         this.apellidoPaciente = paciente.getApellido();

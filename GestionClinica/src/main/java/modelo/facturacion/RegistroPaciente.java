@@ -31,14 +31,18 @@ public class RegistroPaciente {
      * @param consultaMedica consultaMedica!=null
      */
     public void agregarConsultaMedica(ConsultaMedica consultaMedica){
+        assert consultaMedica!=null : "La consulta medica no puede ser null";
         consultasMedicas.add(consultaMedica);
+        assert !consultasMedicas.isEmpty() : "Una vez agregada la consulta médica, la lista de Consultas Medicas no puede estar vacía";
     }
 
     public void setHabitacion(Habitacion habitacion) {
+        assert habitacion!=null : "La habitacion no puede ser null";
         this.habitacion = habitacion;
     }
 
     public void setCantDiasInternado(int cantDiasInternado) {
+        assert cantDiasInternado>0 :"Si se interna, al actualizar la cantidad de días internado tiene que ser mayor a 0";
         this.cantDiasInternado = cantDiasInternado;
     }
 

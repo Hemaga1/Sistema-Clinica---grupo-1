@@ -30,10 +30,12 @@ public class ServicioMedicos {
      * @throws MedicoDuplicadoExcepcion
      */
     public void registrarMedico(IMedico medico) throws MedicoDuplicadoExcepcion {
+        assert medico!=null : "El medico a registrar no puede ser null";
         if (medicos.get(medico) != null) {
             throw new MedicoDuplicadoExcepcion();
         }
         else medicos.put(medico, new ArrayList<>());
+        assert medicos.get(medico).isEmpty() : "El listado de consultas del médico debe estar vacío tras registrarlo";
     }
 
     /**
@@ -42,6 +44,7 @@ public class ServicioMedicos {
      * @return true or false
      */
     public boolean estaRegistrado(IMedico medico) {
+        assert medico!=null : "El medico a ver si esta registrado no puede ser null";
         return medicos.containsKey(medico);
     }
 
@@ -52,6 +55,7 @@ public class ServicioMedicos {
      * @param medico Médico a remover, medico!=null
      */
     public void removerMedico(IMedico medico) {
+        assert medico!=null : "El medico a remover no puede ser null";
         medicos.remove(medico);
     }
 
@@ -61,6 +65,8 @@ public class ServicioMedicos {
      * @param atencion Donde se encuentran los datos de dicha atención de un paciente
      */
     public void agregarAtencion(IMedico medico, PacienteAtendido atencion) {
+        assert medico!=null : "El medico a agregar atencion no puede ser null";
+        assert atencion!=null : "La atencion a ser agregada a las atenciones del medico no puede ser null";
         medicos.get(medico).add(atencion);
     }
 
@@ -70,6 +76,7 @@ public class ServicioMedicos {
      * @return Se retorna el médico con su lista de atenciones
      */
     public List<PacienteAtendido> getAtencionesDelMedico(IMedico medico) {
+        assert medico!=null : "El medico del cual se quieren traer las atenciones no debe ser null";
         return medicos.getOrDefault(medico, new ArrayList<>());
     }
 
@@ -81,6 +88,9 @@ public class ServicioMedicos {
      * @return Se retorna el médico con su lista de atenciones
      */
     public List<PacienteAtendido> getAtencionesDelMedicoPorPeriodo(IMedico medico, String fechaInicio, String fechaFin) {
+        assert medico!=null : "El medico del cual se quieren traer las atenciones no debe ser null";
+        assert fechaFin!=null && fechaFin!="" : "La fecha limite de querer ver atenciones no puede ser null";
+        assert fechaInicio!=null && fechaInicio!="" : "La fecha inicio de querer ver atenciones no puede ser null";
         List<PacienteAtendido> todas = getAtencionesDelMedico(medico);
         List<PacienteAtendido> resultado = new ArrayList<>();
         if (todas == null || todas.isEmpty()) {

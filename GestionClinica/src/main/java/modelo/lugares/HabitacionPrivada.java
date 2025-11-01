@@ -23,16 +23,20 @@ public class HabitacionPrivada extends Habitacion {
      */
     @Override
     public double calculaCosto(int cantDias){
+        assert cantDias>0 : "La cantidad de días debe ser mayor que 0";
+        double costo;
         if(cantDias == 1) {
-        	return costoAsignacion + costoInicial * cantDias;
+        	costo = costoAsignacion + costoInicial * cantDias;
         }
         else if(cantDias < 6) {
-        	return costoAsignacion + costoInicial * cantDias * 1.3;
+        	costo = costoAsignacion + costoInicial * cantDias * 1.3;
         }
         else {
-        	return costoAsignacion + costoInicial * cantDias * 2;
+        	costo = costoAsignacion + costoInicial * cantDias * 2;
         }
+        assert costo>0 : "El costo calculado debe ser mayor a 0";
 
+        return costo;
     }
 
     @Override

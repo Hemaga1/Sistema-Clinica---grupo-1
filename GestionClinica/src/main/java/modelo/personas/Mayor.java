@@ -15,6 +15,7 @@ public class Mayor extends Paciente{
 	 * @return true or false
 	 */
 	public boolean esReemplazado(Paciente otroPaciente) {
+		assert otroPaciente!=null : "El otro paciente no debe ser null al comparar con el mayor";
         return otroPaciente.reemplazaAMayor();
 	}
 

@@ -47,6 +47,8 @@ public class SistemaAtencion {
      * @throws MedicoNoRegistradoExcepcion
      */
     public void atender(IMedico medico, Paciente paciente) throws PacienteNoRegistradoExcepcion, MedicoNoRegistradoExcepcion {
+        assert medico!=null : "El medico que atenderá no puede ser null";
+        assert paciente!=null : "El paciente a atender no puede ser null";
         if (!servicioMedicos.estaRegistrado(medico)) {
             throw new MedicoNoRegistradoExcepcion();
         }
@@ -78,6 +80,8 @@ public class SistemaAtencion {
      * @throws InternacionCapacidadExcedidaExcepcion
      */
     public void internaPaciente(Paciente paciente, Habitacion habitacion) throws PacienteSinAtenderExcepcion, InternacionCapacidadExcedidaExcepcion {
+        assert paciente!=null : "El paciente a internar no puede ser null";
+        assert habitacion!= null : "La habitacion donde se internará el paciente no puede ser null";
         servicioInternaciones.internar(paciente, servicioPacientes.getRegistroPaciente(paciente), habitacion);
     }
 
@@ -100,6 +104,7 @@ public class SistemaAtencion {
      * @throws PacienteSinAtenderExcepcion
      */
     public void establecerDiasInternado(Paciente paciente) throws PacienteSinAtenderExcepcion {
+        assert paciente!=null : "El paciente al cual se le quieren establecer los días internados no puede ser null";
         int dias;
         try {
                 java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy");
@@ -124,6 +129,7 @@ public class SistemaAtencion {
      * @return true or false
      */
     public boolean estaRegistrado(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere ver si esta registrado no puede ser null";
         return  servicioPacientes.estaRegistrado(paciente);
     }
 
@@ -133,6 +139,7 @@ public class SistemaAtencion {
      * @return registro del paciente que contiene la habitacion en caso de que sea internado con la cantidad de dias, fecha de ingreso y una lista con sus consultas medicas
      */
     public RegistroPaciente getRegistroPaciente(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere ver el registro no puede ser null";
         return servicioPacientes.getRegistroPaciente(paciente);
     }
 
@@ -141,6 +148,7 @@ public class SistemaAtencion {
      * @param paciente Paciente que egresa, paciente != null
      */
     public void removerRegistroPaciente(Paciente paciente) {
+        assert paciente!=null : "El paciente que se quiere remover el registro no puede ser null";
         servicioPacientes.removerRegistroPaciente(paciente);
     }
 
@@ -152,6 +160,7 @@ public class SistemaAtencion {
      * @throws MedicoDuplicadoExcepcion
      */
     public void registrarMedico(IMedico medico) throws MedicoDuplicadoExcepcion {
+        //No hago assert porque lo hice en SistemaFacade que implementa este metodo asi que el medico ya tiene que venir sin ser null
         servicioMedicos.registrarMedico(medico);
     }
 
@@ -163,6 +172,7 @@ public class SistemaAtencion {
      * @throws PacienteDuplicadoExcepcion
      */
     public void registrarPaciente(Paciente paciente) throws PacienteDuplicadoExcepcion {
+        //No hago assert porque lo hice en SistemaFacade que implementa este metodo asi que el paciente ya tiene que venir sin ser null
         servicioPacientes.registrarPaciente(paciente);
     }
 
@@ -180,6 +190,7 @@ public class SistemaAtencion {
      * @return Se retorna el médico con su lista de atenciones
      */
     public List<PacienteAtendido> getAtencionesDelMedico(IMedico medico) {
+        assert medico!=null : "El medico del cual se quieren ver las atenciones no puede ser null";
         return servicioMedicos.getAtencionesDelMedico(medico);
     }
 
@@ -191,6 +202,9 @@ public class SistemaAtencion {
      * @return Se retorna el médico con su lista de atenciones
      */
     public List<PacienteAtendido> getAtencionesDelMedicoPorPeriodo(IMedico medico, String fechaInicio, String fechaFin) {
+        assert medico!=null : "El medico del cual se quieren ver las atenciones no puede ser null";
+        assert fechaInicio!=null && fechaInicio!="" : "La fecha inicial desde la cual se quieren ver las atenciones del medico no debe ser null";
+        assert fechaFin!=null && fechaFin!="" : "La fecha final limite hasta la cual se quieren ver las atenciones del medico no debe ser null";
         return servicioMedicos.getAtencionesDelMedicoPorPeriodo(medico, fechaInicio, fechaFin);
     }
 

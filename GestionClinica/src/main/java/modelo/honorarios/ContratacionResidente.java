@@ -17,7 +17,11 @@ public class ContratacionResidente extends HonorarioDecorator {
 	 */
 	@Override
 	public double calcularHonorarios() {
-		return super.calcularHonorarios() * 1.1;
+		double honorarioConAumento = super.calcularHonorarios() * 1.05;
+
+		assert honorarioConAumento >= 0 : "El honorario calculado no puede ser negativo";
+
+		return honorarioConAumento;
 	}
 
     @Override

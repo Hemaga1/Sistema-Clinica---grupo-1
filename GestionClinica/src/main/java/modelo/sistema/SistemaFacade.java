@@ -32,6 +32,7 @@ public class SistemaFacade {
      * @param clinica clinica!=null
      */
     private SistemaFacade(Clinica clinica) {
+        assert clinica!=null: "La clinica no puede ser null";
         this.clinica = clinica;
         this.sistemaIngreso = new SistemaIngreso();
         this.sistemaAtencion = new SistemaAtencion();
@@ -44,9 +45,11 @@ public class SistemaFacade {
      * @return
      */
     public static SistemaFacade getInstancia(Clinica clinica) {
+        assert clinica!=null: "La clinica no puede ser null";
         if (instancia == null) {
             instancia = new SistemaFacade(clinica);
         }
+        assert instancia!= null : "Si no existia la instancia se creo una entonces de ninguna forma puede ser null";
         return instancia;
     }
 
@@ -62,7 +65,8 @@ public class SistemaFacade {
      * @param medico El objeto medico a registrar, medico != null
     */
     public void registraMedico(IMedico medico) throws MedicoDuplicadoExcepcion {
-       sistemaAtencion.registrarMedico(medico);
+        assert medico!=null : "El medico  que se quiere registrar no puede ser null";
+        sistemaAtencion.registrarMedico(medico);
     }
 
     /**
@@ -77,6 +81,7 @@ public class SistemaFacade {
      * @param paciente El objeto Paciente a registrar, paciente != null
      */
     public void registraPaciente(Paciente paciente) throws PacienteDuplicadoExcepcion{
+        assert paciente!=null : "El paciente a registrar no puede ser null";
         sistemaAtencion.registrarPaciente(paciente);
     }
 
@@ -100,11 +105,9 @@ public class SistemaFacade {
      * @param paciente El objeto Paciente que intenta ingresar al modelo.sistema de atención, paciente != null
      */
     public void ingresaPaciente(Paciente paciente) {
-        if (sistemaAtencion.estaRegistrado(paciente)) {
-            sistemaIngreso.ingresarPaciente(paciente);
-            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " ingresado correctamente\n");
-        }
-        else System.out.print("Paciente no registrado\n");
+        assert paciente!=null : "El paciente a ingresar debe ser distinto a null";
+        assert sistemaAtencion.estaRegistrado(paciente) : "El paciente a ingresar debe estar anteriormente registrado";
+        sistemaIngreso.ingresarPaciente(paciente);
     }
 
     /**
@@ -121,6 +124,8 @@ public class SistemaFacade {
      */
 
     public void atiendePaciente(IMedico medico, Paciente paciente) {
+        assert paciente!=null : "El paciente a ser atendido debe ser distinto a null";
+        assert medico!=null : "El medico a atender debe ser distinto a null";
         if (sistemaAtencion.getRegistroPaciente(paciente) == null)
             try {
                 sistemaIngreso.SacarPaciente(paciente);
@@ -149,6 +154,8 @@ public class SistemaFacade {
      * @param habitacion La habitación a la que corresponde ser internado el paciente, habitacion != null
      */
     public void internaPaciente(Paciente paciente, Habitacion habitacion) {
+        assert paciente!=null : "El paciente a internar debe ser distinto a null";
+        assert habitacion!=null : "La habitacion en la cula se internará al paciente no puede ser null";
         try {
             sistemaAtencion.internaPaciente(paciente, habitacion);
             System.out.print("Internado\n");
@@ -169,6 +176,7 @@ public class SistemaFacade {
      * @return La factura corespondiente al paciente
      */
     public Factura egresaPaciente(Paciente paciente) {
+        assert paciente!=null : "El paciente a engresar no puede ser null";
         try {
             if (sistemaAtencion.getRegistroPaciente(paciente).getHabitacion() != null) {
                 sistemaAtencion.establecerDiasInternado(paciente);
@@ -198,6 +206,8 @@ public class SistemaFacade {
      * @return La factura corespondiente al paciente
      */
     public Factura egresaPaciente(Paciente paciente, int cantDiasInternado) throws PacienteSinAtenderExcepcion, DesocupacionPacienteInexistenteExcepcion {
+        assert paciente!=null : "El paciente a engresar no puede ser null";
+        assert cantDiasInternado>0 : "La cantidad de dias internado el paciente debe ser mayor a cero ya que sino no estaría siendo internado";
         sistemaAtencion.establecerDiasInternado(paciente, cantDiasInternado);
         Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
         sistemaAtencion.removerRegistroPaciente(paciente);
@@ -213,6 +223,9 @@ public class SistemaFacade {
      * @return El reporte del medico desde una fecha a otra
      */
     public ReporteActividadMedica generarReporteActividadMedica(IMedico medico, String fechaInicio, String fechaFin) {
+        assert medico!=null : "El medico del cual se quieren ver las atenciones no puede ser null";
+        assert fechaInicio!=null && fechaInicio!="" : "La fecha inicial desde la cual se quieren ver las atenciones del medico no debe ser null";
+        assert fechaFin!=null && fechaFin!="" : "La fecha final limite hasta la cual se quieren ver las atenciones del medico no debe ser null";
         List<PacienteAtendido> atenciones = sistemaAtencion.getAtencionesDelMedicoPorPeriodo(medico, fechaInicio, fechaFin);
         return new ReporteActividadMedica(medico, fechaInicio, fechaFin, atenciones);
     }
@@ -222,6 +235,7 @@ public class SistemaFacade {
      * @param habitacion La habitación a agregar
      */
     public void agregarHabitacion(Habitacion habitacion) {
+        assert habitacion!=null : "La habitacion que se quiere agregar debe ser distinta de null";
         sistemaAtencion.agregarHabitacion(habitacion);
     }
 

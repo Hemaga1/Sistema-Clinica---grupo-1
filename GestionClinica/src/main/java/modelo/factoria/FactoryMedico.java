@@ -14,7 +14,7 @@ public class FactoryMedico {
 	/**
 	 * El método instancia un objeto Medico base y luego le aplica las tres capas de decoración (Especialidad, Contratacion y Posgrado) basándose en los tipos de String de entrada.<br>
 	 * <b>Precondición: </b> Los parámetros DNI, nombre, apellido, matrícula y especialidad son válidos para crear un objeto Medico base.
-	 * @param DNI Dni del médico, dni!=null, dni!=""
+	 * @param DNI Dni del médico, DNI!=null, DNI!=""
 	 * @param nombre Nombre del médico, nombre!=null, nombre!=""
 	 * @param apellido Apellido del médico, apellido!=null, apellido!=""
 	 * @param calle Calle del domicilio del médico, calle!=null, calle!=""
@@ -29,10 +29,24 @@ public class FactoryMedico {
 	 */
 
     public IMedico crearMedico(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, String matricula, String especialidad, String contratacion, String posgrado) {
-        IMedico medico = new Medico(DNI, nombre, apellido, calle, numero, ciudad, telefono, matricula, especialidad);
+		assert DNI!=null && !DNI.isEmpty(): "DNI no puede ser null ni vacío";
+		assert nombre!=null && !nombre.isEmpty() : "Nombre no puede ser null ni vacío";
+		assert apellido!=null && !apellido.isEmpty() : "Apellido no puede ser null ni vacío";
+		assert calle!=null && !calle.isEmpty() : "Calle no puede ser null ni vacía";
+		assert numero >= 0 : "Número de domicilio no puede ser negativo";
+		assert ciudad!=null && !ciudad.isEmpty() : "Ciudad no puede ser null ni vacía";
+		assert telefono!=null && !telefono.isEmpty() : "Teléfono no puede ser null ni vacío";
+		assert matricula!=null && !matricula.isEmpty() : "Matrícula no puede ser null ni vacía";
+		assert especialidad != null && !especialidad.isEmpty() :"Especialidad no puede ser null ni vacía";
+		assert contratacion != null && !contratacion.isEmpty() : "Contratación no puede ser null ni vacía";
+		assert posgrado != null && !posgrado.isEmpty(): "Posgrado no puede ser null ni vacío";
+
+		IMedico medico = new Medico(DNI, nombre, apellido, calle, numero, ciudad, telefono, matricula, especialidad);
 		medico = getEspecialidad(especialidad, medico);
 		medico = getContratacion(contratacion, medico);
 		medico = getPosgrado(posgrado, medico);
+
+		assert medico != null : "El médico creado no debe ser null";
 		return medico;
 	}
 
@@ -44,15 +58,23 @@ public class FactoryMedico {
 	 * @return El objeto IMedico decorado con la Especialidad correspondiente, o el objeto base si el tipo no es reconocido.
 	 */
     public IMedico getEspecialidad(String tipo, IMedico medico) {
+		assert medico!=null : "El médico base no puede ser null";
+		assert tipo!=null && !tipo.isEmpty() : "El tipo de especialidad no puede ser null ni estar vacío";
+
+		IMedico decorado;
 		if (tipo.equalsIgnoreCase("CLINICA"))
-			return new EspecialidadClinica(medico);
+			decorado = new EspecialidadClinica(medico);
 		else
 			if (tipo.equalsIgnoreCase("CIRUGIA"))
-				return new EspecialidadCirugia(medico);
+				decorado = new EspecialidadCirugia(medico);
 			else
 				if (tipo.equalsIgnoreCase("PEDIATRIA"))
-					return new EspecialidadPediatria(medico);
-				else return medico;
+					decorado =  new EspecialidadPediatria(medico);
+				else decorado = medico;
+
+		assert decorado != null : "El objeto IMedico retornado no puede ser null";
+
+		return decorado;
 	}
 
 	/**
@@ -63,12 +85,21 @@ public class FactoryMedico {
 	 * @return El objeto IMedico decorado con el tipo de Contratación, o el objeto base si el tipo no es reconocido.
 	 */
     public IMedico getContratacion(String tipo, IMedico medico) {
+		assert tipo!=null && !tipo.isEmpty() : "El tipo de contratación no puede ser null ni estar vacía";
+		assert medico!=null : "El médico base no puede ser null";
+
+		IMedico decorado;
+
 		if (tipo.equalsIgnoreCase("PERMANENTE"))
-			return new ContratacionPermanente(medico);
+			decorado = new ContratacionPermanente(medico);
 		else
 			if (tipo.equalsIgnoreCase("RESIDENTE"))
-				return new ContratacionResidente(medico);
-			else return medico;	
+				decorado =  new ContratacionResidente(medico);
+			else decorado = medico;
+
+		assert decorado != null : "El objeto IMedico retornado no puede ser null";
+
+		return decorado;
 	}
 
 	/**
@@ -79,11 +110,20 @@ public class FactoryMedico {
 	 * @return El objeto IMedico decorado con el tipo de Posgrado, o el objeto base si el tipo no es reconocido.
 	 */
     public IMedico getPosgrado(String tipo, IMedico medico) {
+		assert tipo!=null && !tipo.isEmpty() : "El tipo de contratación no puede ser null ni estar vacía";
+		assert medico!=null : "El médico base no puede ser null";
+
+		IMedico decorado;
+
 		if (tipo.equalsIgnoreCase("MASTER"))
-			return new PosgradoMagister(medico);
+			decorado = new PosgradoMagister(medico);
 		else
 			if (tipo.equalsIgnoreCase("DOCTORADO"))
-				return new PosgradoDoctorado(medico);
-			else return medico;	
+				decorado = new PosgradoDoctorado(medico);
+			else decorado = medico;
+
+		assert decorado != null : "El objeto IMedico retornado no puede ser null";
+
+		return decorado;
 	}
 }

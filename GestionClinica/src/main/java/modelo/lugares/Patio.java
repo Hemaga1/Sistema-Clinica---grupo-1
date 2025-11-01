@@ -17,6 +17,7 @@ public class Patio {
 	 * @param paciente Paciente a ser agregado
 	 */
 	public void agregarPaciente(Paciente paciente) {
+		assert paciente!= null : "El paciente a agregar al patio no debe ser null";
 		pacientes.add(paciente);
 	}
 
@@ -33,6 +34,8 @@ public class Patio {
 	 * @throws PacienteNoEstaEsperandoExcepcion
 	 */
 	public void sacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
+		assert paciente!=null : "El paciente a sacar no debe ser null";
+		int cantidadAntes = pacientes.size();
         if (pacientes.isEmpty())
             throw new SalaEsperaVaciaExcepcion();
         else {
@@ -41,6 +44,8 @@ public class Patio {
             }
             else throw new PacienteNoEstaEsperandoExcepcion();
         }
+		assert !pacientes.contains(paciente) : "El paciente debe haber sido removido de la sala de espera";
+		assert pacientes.size() == cantidadAntes - 1 : "La cantidad de pacientes debe haberse reducido en uno";
 	}
 
 	

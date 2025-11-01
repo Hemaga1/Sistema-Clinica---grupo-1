@@ -21,6 +21,7 @@ public abstract class Paciente extends Persona{
 	 */
 	public Paciente(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, int historiaClinica) {
 		super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
+		assert historiaClinica>=0 : "La historia clinica no puede ser negativa";
 		this.historiaClinica = historiaClinica;
 		siguienteNro++;
 		nroOrden=siguienteNro;

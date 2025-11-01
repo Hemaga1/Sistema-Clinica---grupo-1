@@ -31,19 +31,34 @@ public class FactoryPaciente {
 	 * @param ciudad Ciudad del paciente, ciudad!=null, ciudad!=""
 	 * @param telefono Teléfono del paciente, telefono!=null, telefono!=""
 	 * @param historiaClinica Historia Clínica del paciente, historiaClinica>=0
-	 * @param rangoEtario Rango Eterario del paciente
+	 * @param rangoEtario Rango Eterario del paciente, rangoEtario!=null, rangoEtario!=""
 	 * @return Una subclase de Paciente (Ninio, Joven, Mayor) o null si el rango etario no es válido.
 	 */
 	public Paciente crearPaciente(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono, int historiaClinica, String rangoEtario) {
+		assert DNI!=null && !DNI.isEmpty() : "El DNI no puede ser null ni estar vacío";
+		assert nombre!=null && !nombre.isEmpty() : "El nombre no puede ser null ni estar vacío";
+		assert apellido!=null && !apellido.isEmpty() : "El apellido no puede ser null ni estar vacío";
+		assert calle!=null && !calle.isEmpty() : "La calle no puede ser null ni estar vacía";
+		assert numero>=0 : "El numero del domicilio no puede ser negativo";
+		assert ciudad!=null && !ciudad.isEmpty() : "La ciudad no puede ser null ni estar vacía";
+		assert telefono!=null && !telefono.isEmpty() : "El teléfono no puede ser null ni estar vacío";
+		assert historiaClinica>=0 : "La historia clínica no puede ser negativa";
+		assert rangoEtario!=null && !rangoEtario.isEmpty() : "El rango etario del paciente no puede ser null ni estar vacío";
+
+		Paciente paciente;
+
 		if (rangoEtario.equalsIgnoreCase("NINIO"))
-			return new Ninio(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
+			paciente = new Ninio(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
 		else
 			if (rangoEtario.equalsIgnoreCase("JOVEN"))
-				return new Joven(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
+				paciente = new Joven(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
 			else
 				if (rangoEtario.equalsIgnoreCase("MAYOR"))
-					return new Mayor(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
-				else return null;
+					paciente = new Mayor(DNI, nombre, apellido, calle, numero, ciudad, telefono, historiaClinica);
+				else paciente = null;
+
+		assert paciente != null : "El objeto Paciente retornado no puede ser null";
+		return paciente;
 	}
 	
 }

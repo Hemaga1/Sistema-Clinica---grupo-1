@@ -20,6 +20,7 @@ public class SistemaEgreso {
      * @throws DesocupacionPacienteInexistenteExcepcion
      */
     public Factura egresar(Paciente paciente, RegistroPaciente registro) throws PacienteSinAtenderExcepcion, DesocupacionPacienteInexistenteExcepcion {
+        assert paciente!=null : "El paciente que se quiere egresar y generar factura no puede ser null";
         if (registro == null) {
             throw new PacienteSinAtenderExcepcion();
         }

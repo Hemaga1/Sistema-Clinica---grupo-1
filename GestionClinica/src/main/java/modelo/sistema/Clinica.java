@@ -22,6 +22,11 @@ public class Clinica {
      * @param ciudad Ciudad donde se encuentra ubicada la clínica, clínica != null
      */
     private Clinica(String nombre, String calle, int numero, String telefono, String ciudad) {
+        assert nombre!=null && nombre!="" : "El nombre de la clinica no puede ser null";
+        assert calle!=null && calle!="" : "La calle del domicilio de la clinica no puede ser null";
+        assert numero>=0 : "El numero del domicilio de la clinica no puede ser menor a 0";
+        assert telefono!=null && telefono!="" : "El telefono de la clinica no puede ser null";
+        assert ciudad!=null && ciudad!="" : "La ciudad del domicilio de la clinica no puede ser null";
         this.nombre = nombre;
         this.direccion = new Domicilio(calle,numero,ciudad);
         this.telefono = telefono;
@@ -40,6 +45,7 @@ public class Clinica {
         if (instancia == null) {
             instancia = new Clinica(nombre, calle, numero, telefono, ciudad);
         }
+        assert instancia!= null : "Si no existia la instancia se creo una entonces de ninguna forma puede ser null";
         return instancia;
     }
 

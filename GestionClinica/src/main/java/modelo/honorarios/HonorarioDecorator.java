@@ -11,6 +11,7 @@ public abstract class HonorarioDecorator implements IMedico {
     private IMedico honorario;
 
     public HonorarioDecorator(IMedico honorario) {
+        assert honorario!=null : "El honorario no puede ser null";
         this.honorario = honorario;
     }
 

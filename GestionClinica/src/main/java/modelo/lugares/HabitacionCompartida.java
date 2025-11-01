@@ -24,8 +24,14 @@ public class HabitacionCompartida extends Habitacion {
      */
     @Override
     public double calculaCosto(int cantDias){
+        assert cantDias>0 : "La cantidad de días debe ser mayor que 0";
         System.out.println("Calculando");
-        return costoAsignacion + costoInicial * cantDias;
+
+        double costo = costoAsignacion + costoInicial * cantDias;
+
+        assert costo>0 : "El costo calculado debe ser mayor a 0";
+
+        return costo;
     }
 
     @Override

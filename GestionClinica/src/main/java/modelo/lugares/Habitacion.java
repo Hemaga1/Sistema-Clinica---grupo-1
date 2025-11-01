@@ -24,6 +24,8 @@ public abstract class Habitacion {
      * @param maximoPacientes Maximo de pacientes que puede haber en la habitacionn maximoPacientes>0
      */
     public Habitacion(double costoInicial, int maximoPacientes) {
+        assert costoInicial>=0 : "El costo inicial no puede ser negativo";
+        assert maximoPacientes>0 : "El máximo de pacientes que puede haber en la habitacion tiene que ser mayor a 0";
         sigNumHabitacion++;
         numHabitacion = sigNumHabitacion;
         this.costoInicial = costoInicial;
@@ -50,10 +52,16 @@ public abstract class Habitacion {
      * @throws InternacionCapacidadExcedidaExcepcion
      */
     public void ocuparHabitacion(Paciente paciente) throws InternacionCapacidadExcedidaExcepcion {
+        assert paciente!=null : "El paciente a ocupar la habitacion en caso de haber capacidad no puede ser null";
+        assert cantidadPacientes<maximoPacientes :"No hay lugar en la habitacion";
         if (cantidadPacientes >= maximoPacientes)
             throw new InternacionCapacidadExcedidaExcepcion(this, paciente);
         pacientes.add(paciente);
+        int cantidadAntes = cantidadPacientes;
         cantidadPacientes += 1;
+        assert pacientes.contains(paciente) : "El paciente debe haberse agregado a la lista de pacientes";
+        assert cantidadPacientes == cantidadAntes + 1 : "La cantidad de pacientes debe haberse incrementado en 1";
+        assert cantidadPacientes <= maximoPacientes : "La cantidad de pacientes no puede superar el máximo permitido";
     }
 
     /**
@@ -68,9 +76,13 @@ public abstract class Habitacion {
      * @throws DesocupacionPacienteInexistenteExcepcion
      */
     public void desocuparHabitacion(Paciente paciente) throws DesocupacionPacienteInexistenteExcepcion {
+        assert paciente!=null : "El paciente que va a desocupar la habitación no puede ser null";
         if (!pacientes.remove(paciente))
             throw new DesocupacionPacienteInexistenteExcepcion(paciente);
+        int cantidadAntes = cantidadPacientes;
         cantidadPacientes -= 1;
+        assert !pacientes.contains(paciente) : "El paciente debe haberse eliminado de la lista de pacientes";
+        assert cantidadPacientes == cantidadAntes - 1 : "La cantidad de pacientes debe haberse decrementado en 1";
     }
 
     public List<Paciente> getPacientes() {

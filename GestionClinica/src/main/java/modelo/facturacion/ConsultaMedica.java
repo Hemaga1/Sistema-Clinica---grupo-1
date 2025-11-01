@@ -17,6 +17,9 @@ public class ConsultaMedica {
      * @param precio Precio de la consulta, precio>0
      */
     public ConsultaMedica(IMedico medico, double precio) {
+        assert medico!=null : "El médico  no puede ser null";
+        assert precio>=0 : "El precio de los honorarios no puede ser negativo";
+
         this.nombreMedico = medico.getNombre();
         this.especialidad = medico.getEspecialidad();
         this.precio = precio;
@@ -35,6 +38,7 @@ public class ConsultaMedica {
     }
     
     public void setPrecio(double precio) {
+        assert precio>=0 : "El precio no puede ser negativo";
         this.precio = precio;
     }
 }

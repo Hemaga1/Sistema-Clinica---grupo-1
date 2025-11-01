@@ -23,7 +23,12 @@ public class HabitacionTerapiaIntensiva extends Habitacion {
      */
     @Override
     public double calculaCosto(int cantDias){
-        return Math.pow(costoInicial,cantDias);
+        assert cantDias>0 : "La cantidad de días debe ser mayor que 0";
+        double costo = Math.pow(costoInicial,cantDias);
+
+        assert costo>0 : "El costo calculado debe ser mayor a 0";
+
+        return costo;
     }
 
     @Override
