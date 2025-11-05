@@ -1,9 +1,6 @@
 package controlador;
 
-import modelo.excepciones.FechaInvalidaExcepcion;
-import modelo.excepciones.InputNumeroInvalidoExcepcion;
-import modelo.excepciones.InputStringInvalidoExcepcion;
-import modelo.excepciones.InputVacioExcepcion;
+import modelo.excepciones.*;
 import modelo.facturacion.Factura;
 import modelo.facturacion.PacienteAtendido;
 import modelo.facturacion.RegistroPaciente;
@@ -15,6 +12,7 @@ import modelo.personas.Paciente;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,6 +40,10 @@ public interface IVista {
     JButton getBajaAsociadoBoton();
     JButton getReporteMedicoBuscarBoton();
     JButton getReporteMedicoBoton();
+    JButton getAmbulanciaAsociadosBoton();
+    JButton getAmbulanciaEmpezarBoton();
+    JButton getAmbulanciaPararBoton();
+    JButton getAmbulanciaVolverBoton();
 
     //GET FIELDS PACIENTE
     String getDNIPaciente() throws InputVacioExcepcion, InputNumeroInvalidoExcepcion;
@@ -111,14 +113,24 @@ public interface IVista {
     void actualizarAtenderMedicoLista(Map<IMedico, List<PacienteAtendido>> medicosRegistrados, String comparar);
     void actualizarBajaAsociadosLista(Set<Asociado> asociados, String comparar);
     void actualizarReporteMedicoLista(Map<IMedico, List<PacienteAtendido>> medicosRegistrados, String comparar);
+    void actualizarAmbulanciaAsociadosLista(Set<Asociado> asociados);
 
-
+    List<Asociado> getAsociadosAmbulancia(List<Asociado> asociados);
 
     void mostrarFactura(Factura factura);
 
     void mostrarReporteMedico(ReporteActividadMedica reporte);
 
     void cambiarEstadoAmbulancia(String estado);
+
+    void setBotonAmbulanciaAsociados();
+    void setBotonAmbulanciaEmpezar();
+    void setBotonAmbulanciaParar();
+    void setBotonAmbulanciaPararNotEnabled();
+
+    void mostrarAmbulanciaCantidades(List<Asociado> asociados);
+
+    ArrayList<Integer> getCantidadSolicitudes() throws CantidadSolicitudesInvalidaExcepcion;
 
     boolean confirmarBaja();
     void mostrarMensajeExcepcionPaciente(Exception e);

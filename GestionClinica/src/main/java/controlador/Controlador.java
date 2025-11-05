@@ -1,7 +1,10 @@
 package controlador;
 
 import modelo.ambulancia.Ambulancia;
+import modelo.ambulancia.HiloAmbulancia;
 import modelo.ambulancia.ObservadorAmbulancia;
+import modelo.ambulancia.ObservadorHilos;
+import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
 import modelo.factoria.FactoryMedico;
 import modelo.factoria.FactoryPaciente;
 import modelo.facturacion.Factura;
@@ -18,13 +21,16 @@ import util.UTIL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
+import java.util.*;
 
 public class Controlador implements ActionListener {
     private IVista vista;
     private SistemaFacade  sistema;
     private Ambulancia ambulancia = Ambulancia.get_instance();
     private ObservadorAmbulancia observadorAmbulancia;
+    private ObservadorHilos observadorHilos;
+    private List<Thread> hilos = new ArrayList<>();
+    private List<Asociado> asociados = new ArrayList<>();
 
     FactoryMedico factoryMedico = new FactoryMedico();
     FactoryPaciente factoryPaciente = new FactoryPaciente();
@@ -77,66 +83,44 @@ public class Controlador implements ActionListener {
         this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
         this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
         this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
+        this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
 
         observadorAmbulancia = new ObservadorAmbulancia(ambulancia,this);
 
-        empezarAmbulancia();
+        Ambulancia.get_instance().setNoActivo();
     }
 
-    public void empezarAmbulancia(){
-        System.out.println("Estado: " + ambulancia.getEstado());
-        ambulancia.solicitaAtencionDomicilio();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaTraslado();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.repararAmbulancia();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.repararAmbulancia();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaAtencionDomicilio();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaAtencionDomicilio();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaTraslado();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.retornarAClinica();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.repararAmbulancia();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.repararAmbulancia();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaAtencionDomicilio();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        ambulancia.solicitaTraslado();
-        System.out.println("Estado: " + ambulancia.getEstado());
-        UTIL.tiempoMuerto();
-        System.out.println("Fin ambulancia");
+    public void prepararAsociados(){
+        List<Asociado> asos1 = new ArrayList<>();
+        asos1.addAll(this.sistema.getAsociados());
+
+        List<Asociado> asos2 = this.vista.getAsociadosAmbulancia(asos1);
+        Iterator<Asociado> iterator2 = asos2.iterator();
+        while(iterator2.hasNext()){
+            Asociado a = (Asociado) iterator2.next();
+            asociados.add(a);
+        }
+    }
+
+    public void empezarAmbulancia() throws CantidadSolicitudesInvalidaExcepcion {
+        ArrayList<Integer> cant = this.vista.getCantidadSolicitudes();
+        for (int i = 0; i < asociados.size(); i++){
+            hilos.add(new HiloAmbulancia(asociados.get(i), cant.get(i)));
+        }
+        observadorHilos = new ObservadorHilos(hilos,this);
+        for (int i = 0; i < asociados.size(); i++){
+            hilos.get(i).start();
+        }
+    }
+
+    public void eliminarHilo(Thread hilo){
+        hilos.remove(hilo);
+        if (hilos.isEmpty()){
+            this.vista.setBotonAmbulanciaAsociados();
+            asociados.clear();
+            Ambulancia.get_instance().setNoActivo();
+            this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
+        }
     }
 
     @Override
@@ -179,6 +163,7 @@ public class Controlador implements ActionListener {
                             Asociado a = new Asociado(this.vista.getDNIAsociado(), this.vista.getNombreAsociado(), this.vista.getApellidoAsociado(), this.vista.getCalleAsociado(), this.vista.getNumAsociado(), this.vista.getCiudadAsociado(), this.vista.getTelefonoAsociado());
                             this.sistema.registraAsociado(a);
                             this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
+                            this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
                             this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
                         }
                         catch (Exception ex) {
@@ -252,6 +237,7 @@ public class Controlador implements ActionListener {
                                                                             try {
                                                                                 this.sistema.eliminarAsociado(this.vista.getAsociadoBajar());
                                                                                 this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
+                                                                                this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
                                                                                 this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(), this.vista.getBajaAsociadoBusqueda());
                                                                             } catch (Exception ex) {
                                                                                 this.vista.mostrarExcepcionVentana(ex);
@@ -274,6 +260,34 @@ public class Controlador implements ActionListener {
                                                                                 this.vista.mostrarExcepcionVentana(ex);
                                                                             }
                                                                         }
+                                                                        else
+                                                                            if (comando == vista.getAmbulanciaAsociadosBoton()){
+                                                                                this.prepararAsociados();
+                                                                                this.vista.mostrarAmbulanciaCantidades(asociados);
+                                                                                this.vista.setBotonAmbulanciaEmpezar();
+                                                                            }
+                                                                            else
+                                                                                if (comando == vista.getAmbulanciaEmpezarBoton()){
+                                                                                    try {
+                                                                                        Ambulancia.get_instance().setActivo();
+                                                                                        this.empezarAmbulancia();
+                                                                                    }
+                                                                                    catch (Exception ex) {
+                                                                                        this.vista.mostrarExcepcionVentana(ex);
+                                                                                    }
+                                                                                    this.vista.setBotonAmbulanciaParar();
+                                                                                }
+                                                                                else
+                                                                                    if  (comando == vista.getAmbulanciaVolverBoton()){
+                                                                                        asociados.clear();
+                                                                                        this.vista.setBotonAmbulanciaAsociados();
+                                                                                        this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
+                                                                                    }
+                                                                                    else
+                                                                                        if (comando == vista.getAmbulanciaPararBoton()){
+                                                                                            this.vista.setBotonAmbulanciaPararNotEnabled();
+                                                                                            Ambulancia.get_instance().setNoActivo();
+                                                                                        }
 
 
     }

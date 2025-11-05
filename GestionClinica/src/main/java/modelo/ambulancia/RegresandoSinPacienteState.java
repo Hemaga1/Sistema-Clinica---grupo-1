@@ -9,25 +9,37 @@ public class RegresandoSinPacienteState implements IAmbulanciaState {
 
     @Override
     public void solicitaAtencionDomicilio() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new AtendiendoADomState(ambulancia));
     }
 
     @Override
     public void solicitaTraslado() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new TrasladandoPacienteState(ambulancia));
     }
 
     @Override
     public void vuelveClinica() {
-        ambulancia.cambiaEstado();
         ambulancia.setEstado(new DisponibleState(ambulancia));
     }
 
     @Override
     public void repararAmbulancia() {
         // No disponible en este estado
+    }
+
+    @Override
+    public boolean puedeIniciarAtencionDomicilio() {
+        return true;
+    }
+
+    @Override
+    public boolean puedeIniciarTraslado() {
+        return true;
+    }
+
+    @Override
+    public boolean puedeIniciarReparacion() {
+        return false;
     }
 
     @Override

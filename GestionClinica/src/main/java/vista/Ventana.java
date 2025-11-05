@@ -1,10 +1,7 @@
 package vista;
 
 import controlador.IVista;
-import modelo.excepciones.FechaInvalidaExcepcion;
-import modelo.excepciones.InputNumeroInvalidoExcepcion;
-import modelo.excepciones.InputStringInvalidoExcepcion;
-import modelo.excepciones.InputVacioExcepcion;
+import modelo.excepciones.*;
 import modelo.facturacion.Factura;
 import modelo.facturacion.PacienteAtendido;
 import modelo.facturacion.RegistroPaciente;
@@ -15,12 +12,11 @@ import modelo.personas.Asociado;
 import modelo.personas.Paciente;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class Ventana extends JFrame implements IVista {
     private JTabbedPane PanelTabbeado;
@@ -157,7 +153,13 @@ public class Ventana extends JFrame implements IVista {
     private JScrollPane ReporteMedicoScrollPane;
     private JPanel PanelAmbulancia;
     private JTextArea EstadoText;
-    private JButton AmbulanciaBoton;
+    private JButton AmbulanciaAsociadosBoton;
+    private JButton AmbulanciaEmpezarBoton;
+    private JScrollPane AmbulanciaAsociadosScrollPane;
+    private JButton AmbulanciaPararBoton;
+    private JButton AmbulanciaVolverBoton;
+    private JPanel PanelAmbu = new JPanel();
+    private ArrayList<JCheckBox> AsociadosCheckBoxes = new ArrayList<>();
 
     private DefaultListModel<String> modelPaciente = new DefaultListModel<>();
     private DefaultListModel<String> modelMedico = new DefaultListModel<>();
@@ -165,6 +167,11 @@ public class Ventana extends JFrame implements IVista {
     private JList<String> PacientesRegistradosList = new JList<>(modelPaciente);
     private JList<String> MedicosRegistradosList = new JList<>(modelMedico);
     private JList<String> AsociadosRegistradosList = new JList<>(modelAsociado);
+
+    private DefaultTableModel tablaModelo = new DefaultTableModel(new String[]{"Asociado","Cantidad de Solicitudes"},0);
+    private JTable tabla = new JTable(tablaModelo);
+
+
 
 
     public Ventana() {
@@ -175,6 +182,10 @@ public class Ventana extends JFrame implements IVista {
         setLocationRelativeTo(null);
         setVisible(true);
         EstadoText.setText("DISPONIBLE");
+        PanelAmbu.setLayout(new BoxLayout(PanelAmbu, BoxLayout.Y_AXIS));
+        AmbulanciaEmpezarBoton.setVisible(false);
+        AmbulanciaPararBoton.setVisible(false);
+        AmbulanciaVolverBoton.setVisible(false);
         MuestraDeExcepcionPacienteLabel.setVisible(false);
         MuestraDeExcepcionMedicoLabel.setVisible(false);
     }
@@ -245,6 +256,22 @@ public class Ventana extends JFrame implements IVista {
 
     public JButton getReporteMedicoBoton () {
         return ReporteMedicoBoton;
+    }
+
+    public JButton getAmbulanciaAsociadosBoton () {
+        return AmbulanciaAsociadosBoton;
+    }
+
+    public JButton getAmbulanciaEmpezarBoton () {
+        return AmbulanciaEmpezarBoton;
+    }
+
+    public JButton getAmbulanciaPararBoton () {
+        return AmbulanciaPararBoton;
+    }
+
+    public JButton getAmbulanciaVolverBoton () {
+        return AmbulanciaVolverBoton;
     }
     //TERMINAN ACA
 
@@ -764,10 +791,37 @@ public class Ventana extends JFrame implements IVista {
                 ReporteMedicoField.addItem(m);
         }
     }
+
+    public void actualizarAmbulanciaAsociadosLista(Set<Asociado> asociados){
+        Iterator<Asociado> iterator = asociados.iterator();
+        PanelAmbu.removeAll();
+        AsociadosCheckBoxes.clear();
+        while(iterator.hasNext()){
+            Asociado a = iterator.next();
+            JCheckBox checkBox = new JCheckBox(a.toString());
+            AsociadosCheckBoxes.add(checkBox);
+            PanelAmbu.add(checkBox);
+        }
+        AmbulanciaAsociadosScrollPane.setViewportView(PanelAmbu);
+    }
     //TERMINAN ACA
 
 
 
+
+    public List<Asociado> getAsociadosAmbulancia(List<Asociado> asociados){
+        ArrayList<Integer> cantidades = new ArrayList<>();
+        for (int i = 0; i < AsociadosCheckBoxes.size(); i++){
+            if (AsociadosCheckBoxes.get(i).isSelected()){
+                cantidades.add(i);
+            }
+        }
+        List<Asociado> aso = new ArrayList<>();
+        for (int i = 0; i < cantidades.size() ; i++){
+            aso.add(asociados.get(cantidades.get(i)));
+        }
+        return aso;
+    }
 
     public void mostrarFactura(Factura factura) {
         JTextPane f = new JTextPane();
@@ -801,6 +855,61 @@ public class Ventana extends JFrame implements IVista {
         EstadoText.setText(estado);
     }
 
+    public void setBotonAmbulanciaAsociados(){
+        AmbulanciaEmpezarBoton.setVisible(false);
+        AmbulanciaVolverBoton.setVisible(false);
+        AmbulanciaPararBoton.setVisible(false);
+        AmbulanciaAsociadosBoton.setVisible(true);
+    }
+
+    public void setBotonAmbulanciaEmpezar(){
+        AmbulanciaPararBoton.setVisible(false);
+        AmbulanciaAsociadosBoton.setVisible(false);
+        AmbulanciaEmpezarBoton.setVisible(true);
+        AmbulanciaVolverBoton.setVisible(true);
+    }
+
+    public void setBotonAmbulanciaParar(){
+        AmbulanciaAsociadosBoton.setVisible(false);
+        AmbulanciaEmpezarBoton.setVisible(false);
+        AmbulanciaVolverBoton.setVisible(false);
+        AmbulanciaPararBoton.setEnabled(true);
+        AmbulanciaPararBoton.setVisible(true);
+    }
+
+    public void setBotonAmbulanciaPararNotEnabled() {
+        AmbulanciaPararBoton.setEnabled(false);
+    }
+
+    public void mostrarAmbulanciaCantidades(List<Asociado> asociados){
+        PanelAmbu.removeAll();
+        tablaModelo.setRowCount(0);
+        Iterator<Asociado> iterator = asociados.iterator();
+
+        while(iterator.hasNext()){
+            Asociado a = iterator.next();
+            tablaModelo.addRow(new Object[]{a,"1"});
+        }
+
+        PanelAmbu.add(tabla);
+        AmbulanciaAsociadosScrollPane.setViewportView(PanelAmbu);
+    }
+
+    public ArrayList<Integer> getCantidadSolicitudes() throws CantidadSolicitudesInvalidaExcepcion {
+        ArrayList<Integer> cantidades = new ArrayList<>();
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            String cantString = (String) tabla.getValueAt(i, 1);
+            Integer cant = Integer.parseInt(cantString);
+            if (cant < 1)
+                throw new CantidadSolicitudesInvalidaExcepcion();
+            else
+                cantidades.add(cant);
+        }
+        return cantidades;
+
+
+    }
+
     public void mostrarExcepcionVentana(Exception e) {
         JOptionPane panel = new JOptionPane();
         JOptionPane.showMessageDialog(panel, e.getMessage());
@@ -831,5 +940,9 @@ public class Ventana extends JFrame implements IVista {
         BajaAsociadoBuscarBoton.addActionListener(actionListener);
         ReporteMedicoBoton.addActionListener(actionListener);
         ReporteMedicoBuscarBoton.addActionListener(actionListener);
+        AmbulanciaAsociadosBoton.addActionListener(actionListener);
+        AmbulanciaEmpezarBoton.addActionListener(actionListener);
+        AmbulanciaPararBoton.addActionListener(actionListener);
+        AmbulanciaVolverBoton.addActionListener(actionListener);
     }
 }
