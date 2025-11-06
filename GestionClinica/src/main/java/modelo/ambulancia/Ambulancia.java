@@ -5,11 +5,9 @@ import java.util.Observable;
 public class Ambulancia extends Observable {
     protected volatile IAmbulanciaState estado;
     private static volatile Ambulancia instance = null;
-    private boolean activo;
 
     private Ambulancia() {
         this.estado = new DisponibleState(this);
-        this.activo = false;
     }
 
     public static Ambulancia get_instance() {
@@ -73,17 +71,5 @@ public class Ambulancia extends Observable {
 
     public synchronized String getEstado() {
         return estado.toString();
-    }
-
-    public boolean getActivo(){
-        return activo;
-    }
-
-    public void setActivo(){
-        this.activo = true;
-    }
-
-    public void setNoActivo(){
-        this.activo = false;
     }
 }

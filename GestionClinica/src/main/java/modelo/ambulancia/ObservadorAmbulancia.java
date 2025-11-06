@@ -14,6 +14,7 @@ public class ObservadorAmbulancia implements Observer {
         this.observable.addObserver(this);
         this.controlador = controlador;
     }
+
     @Override
     public void update(Observable o, Object arg) {
         this.controlador.modificarDisponibilidad();

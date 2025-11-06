@@ -19,6 +19,24 @@ public class ObservadorHilos implements Observer {
         }
     }
 
+    public ObservadorHilos(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    public void agregarObservables(List<Thread> hilos){
+        Iterator<Thread> iterator = hilos.iterator();
+        while (iterator.hasNext()) {
+            HiloAmbulancia hilo = (HiloAmbulancia) iterator.next();
+            Observable observable = hilo.getObservableHilo();
+            observableHilos.add(observable);
+            observable.addObserver(this);
+        }
+    }
+
+    public void eliminarObservables(){
+        observableHilos.clear();
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         this.controlador.eliminarHilo((Thread) arg);

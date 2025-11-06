@@ -8,6 +8,7 @@ import modelo.facturacion.ReporteActividadMedica;
 import modelo.interfaces.IMedico;
 import modelo.lugares.Habitacion;
 import modelo.personas.Asociado;
+import modelo.personas.ObservadorAsociado;
 import modelo.personas.Paciente;
 
 import javax.swing.*;
@@ -115,7 +116,7 @@ public interface IVista {
     void actualizarReporteMedicoLista(Map<IMedico, List<PacienteAtendido>> medicosRegistrados, String comparar);
     void actualizarAmbulanciaAsociadosLista(Set<Asociado> asociados);
 
-    List<Asociado> getAsociadosAmbulancia(List<Asociado> asociados);
+    List<Asociado> getAsociadosAmbulancia(Set<Asociado> asociados) throws SinAsociadosSeleccionadosExcepcion;
 
     void mostrarFactura(Factura factura);
 
@@ -123,10 +124,16 @@ public interface IVista {
 
     void cambiarEstadoAmbulancia(String estado);
 
-    void setBotonAmbulanciaAsociados();
-    void setBotonAmbulanciaEmpezar();
-    void setBotonAmbulanciaParar();
     void setBotonAmbulanciaPararNotEnabled();
+
+    void panelAmbulanciaAsociados(Set<Asociado> asociadosAmbulancia);
+
+    void panelAmbulanciaEmpezar(List<Asociado> asociadosAmbulancia);
+
+    void panelAmbulanciaParar();
+
+    void actualizarConsolaAsociado(ObservadorAsociado asociado, String mensaje);
+
 
     void mostrarAmbulanciaCantidades(List<Asociado> asociados);
 

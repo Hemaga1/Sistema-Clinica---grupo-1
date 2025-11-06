@@ -22,7 +22,7 @@ public class HiloAmbulancia extends Thread {
     @Override
     public void run() {
         int i = 1;
-        while(Ambulancia.get_instance().getActivo() && (i <= this.cantSolicitudes)) {
+        while(SimulacionAmbulancia.getActivo() && (i <= this.cantSolicitudes)) {
             UTIL.tiempoMuerto();
             this.solicitante.run();
             i++;

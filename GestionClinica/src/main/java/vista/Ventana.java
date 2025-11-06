@@ -9,6 +9,7 @@ import modelo.facturacion.ReporteActividadMedica;
 import modelo.interfaces.IMedico;
 import modelo.lugares.Habitacion;
 import modelo.personas.Asociado;
+import modelo.personas.ObservadorAsociado;
 import modelo.personas.Paciente;
 
 import javax.swing.*;
@@ -151,13 +152,15 @@ public class Ventana extends JFrame implements IVista {
     private JLabel FechaInicialLabel;
     private JLabel FechaFinalLabel;
     private JScrollPane ReporteMedicoScrollPane;
-    private JPanel PanelAmbulancia;
     private JTextArea EstadoText;
     private JButton AmbulanciaAsociadosBoton;
     private JButton AmbulanciaEmpezarBoton;
     private JScrollPane AmbulanciaAsociadosScrollPane;
     private JButton AmbulanciaPararBoton;
     private JButton AmbulanciaVolverBoton;
+    private JTabbedPane PanelAmbulanciaTabbeado;
+    private JPanel PanelAmbulanciaSimulacion;
+    private JPanel PanelAmbulancia;
     private JPanel PanelAmbu = new JPanel();
     private ArrayList<JCheckBox> AsociadosCheckBoxes = new ArrayList<>();
 
@@ -171,7 +174,11 @@ public class Ventana extends JFrame implements IVista {
     private DefaultTableModel tablaModelo = new DefaultTableModel(new String[]{"Asociado","Cantidad de Solicitudes"},0);
     private JTable tabla = new JTable(tablaModelo);
 
+    private ArrayList<JPanel> panelesAsociados = new ArrayList<>();
 
+    private ArrayList<ObservadorAsociado> observadoresAsociados = new ArrayList<>();
+
+    private ArrayList<JScrollPane> scrollPaneAmbulanciaAsociado = new ArrayList<JScrollPane>();
 
 
     public Ventana() {
@@ -188,6 +195,7 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaVolverBoton.setVisible(false);
         MuestraDeExcepcionPacienteLabel.setVisible(false);
         MuestraDeExcepcionMedicoLabel.setVisible(false);
+
     }
 
 
@@ -809,18 +817,25 @@ public class Ventana extends JFrame implements IVista {
 
 
 
-    public List<Asociado> getAsociadosAmbulancia(List<Asociado> asociados){
+    public List<Asociado> getAsociadosAmbulancia(Set<Asociado> asociadosRegistrados) throws SinAsociadosSeleccionadosExcepcion{
+        List<Asociado> asos1 = new ArrayList<>();
+        asos1.addAll(asociadosRegistrados);
+
         ArrayList<Integer> cantidades = new ArrayList<>();
         for (int i = 0; i < AsociadosCheckBoxes.size(); i++){
             if (AsociadosCheckBoxes.get(i).isSelected()){
                 cantidades.add(i);
             }
         }
-        List<Asociado> aso = new ArrayList<>();
-        for (int i = 0; i < cantidades.size() ; i++){
-            aso.add(asociados.get(cantidades.get(i)));
+
+        if  (!cantidades.isEmpty()) {
+            List<Asociado> aso = new ArrayList<>();
+            for (int i = 0; i < cantidades.size(); i++) {
+                aso.add(asos1.get(cantidades.get(i)));
+            }
+            return aso;
         }
-        return aso;
+        else throw new SinAsociadosSeleccionadosExcepcion();
     }
 
     public void mostrarFactura(Factura factura) {
@@ -855,21 +870,49 @@ public class Ventana extends JFrame implements IVista {
         EstadoText.setText(estado);
     }
 
-    public void setBotonAmbulanciaAsociados(){
+
+
+
+
+    public void setBotonAmbulanciaPararNotEnabled() {
+        AmbulanciaPararBoton.setEnabled(false);
+    }
+
+    public void panelAmbulanciaAsociados(Set<Asociado> asociadosRegistrados){
         AmbulanciaEmpezarBoton.setVisible(false);
         AmbulanciaVolverBoton.setVisible(false);
         AmbulanciaPararBoton.setVisible(false);
         AmbulanciaAsociadosBoton.setVisible(true);
+        this.actualizarAmbulanciaAsociadosLista(asociadosRegistrados);
+        for (int i=0; i<scrollPaneAmbulanciaAsociado.size(); i++){
+            PanelAmbulanciaTabbeado.remove(scrollPaneAmbulanciaAsociado.get(i));
+        }
+        for (int i=0; i<observadoresAsociados.size(); i++){
+            observadoresAsociados.get(i).eliminarObservable();
+        }
+        observadoresAsociados.clear();
+        panelesAsociados.clear();
+        scrollPaneAmbulanciaAsociado.clear();
     }
 
-    public void setBotonAmbulanciaEmpezar(){
+    public void panelAmbulanciaEmpezar(List<Asociado> asociadosAmbulancia){
         AmbulanciaPararBoton.setVisible(false);
         AmbulanciaAsociadosBoton.setVisible(false);
         AmbulanciaEmpezarBoton.setVisible(true);
         AmbulanciaVolverBoton.setVisible(true);
+        this.mostrarAmbulanciaCantidades(asociadosAmbulancia);
+        panelesAsociados.clear();
+        for  (int i=0; i < asociadosAmbulancia.size(); i++){
+            JPanel panel = new JPanel();
+            panelesAsociados.add(panel);
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            scrollPaneAmbulanciaAsociado.add(new JScrollPane(panel));
+            PanelAmbulanciaTabbeado.add(scrollPaneAmbulanciaAsociado.get(i),"Asociado " + i);
+            observadoresAsociados.add(new ObservadorAsociado(asociadosAmbulancia.get(i).getObservableAsociado(),this));
+        }
     }
 
-    public void setBotonAmbulanciaParar(){
+    public void panelAmbulanciaParar(){
         AmbulanciaAsociadosBoton.setVisible(false);
         AmbulanciaEmpezarBoton.setVisible(false);
         AmbulanciaVolverBoton.setVisible(false);
@@ -877,9 +920,15 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaPararBoton.setVisible(true);
     }
 
-    public void setBotonAmbulanciaPararNotEnabled() {
-        AmbulanciaPararBoton.setEnabled(false);
+
+    public void actualizarConsolaAsociado(ObservadorAsociado observadorAsociado, String mensaje) {
+        JLabel label = new JLabel(mensaje + "\n");
+        label.setHorizontalAlignment(JLabel.CENTER);
+        panelesAsociados.get(observadoresAsociados.indexOf(observadorAsociado)).add(label);
     }
+
+
+
 
     public void mostrarAmbulanciaCantidades(List<Asociado> asociados){
         PanelAmbu.removeAll();
@@ -906,8 +955,6 @@ public class Ventana extends JFrame implements IVista {
                 cantidades.add(cant);
         }
         return cantidades;
-
-
     }
 
     public void mostrarExcepcionVentana(Exception e) {

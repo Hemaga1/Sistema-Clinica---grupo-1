@@ -1,9 +1,6 @@
 package controlador;
 
-import modelo.ambulancia.Ambulancia;
-import modelo.ambulancia.HiloAmbulancia;
-import modelo.ambulancia.ObservadorAmbulancia;
-import modelo.ambulancia.ObservadorHilos;
+import modelo.ambulancia.*;
 import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
 import modelo.factoria.FactoryMedico;
 import modelo.factoria.FactoryPaciente;
@@ -26,11 +23,9 @@ import java.util.*;
 public class Controlador implements ActionListener {
     private IVista vista;
     private SistemaFacade  sistema;
-    private Ambulancia ambulancia = Ambulancia.get_instance();
     private ObservadorAmbulancia observadorAmbulancia;
     private ObservadorHilos observadorHilos;
-    private List<Thread> hilos = new ArrayList<>();
-    private List<Asociado> asociados = new ArrayList<>();
+    private SimulacionAmbulancia simulacion = new SimulacionAmbulancia();
 
     FactoryMedico factoryMedico = new FactoryMedico();
     FactoryPaciente factoryPaciente = new FactoryPaciente();
@@ -48,7 +43,6 @@ public class Controlador implements ActionListener {
     Habitacion habPrivada2 = new HabitacionPrivada(3000);
     Habitacion habCompartida1 = new HabitacionCompartida(1500, 2);
     Habitacion habTerapiaIntensiva1 = new HabitacionTerapiaIntensiva(2000);
-
 
 
     public Controlador(IVista vista, SistemaFacade sistema)
@@ -85,43 +79,10 @@ public class Controlador implements ActionListener {
         this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
         this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
 
-        observadorAmbulancia = new ObservadorAmbulancia(ambulancia,this);
-
-        Ambulancia.get_instance().setNoActivo();
+        observadorAmbulancia = new ObservadorAmbulancia(Ambulancia.get_instance(),this);
+        observadorHilos = new ObservadorHilos(this);
     }
 
-    public void prepararAsociados(){
-        List<Asociado> asos1 = new ArrayList<>();
-        asos1.addAll(this.sistema.getAsociados());
-
-        List<Asociado> asos2 = this.vista.getAsociadosAmbulancia(asos1);
-        Iterator<Asociado> iterator2 = asos2.iterator();
-        while(iterator2.hasNext()){
-            Asociado a = (Asociado) iterator2.next();
-            asociados.add(a);
-        }
-    }
-
-    public void empezarAmbulancia() throws CantidadSolicitudesInvalidaExcepcion {
-        ArrayList<Integer> cant = this.vista.getCantidadSolicitudes();
-        for (int i = 0; i < asociados.size(); i++){
-            hilos.add(new HiloAmbulancia(asociados.get(i), cant.get(i)));
-        }
-        observadorHilos = new ObservadorHilos(hilos,this);
-        for (int i = 0; i < asociados.size(); i++){
-            hilos.get(i).start();
-        }
-    }
-
-    public void eliminarHilo(Thread hilo){
-        hilos.remove(hilo);
-        if (hilos.isEmpty()){
-            this.vista.setBotonAmbulanciaAsociados();
-            asociados.clear();
-            Ambulancia.get_instance().setNoActivo();
-            this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
-        }
-    }
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -262,38 +223,50 @@ public class Controlador implements ActionListener {
                                                                         }
                                                                         else
                                                                             if (comando == vista.getAmbulanciaAsociadosBoton()){
-                                                                                this.prepararAsociados();
-                                                                                this.vista.mostrarAmbulanciaCantidades(asociados);
-                                                                                this.vista.setBotonAmbulanciaEmpezar();
+                                                                                try {
+                                                                                    this.simulacion.prepararAsociados(this.vista.getAsociadosAmbulancia(this.sistema.getAsociados()));
+                                                                                    this.vista.panelAmbulanciaEmpezar(this.simulacion.getAsociadosAmbulancia());
+                                                                                }
+                                                                                catch (Exception ex) {
+                                                                                    this.vista.mostrarExcepcionVentana(ex);
+                                                                                }
+
                                                                             }
                                                                             else
                                                                                 if (comando == vista.getAmbulanciaEmpezarBoton()){
                                                                                     try {
-                                                                                        Ambulancia.get_instance().setActivo();
-                                                                                        this.empezarAmbulancia();
+                                                                                        this.simulacion.empezarAmbulancia(this.vista.getCantidadSolicitudes());
+                                                                                        this.observadorHilos.agregarObservables(this.simulacion.getHilos());
                                                                                     }
                                                                                     catch (Exception ex) {
                                                                                         this.vista.mostrarExcepcionVentana(ex);
                                                                                     }
-                                                                                    this.vista.setBotonAmbulanciaParar();
+                                                                                    this.vista.panelAmbulanciaParar();
                                                                                 }
                                                                                 else
                                                                                     if  (comando == vista.getAmbulanciaVolverBoton()){
-                                                                                        asociados.clear();
-                                                                                        this.vista.setBotonAmbulanciaAsociados();
-                                                                                        this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
+                                                                                        this.simulacion.eliminarAsociadosAmbulancia();
+                                                                                        this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
                                                                                     }
                                                                                     else
                                                                                         if (comando == vista.getAmbulanciaPararBoton()){
+                                                                                            SimulacionAmbulancia.activo = false;
                                                                                             this.vista.setBotonAmbulanciaPararNotEnabled();
-                                                                                            Ambulancia.get_instance().setNoActivo();
                                                                                         }
 
 
     }
 
+    public void eliminarHilo(Thread t) {
+        this.simulacion.eliminarHilo(t);
+        if (simulacion.getHilos().isEmpty()){
+            this.observadorHilos.eliminarObservables();
+            this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
+        }
+
+    }
 
     public void modificarDisponibilidad() {
-        this.vista.cambiarEstadoAmbulancia(ambulancia.getEstado().toString());
+        this.vista.cambiarEstadoAmbulancia(Ambulancia.get_instance().getEstado());
     }
 }
