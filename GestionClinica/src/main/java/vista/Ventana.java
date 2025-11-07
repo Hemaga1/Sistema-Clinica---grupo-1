@@ -161,6 +161,9 @@ public class Ventana extends JFrame implements IVista {
     private JTabbedPane PanelAmbulanciaTabbeado;
     private JPanel PanelAmbulanciaSimulacion;
     private JPanel PanelAmbulancia;
+    private JButton AmbulanciaTallerBoton;
+    private JButton CrearTablasBoton;
+    private JPanel PanelCrearTablas;
     private JPanel PanelAmbu = new JPanel();
     private ArrayList<JCheckBox> AsociadosCheckBoxes = new ArrayList<>();
 
@@ -193,6 +196,7 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaEmpezarBoton.setVisible(false);
         AmbulanciaPararBoton.setVisible(false);
         AmbulanciaVolverBoton.setVisible(false);
+        AmbulanciaTallerBoton.setVisible(false);
         MuestraDeExcepcionPacienteLabel.setVisible(false);
         MuestraDeExcepcionMedicoLabel.setVisible(false);
 
@@ -202,84 +206,92 @@ public class Ventana extends JFrame implements IVista {
 
 
     //GET BOTONES
-    public JButton getPacienteBotonEnviar (){
+    public JButton getPacienteBotonEnviar(){
         return PacienteBotonEnviar;
     }
 
-    public JButton getMedicoBotonEnviar (){
+    public JButton getMedicoBotonEnviar(){
         return MedicoBotonEnviar;
     }
 
-    public JButton getIngresarPacienteBoton (){
+    public JButton getIngresarPacienteBoton(){
         return IngresarPacienteBoton;
     }
 
-    public JButton getIngresarPacienteBuscarBoton (){
+    public JButton getIngresarPacienteBuscarBoton(){
         return IngresarPacienteBuscarBoton;
     }
 
-    public JButton getAtenderPacienteBuscarBoton (){
+    public JButton getAtenderPacienteBuscarBoton(){
         return AtenderPacienteBuscarBoton;
     }
 
-    public JButton getAtenderMedicoBuscarBoton (){
+    public JButton getAtenderMedicoBuscarBoton(){
         return AtenderMedicoBuscarBoton;
     }
 
-    public JButton getAtenderPacienteBoton (){
+    public JButton getAtenderPacienteBoton(){
         return AtenderPacienteBoton;
     }
 
-    public JButton getInternarPacienteBuscarBoton (){
+    public JButton getInternarPacienteBuscarBoton(){
         return InternarPacienteBuscarBoton;
     }
 
-    public JButton getInternarPacienteBoton (){
+    public JButton getInternarPacienteBoton(){
         return InternarPacienteBoton;
     }
 
-    public JButton getEgresarBuscarBoton () {
+    public JButton getEgresarBuscarBoton() {
         return EgresarBuscarBoton;
     }
 
-    public JButton getEgresarBoton () {
+    public JButton getEgresarBoton() {
         return EgresarBoton;
     }
 
-    public JButton getAsociadoBotonEnviar () {
+    public JButton getAsociadoBotonEnviar() {
         return AsociadoBotonEnviar;
     }
 
-    public JButton getBajaAsociadoBuscarBoton () {
+    public JButton getBajaAsociadoBuscarBoton() {
         return BajaAsociadoBuscarBoton;
     }
 
-    public JButton getBajaAsociadoBoton () {
+    public JButton getBajaAsociadoBoton() {
         return BajaAsociadoBoton;
     }
 
-    public JButton getReporteMedicoBuscarBoton () {
+    public JButton getReporteMedicoBuscarBoton() {
         return ReporteMedicoBuscarBoton;
     }
 
-    public JButton getReporteMedicoBoton () {
+    public JButton getReporteMedicoBoton() {
         return ReporteMedicoBoton;
     }
 
-    public JButton getAmbulanciaAsociadosBoton () {
+    public JButton getAmbulanciaAsociadosBoton() {
         return AmbulanciaAsociadosBoton;
     }
 
-    public JButton getAmbulanciaEmpezarBoton () {
+    public JButton getAmbulanciaEmpezarBoton() {
         return AmbulanciaEmpezarBoton;
     }
 
-    public JButton getAmbulanciaPararBoton () {
+    public JButton getAmbulanciaPararBoton() {
         return AmbulanciaPararBoton;
     }
 
-    public JButton getAmbulanciaVolverBoton () {
+    public JButton getAmbulanciaVolverBoton() {
         return AmbulanciaVolverBoton;
+    }
+
+    public JButton getAmbulanciaTallerBoton() {
+        return AmbulanciaTallerBoton;
+    }
+
+    public JButton getCrearPacienteBoton() {
+        return CrearTablasBoton;
     }
     //TERMINAN ACA
 
@@ -876,13 +888,19 @@ public class Ventana extends JFrame implements IVista {
 
     public void setBotonAmbulanciaPararNotEnabled() {
         AmbulanciaPararBoton.setEnabled(false);
+        AmbulanciaTallerBoton.setEnabled(false);
     }
 
     public void panelAmbulanciaAsociados(Set<Asociado> asociadosRegistrados){
         AmbulanciaEmpezarBoton.setVisible(false);
         AmbulanciaVolverBoton.setVisible(false);
         AmbulanciaPararBoton.setVisible(false);
+        AmbulanciaTallerBoton.setVisible(false);
         AmbulanciaAsociadosBoton.setVisible(true);
+
+        AsociadoBotonEnviar.setEnabled(true);
+        BajaAsociadoBoton.setEnabled(true);
+
         this.actualizarAmbulanciaAsociadosLista(asociadosRegistrados);
         for (int i=0; i<scrollPaneAmbulanciaAsociado.size(); i++){
             PanelAmbulanciaTabbeado.remove(scrollPaneAmbulanciaAsociado.get(i));
@@ -898,6 +916,7 @@ public class Ventana extends JFrame implements IVista {
     public void panelAmbulanciaEmpezar(List<Asociado> asociadosAmbulancia){
         AmbulanciaPararBoton.setVisible(false);
         AmbulanciaAsociadosBoton.setVisible(false);
+        AmbulanciaTallerBoton.setVisible(false);
         AmbulanciaEmpezarBoton.setVisible(true);
         AmbulanciaVolverBoton.setVisible(true);
         this.mostrarAmbulanciaCantidades(asociadosAmbulancia);
@@ -907,8 +926,9 @@ public class Ventana extends JFrame implements IVista {
             panelesAsociados.add(panel);
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             scrollPaneAmbulanciaAsociado.add(new JScrollPane(panel));
-            PanelAmbulanciaTabbeado.add(scrollPaneAmbulanciaAsociado.get(i),"Asociado " + i);
-            observadoresAsociados.add(new ObservadorAsociado(asociadosAmbulancia.get(i).getObservableAsociado(),this));
+            ObservadorAsociado observadorAsociado = new ObservadorAsociado(asociadosAmbulancia.get(i).getObservableAsociado(),this);
+            PanelAmbulanciaTabbeado.add(scrollPaneAmbulanciaAsociado.get(i),observadorAsociado.getDatosAsociado());
+            observadoresAsociados.add(observadorAsociado);
         }
     }
 
@@ -917,7 +937,12 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaEmpezarBoton.setVisible(false);
         AmbulanciaVolverBoton.setVisible(false);
         AmbulanciaPararBoton.setEnabled(true);
+        AmbulanciaTallerBoton.setEnabled(true);
         AmbulanciaPararBoton.setVisible(true);
+        AmbulanciaTallerBoton.setVisible(true);
+
+        AsociadoBotonEnviar.setEnabled(false);
+        BajaAsociadoBoton.setEnabled(false);
     }
 
 
@@ -991,5 +1016,7 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaEmpezarBoton.addActionListener(actionListener);
         AmbulanciaPararBoton.addActionListener(actionListener);
         AmbulanciaVolverBoton.addActionListener(actionListener);
+        AmbulanciaTallerBoton.addActionListener(actionListener);
+        CrearTablasBoton.addActionListener(actionListener);
     }
 }

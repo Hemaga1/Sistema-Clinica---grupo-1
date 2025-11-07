@@ -262,4 +262,9 @@ public class SistemaFacade {
     public Set<Asociado> getAsociados() {
         return sistemaAtencion.getAsociados();
     }
+
+
+    public void crearTablas() {
+
+    }
 }

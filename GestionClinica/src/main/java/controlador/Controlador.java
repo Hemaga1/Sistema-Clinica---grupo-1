@@ -22,7 +22,7 @@ import java.util.*;
 
 public class Controlador implements ActionListener {
     private IVista vista;
-    private SistemaFacade  sistema;
+    private SistemaFacade sistema;
     private ObservadorAmbulancia observadorAmbulancia;
     private ObservadorHilos observadorHilos;
     private SimulacionAmbulancia simulacion = new SimulacionAmbulancia();
@@ -253,6 +253,15 @@ public class Controlador implements ActionListener {
                                                                                             SimulacionAmbulancia.activo = false;
                                                                                             this.vista.setBotonAmbulanciaPararNotEnabled();
                                                                                         }
+                                                                                        else
+                                                                                            if (comando == vista.getAmbulanciaTallerBoton()) {
+                                                                                                this.simulacion.enviarATaller();
+                                                                                                this.observadorHilos.agregarObservables(this.simulacion.getHilos());
+                                                                                            }
+                                                                                            else
+                                                                                                if (comando == vista.getCrearPacienteBoton()) {
+                                                                                                    this.sistema.crearTablas();
+                                                                                                }
 
 
     }

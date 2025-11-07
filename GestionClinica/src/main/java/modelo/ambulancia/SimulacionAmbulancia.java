@@ -2,6 +2,7 @@ package modelo.ambulancia;
 
 import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
 import modelo.personas.Asociado;
+import modelo.personas.Operario;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,8 +10,6 @@ import java.util.List;
 
 public class SimulacionAmbulancia {
         public static boolean activo;
-        private ObservadorAmbulancia observadorAmbulancia;
-        private ObservadorHilos observadorHilos;
         private List<Thread> hilos = new ArrayList<>();
         private List<Asociado> asociados = new ArrayList<>();
 
@@ -24,6 +23,12 @@ public class SimulacionAmbulancia {
                 Asociado a = (Asociado) iterator.next();
                 asociados.add(a);
             }
+        }
+
+        public void enviarATaller() {
+            HiloAmbulancia hilo = new HiloAmbulancia(new Operario(), 1);
+            hilos.add(hilo);
+            hilo.start();
         }
 
         public void empezarAmbulancia(ArrayList<Integer> cant) throws CantidadSolicitudesInvalidaExcepcion {

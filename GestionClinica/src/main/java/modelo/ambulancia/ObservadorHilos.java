@@ -28,8 +28,10 @@ public class ObservadorHilos implements Observer {
         while (iterator.hasNext()) {
             HiloAmbulancia hilo = (HiloAmbulancia) iterator.next();
             Observable observable = hilo.getObservableHilo();
-            observableHilos.add(observable);
-            observable.addObserver(this);
+            if (!observableHilos.contains(observable)) {
+                observableHilos.add(observable);
+                observable.addObserver(this);
+            }
         }
     }
 

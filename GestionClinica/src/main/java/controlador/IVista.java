@@ -45,6 +45,8 @@ public interface IVista {
     JButton getAmbulanciaEmpezarBoton();
     JButton getAmbulanciaPararBoton();
     JButton getAmbulanciaVolverBoton();
+    JButton getAmbulanciaTallerBoton();
+    JButton getCrearPacienteBoton();
 
     //GET FIELDS PACIENTE
     String getDNIPaciente() throws InputVacioExcepcion, InputNumeroInvalidoExcepcion;

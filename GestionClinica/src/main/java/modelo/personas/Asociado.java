@@ -13,7 +13,7 @@ public class Asociado extends Persona implements Runnable {
 
     public Asociado(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono) {
         super(DNI, nombre, apellido, calle, numero, ciudad, telefono);
-        observableAsociado = new ObservableAsociado();
+        observableAsociado = new ObservableAsociado(nombre, apellido, DNI);
     }
 
     public ObservableAsociado getObservableAsociado() {
@@ -37,6 +37,13 @@ public class Asociado extends Persona implements Runnable {
         Ambulancia.get_instance().retornarAClinica();
     }
 
+    public void notificarEspera() {
+        observableAsociado.avisarCambio(this.getNombre() + " (" + this.getDNI() + ") esperando");
+    }
+
+    public void notificarFueAtendido() {
+        observableAsociado.avisarCambio(this.getNombre() + " (" + this.getDNI() + ") ha sido atendido");
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -50,6 +57,5 @@ public class Asociado extends Persona implements Runnable {
     public void run() {
         this.solicitaAmbulancia();
     }
-
 
 }

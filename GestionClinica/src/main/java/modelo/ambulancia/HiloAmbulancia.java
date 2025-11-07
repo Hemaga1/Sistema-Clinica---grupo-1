@@ -1,5 +1,6 @@
 package modelo.ambulancia;
 
+import modelo.personas.Asociado;
 import util.UTIL;
 
 import java.util.Observable;
@@ -17,6 +18,10 @@ public class HiloAmbulancia extends Thread {
 
     public Observable getObservableHilo() {
         return observableHilo;
+    }
+
+    public Asociado getAsociado() {
+        return (Asociado) solicitante;
     }
 
     @Override

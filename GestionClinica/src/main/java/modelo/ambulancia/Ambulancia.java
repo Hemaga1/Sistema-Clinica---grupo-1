@@ -1,5 +1,7 @@
 package modelo.ambulancia;
 
+import modelo.personas.Asociado;
+
 import java.util.Observable;
 
 public class Ambulancia extends Observable {
@@ -30,27 +32,37 @@ public class Ambulancia extends Observable {
     }
 
     public synchronized void solicitaAtencionDomicilio() {
+        HiloAmbulancia hilo = (HiloAmbulancia) Thread.currentThread();
         while (!this.estado.puedeIniciarAtencionDomicilio()) {
             try {
+                hilo.getAsociado().notificarEspera();
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 return;
             }
         }
+        hilo.getAsociado().notificarFueAtendido();
         this.estado.solicitaAtencionDomicilio();
+        this.setChanged();
+        notifyAll();
     }
 
     public synchronized void solicitaTraslado() {
+        HiloAmbulancia hilo = (HiloAmbulancia) Thread.currentThread();
         while (!this.estado.puedeIniciarTraslado()) {
             try {
+                hilo.getAsociado().notificarEspera();
                 wait();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 return;
             }
         }
+        hilo.getAsociado().notificarFueAtendido();
         this.estado.solicitaTraslado();
+        this.setChanged();
+        notifyAll();
     }
 
     public synchronized void repararAmbulancia() {
