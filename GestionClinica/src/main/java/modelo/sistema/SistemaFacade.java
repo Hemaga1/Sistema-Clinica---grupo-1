@@ -8,7 +8,9 @@ import modelo.lugares.*;
 import modelo.sistema.ModuloIngreso.*;
 import modelo.sistema.ModuloAtencion.*;
 import modelo.sistema.ModuloEgreso.*;
+import persistencia.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,7 +26,7 @@ public class SistemaFacade {
     private final SistemaAtencion sistemaAtencion;
     private final SistemaIngreso sistemaIngreso;
     private final SistemaEgreso sistemaEgreso;
-
+    private dataBaseDAO db;
     private static SistemaFacade instancia;
 
     /**
@@ -37,6 +39,7 @@ public class SistemaFacade {
         this.sistemaIngreso = new SistemaIngreso();
         this.sistemaAtencion = new SistemaAtencion();
         this.sistemaEgreso = new SistemaEgreso();
+        this.db = dataBaseDAO.getInstancia();
     }
 
     /**
@@ -265,6 +268,25 @@ public class SistemaFacade {
 
 
     public void crearTablas() {
+        try {
+            db.abrirConexion();
+            db.crearTablaAsociados();
+            for (Asociado asociado : getAsociados()) {
+                // AsociadoDTO constructor: (String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono)
+                String calle = asociado.getDomicilio() != null ? asociado.getDomicilio().getCalle() : "";
+                int numero = asociado.getDomicilio() != null ? asociado.getDomicilio().getNumero() : 0;
+                String ciudad = asociado.getDomicilio() != null ? asociado.getDomicilio().getCiudad() : "";
+                String telefono = asociado.getTelefono() != null ? asociado.getTelefono() : "";
+                db.agregarAsociado(new AsociadoDTO(asociado.getDNI(), asociado.getNombre(), asociado.getApellido(), calle, numero, ciudad, telefono));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                db.cerrarConexion();
+            } catch (SQLException ignored) {
+            }
+        }
 
     }
 }

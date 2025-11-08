@@ -50,6 +50,14 @@ public abstract class Persona {
 		return apellido;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public Domicilio getDomicilio() {
+		return domicilio;
+	}
+
     @Override
     public String toString() {
         return nombre + " " + apellido + " (DNI: " + DNI + ") - Domicilio: " + domicilio + " - Tel: " + telefono;

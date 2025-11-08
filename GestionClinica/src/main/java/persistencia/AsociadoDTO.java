@@ -5,14 +5,19 @@ public class AsociadoDTO {
     private String apellido;
     private String dni;
     private String telefono;
-    private String email;
+    private String calle;
+    private int numero;
+    private String ciudad;
 
-    public AsociadoDTO( String nombre, String apellido, String dni, String telefono, String email) {
+
+    public AsociadoDTO(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
+        this.dni = DNI;
         this.telefono = telefono;
-        this.email = email;
+        this.calle = calle;
+        this.numero = numero;
+        this.ciudad = ciudad;  
     }
 
     public String getNombre() {
@@ -47,8 +52,28 @@ public class AsociadoDTO {
         this.telefono = telefono;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCalle() {
+        return calle;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
 }
