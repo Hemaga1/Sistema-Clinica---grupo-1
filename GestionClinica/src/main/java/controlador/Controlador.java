@@ -57,13 +57,12 @@ public class Controlador implements ActionListener {
             sistema.registraPaciente(p1);
             sistema.registraPaciente(p2);
             sistema.registraPaciente(p3);
-            sistema.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
-            sistema.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
-            sistema.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
+            this.sistema.cargarDesdeBD();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
         sistema.agregarHabitacion(habPrivada1);
         sistema.agregarHabitacion(habPrivada2);
         sistema.agregarHabitacion(habCompartida1);

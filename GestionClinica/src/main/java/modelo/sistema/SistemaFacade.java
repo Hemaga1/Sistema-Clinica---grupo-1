@@ -90,10 +90,12 @@ public class SistemaFacade {
 
     public void registraAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion {
         sistemaAtencion.registrarAsociado(asociado);
+        db.agregarAsociado(AsociadoMapper.toDTO(asociado));
     }
 
     public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion {
         sistemaAtencion.eliminarAsociado(asociado);
+        db.eliminarAsociado(asociado.getDNI());
     }
 
     /**
@@ -271,22 +273,39 @@ public class SistemaFacade {
         try {
             db.abrirConexion();
             db.crearTablaAsociados();
+
+            this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
+            this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
+            this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
+
             for (Asociado asociado : getAsociados()) {
-                // AsociadoDTO constructor: (String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono)
-                String calle = asociado.getDomicilio() != null ? asociado.getDomicilio().getCalle() : "";
-                int numero = asociado.getDomicilio() != null ? asociado.getDomicilio().getNumero() : 0;
-                String ciudad = asociado.getDomicilio() != null ? asociado.getDomicilio().getCiudad() : "";
-                String telefono = asociado.getTelefono() != null ? asociado.getTelefono() : "";
-                db.agregarAsociado(new AsociadoDTO(asociado.getDNI(), asociado.getNombre(), asociado.getApellido(), calle, numero, ciudad, telefono));
+                db.agregarAsociado(AsociadoMapper.toDTO(asociado));
             }
-        } catch (SQLException e) {
+        } catch (AsociadoDuplicadoExcepcion e) {
+
+        }
+         catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
                 db.cerrarConexion();
-            } catch (SQLException ignored) {
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
+    }
 
+    public void cargarDesdeBD() {
+        try {
+            db.abrirConexion();
+            for (AsociadoDTO asociadoDTO : db.traerAsociados()) {
+                try {
+                    sistemaAtencion.registrarAsociado(AsociadoMapper.fromDTO(asociadoDTO));
+                } catch (AsociadoDuplicadoExcepcion e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } catch (SQLException e) {
+        }
     }
 }
