@@ -1,7 +1,6 @@
 package controlador;
 
 import modelo.ambulancia.*;
-import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
 import modelo.factoria.FactoryMedico;
 import modelo.factoria.FactoryPaciente;
 import modelo.facturacion.Factura;
@@ -14,11 +13,9 @@ import modelo.lugares.HabitacionTerapiaIntensiva;
 import modelo.personas.Asociado;
 import modelo.personas.Paciente;
 import modelo.sistema.SistemaFacade;
-import util.UTIL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 
 public class Controlador implements ActionListener {
     private IVista vista;
@@ -86,182 +83,183 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e)
     {
-            Object comando = e.getSource();
-            if (comando == vista.getPacienteBotonEnviar()) {
-                try {
-                    String rango_etario = this.vista.getRangoEtarioPaciente();
-                    if (rango_etario.equalsIgnoreCase("NIÑO")) {
-                        rango_etario = "NINIO";
-                    }
-                    Paciente p = factoryPaciente.crearPaciente(this.vista.getDNIPaciente(), this.vista.getNombrePaciente(), this.vista.getApellidoPaciente(), this.vista.getCallePaciente(), this.vista.getNumPaciente(), this.vista.getCiudadPaciente(), this.vista.getTelefonoPaciente(), this.vista.getHistoriaPaciente(), rango_etario);
-                    this.vista.ocultarMensajeExcepcionPaciente();
-                    this.sistema.registraPaciente(p);
-                    this.vista.actualizarPacientesRegistradosLista(this.sistema.getPacientesRegistrados());
-                    this.vista.actualizarIngresarPacienteLista(this.sistema.getPacientesRegistrados(), "");
+        String comando = e.getActionCommand();
+        if (comando.equals("PacienteBotonEnviar")) {
+            try {
+                String rango_etario = this.vista.getRangoEtarioPaciente();
+                if (rango_etario.equalsIgnoreCase("NIÑO")) {
+                    rango_etario = "NINIO";
                 }
-                catch (Exception ex) {
-                    this.vista.mostrarExcepcionVentana(ex);
+                Paciente p = factoryPaciente.crearPaciente(this.vista.getDNIPaciente(), this.vista.getNombrePaciente(), this.vista.getApellidoPaciente(), this.vista.getCallePaciente(), this.vista.getNumPaciente(), this.vista.getCiudadPaciente(), this.vista.getTelefonoPaciente(), this.vista.getHistoriaPaciente(), rango_etario);
+                this.sistema.registraPaciente(p);
+                this.vista.mostrarMensajeVentana("Paciente registrado correctamente");
+                this.vista.actualizarPacientesRegistradosLista(this.sistema.getPacientesRegistrados());
+                this.vista.actualizarIngresarPacienteLista(this.sistema.getPacientesRegistrados(), "");
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
+        }
+        else
+        if (comando.equals("MedicoBotonEnviar")) {
+            try {
+                IMedico m = factoryMedico.crearMedico(this.vista.getDNIMedico(), this.vista.getNombreMedico(), this.vista.getApellidoMedico(), this.vista.getCalleMedico(), this.vista.getNumMedico(), this.vista.getTelefonoMedico(), this.vista.getCiudadMedico(), this.vista.getMatriculaMedico(), this.vista.getEspecialidadMedico(), this.vista.getContratacionMedico(), this.vista.getPosgradoMedico());
+                this.sistema.registraMedico(m);
+                this.vista.mostrarMensajeVentana("Medico registrado correctamente");
+                this.vista.actualizarMedicosRegistradosLista(this.sistema.getMedicos());
+                this.vista.actualizarAtenderMedicoLista(this.sistema.getMedicos(), "");
+                this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
+        }
+        else
+        if (comando.equals("AsociadoBotonEnviar")){
+            try {
+                Asociado a = new Asociado(this.vista.getDNIAsociado(), this.vista.getNombreAsociado(), this.vista.getApellidoAsociado(), this.vista.getCalleAsociado(), this.vista.getNumAsociado(), this.vista.getCiudadAsociado(), this.vista.getTelefonoAsociado());
+                this.sistema.registraAsociado(a);
+                this.vista.mostrarMensajeVentana("Asociado registrado correctamente");
+                this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
+                this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
+                this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
+        }
+        else
+        if (comando.equals("IngresarPacienteBoton")){
+            Paciente paciente = this.vista.getPacienteIngresar();
+            if (paciente != null){
+                this.sistema.ingresaPaciente(this.vista.getPacienteIngresar());
+                this.vista.actualizarAtenderPacienteLista(this.sistema.getListaEspera(), this.sistema.getPacientesAtendidos(), this.vista.getAtenderPacienteBusqueda());
+                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+            }
+        }
+        else
+        if (comando.equals("IngresarPacienteBuscarBoton")){
+            this.vista.actualizarIngresarPacienteLista(this.sistema.getPacientesRegistrados(), this.vista.getIngresarPacienteBusqueda());
+        }
+        else
+        if (comando.equals("AtenderPacienteBuscarBoton")) {
+            this.vista.actualizarAtenderPacienteLista(this.sistema.getListaEspera(), this.sistema.getPacientesAtendidos(), this.vista.getAtenderPacienteBusqueda());
+        }
+        else
+        if (comando.equals("AtenderMedicoBuscarBoton")) {
+            this.vista.actualizarAtenderMedicoLista(this.sistema.getMedicos(), this.vista.getAtenderMedicoBusqueda());
+        }
+        else
+        if (comando.equals("AtenderPacienteBoton")) {
+            Paciente paciente = this.vista.getPacienteAtender();
+            if (paciente != null) {
+                this.sistema.atiendePaciente(this.vista.getMedicoAtender(), paciente);
+                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+                this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(), "");
+            }
+        }
+        else
+        if (comando.equals("InternarPacienteBuscarBoton")) {
+            this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+        }
+        else
+        if (comando.equals("InternarPacienteBoton")) {
+            Paciente paciente = this.vista.getPacienteInternar();
+            if (paciente != null) {
+                this.sistema.internaPaciente(paciente, this.vista.getHabitacion());
+                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+                this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
+            }
+        }
+        else
+        if (comando.equals("EgresarBuscarBoton")) {
+            this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(),  this.vista.getEgresarPacienteBusqueda());
+        }
+        else
+        if (comando.equals("EgresarBoton")) {
+            Paciente paciente = this.vista.getPacienteEgresar();
+            if (paciente != null) {
+                Factura f = this.sistema.egresaPaciente(paciente);
+                this.vista.mostrarFactura(f);
+            }
+        }
+        else
+        if (comando.equals("BajaAsociadoBuscarBoton")) {
+            this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
+        }
+        else
+        if (comando.equals("BajaAsociadoBoton")) {
+            Asociado asociado = this.vista.getAsociadoBajar();
+            if (asociado != null) {
+                if (this.vista.confirmarBaja()) {
+                    try {
+                        this.sistema.eliminarAsociado(this.vista.getAsociadoBajar());
+                        this.vista.mostrarMensajeVentana("Asociado eliminado correctamente");
+                        this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
+                        this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
+                        this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(), this.vista.getBajaAsociadoBusqueda());
+                    } catch (Exception ex) {
+                        this.vista.mostrarMensajeVentana(ex.getMessage());
+                    }
                 }
             }
-            else
-                if (comando == vista.getMedicoBotonEnviar()) {
-                    try {
-                        IMedico m = factoryMedico.crearMedico(this.vista.getDNIMedico(), this.vista.getNombreMedico(), this.vista.getApellidoMedico(), this.vista.getCalleMedico(), this.vista.getNumMedico(), this.vista.getTelefonoMedico(), this.vista.getCiudadMedico(), this.vista.getMatriculaMedico(), this.vista.getEspecialidadMedico(), this.vista.getContratacionMedico(), this.vista.getPosgradoMedico());
-                        this.vista.ocultarMensajeExcepcionMedico();
-                        this.sistema.registraMedico(m);
-                        this.vista.actualizarMedicosRegistradosLista(this.sistema.getMedicos());
-                        this.vista.actualizarAtenderMedicoLista(this.sistema.getMedicos(), "");
-                        this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
-                    }
-                    catch (Exception ex) {
-                        this.vista.mostrarExcepcionVentana(ex);
-                    }
-                }
-                else
-                    if (comando == vista.getAsociadoBotonEnviar()){
-                        try {
-                            Asociado a = new Asociado(this.vista.getDNIAsociado(), this.vista.getNombreAsociado(), this.vista.getApellidoAsociado(), this.vista.getCalleAsociado(), this.vista.getNumAsociado(), this.vista.getCiudadAsociado(), this.vista.getTelefonoAsociado());
-                            this.sistema.registraAsociado(a);
-                            this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
-                            this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
-                            this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
-                        }
-                        catch (Exception ex) {
-                            this.vista.mostrarExcepcionVentana(ex);
-                        }
-                    }
-                    else
-                        if (comando == vista.getIngresarPacienteBoton()){
-                            Paciente paciente = this.vista.getPacienteIngresar();
-                            if (paciente != null){
-                                this.sistema.ingresaPaciente(this.vista.getPacienteIngresar());
-                                this.vista.actualizarAtenderPacienteLista(this.sistema.getListaEspera(), this.sistema.getPacientesAtendidos(), this.vista.getAtenderPacienteBusqueda());
-                                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                            }
-                        }
-                        else
-                            if (comando == vista.getIngresarPacienteBuscarBoton()){
-                                this.vista.actualizarIngresarPacienteLista(this.sistema.getPacientesRegistrados(), this.vista.getIngresarPacienteBusqueda());
-                            }
-                            else
-                                if (comando == vista.getAtenderPacienteBuscarBoton()) {
-                                    this.vista.actualizarAtenderPacienteLista(this.sistema.getListaEspera(), this.sistema.getPacientesAtendidos(), this.vista.getAtenderPacienteBusqueda());
-                                }
-                                else
-                                    if (comando == vista.getAtenderMedicoBuscarBoton()) {
-                                        this.vista.actualizarAtenderMedicoLista(this.sistema.getMedicos(), this.vista.getAtenderMedicoBusqueda());
-                                    }
-                                    else
-                                        if (comando == vista.getAtenderPacienteBoton()) {
-                                            Paciente paciente = this.vista.getPacienteAtender();
-                                            if (paciente != null) {
-                                                this.sistema.atiendePaciente(this.vista.getMedicoAtender(), paciente);
-                                                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                                                this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(), "");
-                                            }
-                                        }
-                                        else
-                                            if (comando == vista.getInternarPacienteBuscarBoton()) {
-                                                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                                            }
-                                            else
-                                                if (comando == vista.getInternarPacienteBoton()) {
-                                                    Paciente paciente = this.vista.getPacienteInternar();
-                                                    if (paciente != null) {
-                                                        this.sistema.internaPaciente(paciente, this.vista.getHabitacion());
-                                                        this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                                                        this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
-                                                    }
-                                                }
-                                                else
-                                                    if (comando == vista.getEgresarBuscarBoton()) {
-                                                        this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(),  this.vista.getEgresarPacienteBusqueda());
-                                                    }
-                                                    else
-                                                        if (comando == vista.getEgresarBoton()) {
-                                                            Paciente paciente = this.vista.getPacienteEgresar();
-                                                            if (paciente != null) {
-                                                                Factura f = this.sistema.egresaPaciente(paciente);
-                                                                this.vista.mostrarFactura(f);
-                                                            }
-                                                        }
-                                                        else
-                                                            if (comando == vista.getBajaAsociadoBuscarBoton()) {
-                                                                this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
-                                                            }
-                                                            else
-                                                                if (comando == vista.getBajaAsociadoBoton()) {
-                                                                    Asociado asociado = this.vista.getAsociadoBajar();
-                                                                    if (asociado != null) {
-                                                                        if (this.vista.confirmarBaja()) {
-                                                                            try {
-                                                                                this.sistema.eliminarAsociado(this.vista.getAsociadoBajar());
-                                                                                this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
-                                                                                this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
-                                                                                this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(), this.vista.getBajaAsociadoBusqueda());
-                                                                            } catch (Exception ex) {
-                                                                                this.vista.mostrarExcepcionVentana(ex);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                                else
-                                                                    if (comando == vista.getReporteMedicoBuscarBoton()){
-                                                                        this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(),  this.vista.getReporteMedicoBusqueda());
-                                                                    }
-                                                                    else
-                                                                        if  (comando == vista.getReporteMedicoBoton()){
-                                                                            IMedico medico = this.vista.getMedicoReporte();
-                                                                            try {
-                                                                                ReporteActividadMedica reporte = this.sistema.generarReporteActividadMedica(medico, this.vista.getFechaInicial(), this.vista.getFechaFinal());
-                                                                                this.vista.mostrarReporteMedico(reporte);
-                                                                            }
-                                                                            catch (Exception ex) {
-                                                                                this.vista.mostrarExcepcionVentana(ex);
-                                                                            }
-                                                                        }
-                                                                        else
-                                                                            if (comando == vista.getAmbulanciaAsociadosBoton()){
-                                                                                try {
-                                                                                    this.simulacion.prepararAsociados(this.vista.getAsociadosAmbulancia(this.sistema.getAsociados()));
-                                                                                    this.vista.panelAmbulanciaEmpezar(this.simulacion.getAsociadosAmbulancia());
-                                                                                }
-                                                                                catch (Exception ex) {
-                                                                                    this.vista.mostrarExcepcionVentana(ex);
-                                                                                }
+        }
+        else
+        if (comando.equals("ReporteMedicoBuscarBoton")){
+            this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(),  this.vista.getReporteMedicoBusqueda());
+        }
+        else
+        if  (comando.equals("ReporteMedicoBoton")){
+            IMedico medico = this.vista.getMedicoReporte();
+            try {
+                ReporteActividadMedica reporte = this.sistema.generarReporteActividadMedica(medico, this.vista.getFechaInicial(), this.vista.getFechaFinal());
+                this.vista.mostrarReporteMedico(reporte);
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
+        }
+        else
+        if (comando.equals("AmbulanciaAsociadosBoton")){
+            try {
+                this.simulacion.prepararAsociados(this.vista.getAsociadosAmbulancia(this.sistema.getAsociados()));
+                this.vista.panelAmbulanciaEmpezar(this.simulacion.getAsociadosAmbulancia());
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
 
-                                                                            }
-                                                                            else
-                                                                                if (comando == vista.getAmbulanciaEmpezarBoton()){
-                                                                                    try {
-                                                                                        this.simulacion.empezarAmbulancia(this.vista.getCantidadSolicitudes());
-                                                                                        this.observadorHilos.agregarObservables(this.simulacion.getHilos());
-                                                                                    }
-                                                                                    catch (Exception ex) {
-                                                                                        this.vista.mostrarExcepcionVentana(ex);
-                                                                                    }
-                                                                                    this.vista.panelAmbulanciaParar();
-                                                                                }
-                                                                                else
-                                                                                    if  (comando == vista.getAmbulanciaVolverBoton()){
-                                                                                        this.simulacion.eliminarAsociadosAmbulancia();
-                                                                                        this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
-                                                                                    }
-                                                                                    else
-                                                                                        if (comando == vista.getAmbulanciaPararBoton()){
-                                                                                            SimulacionAmbulancia.activo = false;
-                                                                                            this.vista.setBotonAmbulanciaPararNotEnabled();
-                                                                                        }
-                                                                                        else
-                                                                                            if (comando == vista.getAmbulanciaTallerBoton()) {
-                                                                                                this.simulacion.enviarATaller();
-                                                                                                this.observadorHilos.agregarObservables(this.simulacion.getHilos());
-                                                                                            }
-                                                                                            else
-                                                                                                if (comando == vista.getCrearPacienteBoton()) {
-                                                                                                    this.sistema.crearTablas();
-                                                                                                }
-
+        }
+        else
+        if (comando.equals("AmbulanciaEmpezarBoton")){
+            try {
+                this.simulacion.empezarAmbulancia(this.vista.getCantidadSolicitudes());
+                this.observadorHilos.agregarObservables(this.simulacion.getHilos());
+            }
+            catch (Exception ex) {
+                this.vista.mostrarMensajeVentana(ex.getMessage());
+            }
+            this.vista.panelAmbulanciaParar();
+        }
+        else
+        if  (comando.equals("AmbulanciaVolverBoton")){
+            this.simulacion.eliminarAsociadosAmbulancia();
+            this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
+        }
+        else
+        if (comando.equals("AmbulanciaPararBoton")){
+            SimulacionAmbulancia.activo = false;
+            this.vista.setBotonAmbulanciaPararNotEnabled();
+        }
+        else
+        if (comando.equals("AmbulanciaTallerBoton")) {
+            this.simulacion.enviarATaller();
+            this.observadorHilos.agregarObservables(this.simulacion.getHilos());
+        }
+        else
+        if (comando.equals("CrearTablasBoton")) {
+            this.sistema.crearTablas();
+        }
 
     }
 

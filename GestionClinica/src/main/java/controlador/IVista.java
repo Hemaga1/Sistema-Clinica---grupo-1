@@ -11,7 +11,6 @@ import modelo.personas.Asociado;
 import modelo.personas.ObservadorAsociado;
 import modelo.personas.Paciente;
 
-import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,29 +23,6 @@ public interface IVista {
     static final String ENVIARMEDICO = "ENVIAR MEDICO";
 
 
-    //GET BOTONES
-    JButton getPacienteBotonEnviar();
-    JButton getMedicoBotonEnviar();
-    JButton getIngresarPacienteBoton();
-    JButton getIngresarPacienteBuscarBoton();
-    JButton getAtenderPacienteBuscarBoton();
-    JButton getAtenderMedicoBuscarBoton();
-    JButton getAtenderPacienteBoton();
-    JButton getInternarPacienteBuscarBoton();
-    JButton getInternarPacienteBoton();
-    JButton getEgresarBoton();
-    JButton getEgresarBuscarBoton();
-    JButton getAsociadoBotonEnviar();
-    JButton getBajaAsociadoBuscarBoton();
-    JButton getBajaAsociadoBoton();
-    JButton getReporteMedicoBuscarBoton();
-    JButton getReporteMedicoBoton();
-    JButton getAmbulanciaAsociadosBoton();
-    JButton getAmbulanciaEmpezarBoton();
-    JButton getAmbulanciaPararBoton();
-    JButton getAmbulanciaVolverBoton();
-    JButton getAmbulanciaTallerBoton();
-    JButton getCrearPacienteBoton();
 
     //GET FIELDS PACIENTE
     String getDNIPaciente() throws InputVacioExcepcion, InputNumeroInvalidoExcepcion;
@@ -142,11 +118,7 @@ public interface IVista {
     ArrayList<Integer> getCantidadSolicitudes() throws CantidadSolicitudesInvalidaExcepcion;
 
     boolean confirmarBaja();
-    void mostrarMensajeExcepcionPaciente(Exception e);
-    void mostrarMensajeExcepcionMedico(Exception e);
-    void ocultarMensajeExcepcionPaciente();
-    void ocultarMensajeExcepcionMedico();
-    void mostrarExcepcionVentana(Exception e);
+    void mostrarMensajeVentana(String mensaje);
 
     void addActionListener(ActionListener actionListener);
 }

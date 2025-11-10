@@ -204,99 +204,6 @@ public class Ventana extends JFrame implements IVista {
 
 
 
-
-    //GET BOTONES
-    public JButton getPacienteBotonEnviar(){
-        return PacienteBotonEnviar;
-    }
-
-    public JButton getMedicoBotonEnviar(){
-        return MedicoBotonEnviar;
-    }
-
-    public JButton getIngresarPacienteBoton(){
-        return IngresarPacienteBoton;
-    }
-
-    public JButton getIngresarPacienteBuscarBoton(){
-        return IngresarPacienteBuscarBoton;
-    }
-
-    public JButton getAtenderPacienteBuscarBoton(){
-        return AtenderPacienteBuscarBoton;
-    }
-
-    public JButton getAtenderMedicoBuscarBoton(){
-        return AtenderMedicoBuscarBoton;
-    }
-
-    public JButton getAtenderPacienteBoton(){
-        return AtenderPacienteBoton;
-    }
-
-    public JButton getInternarPacienteBuscarBoton(){
-        return InternarPacienteBuscarBoton;
-    }
-
-    public JButton getInternarPacienteBoton(){
-        return InternarPacienteBoton;
-    }
-
-    public JButton getEgresarBuscarBoton() {
-        return EgresarBuscarBoton;
-    }
-
-    public JButton getEgresarBoton() {
-        return EgresarBoton;
-    }
-
-    public JButton getAsociadoBotonEnviar() {
-        return AsociadoBotonEnviar;
-    }
-
-    public JButton getBajaAsociadoBuscarBoton() {
-        return BajaAsociadoBuscarBoton;
-    }
-
-    public JButton getBajaAsociadoBoton() {
-        return BajaAsociadoBoton;
-    }
-
-    public JButton getReporteMedicoBuscarBoton() {
-        return ReporteMedicoBuscarBoton;
-    }
-
-    public JButton getReporteMedicoBoton() {
-        return ReporteMedicoBoton;
-    }
-
-    public JButton getAmbulanciaAsociadosBoton() {
-        return AmbulanciaAsociadosBoton;
-    }
-
-    public JButton getAmbulanciaEmpezarBoton() {
-        return AmbulanciaEmpezarBoton;
-    }
-
-    public JButton getAmbulanciaPararBoton() {
-        return AmbulanciaPararBoton;
-    }
-
-    public JButton getAmbulanciaVolverBoton() {
-        return AmbulanciaVolverBoton;
-    }
-
-    public JButton getAmbulanciaTallerBoton() {
-        return AmbulanciaTallerBoton;
-    }
-
-    public JButton getCrearPacienteBoton() {
-        return CrearTablasBoton;
-    }
-    //TERMINAN ACA
-
-
-
     //GET FIELDS PACIENTE
     @Override
     public String getDNIPaciente() throws InputVacioExcepcion, InputNumeroInvalidoExcepcion {
@@ -982,41 +889,77 @@ public class Ventana extends JFrame implements IVista {
         return cantidades;
     }
 
-    public void mostrarExcepcionVentana(Exception e) {
+    public void mostrarMensajeVentana(String mensaje) {
         JOptionPane panel = new JOptionPane();
-        JOptionPane.showMessageDialog(panel, e.getMessage());
+        JOptionPane.showMessageDialog(panel, mensaje);
     }
 
-    public void ocultarMensajeExcepcionPaciente(){
-        MuestraDeExcepcionPacienteLabel.setVisible(false);
-    }
-
-    public void ocultarMensajeExcepcionMedico(){
-        MuestraDeExcepcionMedicoLabel.setVisible(false);
-    }
 
     public void addActionListener(ActionListener actionListener) {
         PacienteBotonEnviar.addActionListener(actionListener);
+        PacienteBotonEnviar.setActionCommand("PacienteBotonEnviar");
+
         MedicoBotonEnviar.addActionListener(actionListener);
+        MedicoBotonEnviar.setActionCommand("MedicoBotonEnviar");
+
         IngresarPacienteBoton.addActionListener(actionListener);
+        IngresarPacienteBoton.setActionCommand("IngresarPacienteBoton");
+
         IngresarPacienteBuscarBoton.addActionListener(actionListener);
+        InternarPacienteBuscarBoton.setActionCommand("IngresarPacienteBuscarBoton");
+
         AtenderPacienteBuscarBoton.addActionListener(actionListener);
+        AtenderPacienteBuscarBoton.setActionCommand("AtenderPacienteBuscarBoton");
+
         AtenderMedicoBuscarBoton.addActionListener(actionListener);
+        AtenderMedicoBuscarBoton.setActionCommand("AtenderMedicoBuscarBoton");
+
         AtenderPacienteBoton.addActionListener(actionListener);
+        AtenderPacienteBoton.setActionCommand("AtenderPacienteBoton");
+
         InternarPacienteBoton.addActionListener(actionListener);
+        InternarPacienteBoton.setActionCommand("InternarPacienteBoton");
+
         InternarPacienteBuscarBoton.addActionListener(actionListener);
+        InternarPacienteBuscarBoton.setActionCommand("InternarPacienteBuscarBoton");
+
         EgresarBoton.addActionListener(actionListener);
+        EgresarBoton.setActionCommand("EgresarBoton");
+
         EgresarBuscarBoton.addActionListener(actionListener);
+        EgresarBuscarBoton.setActionCommand("EgresarBuscarBoton");
+
         AsociadoBotonEnviar.addActionListener(actionListener);
+        AsociadoBotonEnviar.setActionCommand("AsociadoBotonEnviar");
+
         BajaAsociadoBoton.addActionListener(actionListener);
+        BajaAsociadoBoton.setActionCommand("BajaAsociadoBoton");
+
         BajaAsociadoBuscarBoton.addActionListener(actionListener);
+        BajaAsociadoBuscarBoton.setActionCommand("BajaAsociadoBuscarBoton");
+
         ReporteMedicoBoton.addActionListener(actionListener);
+        ReporteMedicoBoton.setActionCommand("ReporteMedicoBoton");
+
         ReporteMedicoBuscarBoton.addActionListener(actionListener);
+        ReporteMedicoBuscarBoton.setActionCommand("ReporteMedicoBuscarBoton");
+
         AmbulanciaAsociadosBoton.addActionListener(actionListener);
+        AmbulanciaAsociadosBoton.setActionCommand("AmbulanciaAsociadosBoton");
+
         AmbulanciaEmpezarBoton.addActionListener(actionListener);
+        AmbulanciaEmpezarBoton.setActionCommand("AmbulanciaEmpezarBoton");
+
         AmbulanciaPararBoton.addActionListener(actionListener);
+        AmbulanciaPararBoton.setActionCommand("AmbulanciaPararBoton");
+
         AmbulanciaVolverBoton.addActionListener(actionListener);
+        AmbulanciaVolverBoton.setActionCommand("AmbulanciaVolverBoton");
+
         AmbulanciaTallerBoton.addActionListener(actionListener);
+        AmbulanciaTallerBoton.setActionCommand("AmbulanciaTallerBoton");
+
         CrearTablasBoton.addActionListener(actionListener);
+        CrearTablasBoton.setActionCommand("CrearTablasBoton");
     }
 }
