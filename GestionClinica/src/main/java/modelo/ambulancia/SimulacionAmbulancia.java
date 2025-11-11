@@ -1,7 +1,10 @@
 package modelo.ambulancia;
 
+import controlador.Controlador;
+import controlador.IVista;
 import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
 import modelo.personas.Asociado;
+import modelo.personas.ObservadorOperario;
 import modelo.personas.Operario;
 
 import java.util.ArrayList;
@@ -10,10 +13,18 @@ import java.util.List;
 
 public class SimulacionAmbulancia {
         public static boolean activo;
-        private List<Thread> hilos = new ArrayList<>();
         private List<Asociado> asociados = new ArrayList<>();
+        private RetornoAutomatico retornoAutomatico;
+        private ObservadorHilos observadorHilos = new ObservadorHilos(this);
+        private ObservadorOperario observadorOperario = new ObservadorOperario(this);
+        private Controlador controlador;
+        private IVista vista;
+        private static int cantHilos;
+        private Operario operario = new Operario();
 
-        public SimulacionAmbulancia(){
+        public SimulacionAmbulancia(Controlador controlador, IVista vista) {
+            this.controlador = controlador;
+            this.vista = vista;
             this.activo = false;
         }
 
@@ -26,32 +37,59 @@ public class SimulacionAmbulancia {
         }
 
         public void enviarATaller() {
-            HiloAmbulancia hilo = new HiloAmbulancia(new Operario(), 1);
-            hilos.add(hilo);
+            HiloAmbulancia hilo = new HiloAmbulancia(operario, 1);
+            observadorOperario.agregarOperario(hilo);
+            cantHilos++;
             hilo.start();
         }
 
+        public void eliminarHilo() {
+            cantHilos--;
+            if (cantHilos == 1 && !Ambulancia.get_instance().getEstado().equals("en el Taller")) {
+                activo = false;
+            }
+            else
+                if (cantHilos == 0) {
+                    this.asociados.clear();
+                    this.observadorHilos.eliminarObservables();
+                    this.controlador.terminarSimulacionVista();
+                }
+        }
+
         public void empezarAmbulancia(ArrayList<Integer> cant) throws CantidadSolicitudesInvalidaExcepcion {
+            List<Thread> hilos = new ArrayList<>();
             activo = true;
+            //hilos.clear();
             for (int i = 0; i < asociados.size(); i++){
                 hilos.add(new HiloAmbulancia(asociados.get(i), cant.get(i)));
             }
+            retornoAutomatico = new RetornoAutomatico();
             for (int i = 0; i < asociados.size(); i++){
                 hilos.get(i).start();
             }
+            this.observadorHilos.agregarObservables(hilos, retornoAutomatico);
+            cantHilos = hilos.size() + 1;
+            retornoAutomatico.start();
         }
 
-        public List<Thread> getHilos(){
-            return hilos;
+        public void terminarOperario(){
+            this.vista.cambiarBotonTallerEnabled();
+            this.observadorOperario.eliminarOperario();
+            this.eliminarHilo();
         }
 
-        public void eliminarHilo(Thread hilo){
-            hilos.remove(hilo);
-            if (hilos.isEmpty()){
-                asociados.clear();
-                activo = false;
-            }
+        public void pararSimulacion(){
+            activo = false;
         }
+
+        public static int getCantHilos() {
+            return cantHilos;
+        }
+
+        public Thread getRetorno(){
+            return retornoAutomatico;
+        }
+
 
         public List<Asociado> getAsociadosAmbulancia(){
             return asociados;

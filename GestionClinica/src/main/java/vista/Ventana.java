@@ -775,16 +775,6 @@ public class Ventana extends JFrame implements IVista {
         return respuesta == JOptionPane.YES_OPTION;
     }
 
-    public void mostrarMensajeExcepcionPaciente(Exception e) {
-        MuestraDeExcepcionPacienteLabel.setText(e.getMessage());
-        MuestraDeExcepcionPacienteLabel.setVisible(true);
-    }
-
-    public void mostrarMensajeExcepcionMedico(Exception e) {
-        MuestraDeExcepcionMedicoLabel.setText(e.getMessage());
-        MuestraDeExcepcionMedicoLabel.setVisible(true);
-    }
-
     public void cambiarEstadoAmbulancia(String estado) {
         EstadoText.setText(estado);
     }
@@ -809,6 +799,15 @@ public class Ventana extends JFrame implements IVista {
         BajaAsociadoBoton.setEnabled(true);
 
         this.actualizarAmbulanciaAsociadosLista(asociadosRegistrados);
+    }
+
+    public void panelAmbulanciaEmpezar(List<Asociado> asociadosAmbulancia){
+        AmbulanciaPararBoton.setVisible(false);
+        AmbulanciaAsociadosBoton.setVisible(false);
+        AmbulanciaTallerBoton.setVisible(false);
+        AmbulanciaEmpezarBoton.setVisible(true);
+        AmbulanciaVolverBoton.setVisible(true);
+
         for (int i=0; i<scrollPaneAmbulanciaAsociado.size(); i++){
             PanelAmbulanciaTabbeado.remove(scrollPaneAmbulanciaAsociado.get(i));
         }
@@ -818,16 +817,12 @@ public class Ventana extends JFrame implements IVista {
         observadoresAsociados.clear();
         panelesAsociados.clear();
         scrollPaneAmbulanciaAsociado.clear();
-    }
 
-    public void panelAmbulanciaEmpezar(List<Asociado> asociadosAmbulancia){
-        AmbulanciaPararBoton.setVisible(false);
-        AmbulanciaAsociadosBoton.setVisible(false);
-        AmbulanciaTallerBoton.setVisible(false);
-        AmbulanciaEmpezarBoton.setVisible(true);
-        AmbulanciaVolverBoton.setVisible(true);
+
         this.mostrarAmbulanciaCantidades(asociadosAmbulancia);
         panelesAsociados.clear();
+
+
         for  (int i=0; i < asociadosAmbulancia.size(); i++){
             JPanel panel = new JPanel();
             panelesAsociados.add(panel);
@@ -845,6 +840,7 @@ public class Ventana extends JFrame implements IVista {
         AmbulanciaVolverBoton.setVisible(false);
         AmbulanciaPararBoton.setEnabled(true);
         AmbulanciaTallerBoton.setEnabled(true);
+        AmbulanciaTallerBoton.setText("Enviar a Taller");
         AmbulanciaPararBoton.setVisible(true);
         AmbulanciaTallerBoton.setVisible(true);
 
@@ -872,6 +868,7 @@ public class Ventana extends JFrame implements IVista {
             tablaModelo.addRow(new Object[]{a,"1"});
         }
 
+        PanelAmbu.add(new JLabel("Ingrese para cada asociado la cantidad de solicitudes:"));
         PanelAmbu.add(tabla);
         AmbulanciaAsociadosScrollPane.setViewportView(PanelAmbu);
     }
@@ -887,6 +884,18 @@ public class Ventana extends JFrame implements IVista {
                 cantidades.add(cant);
         }
         return cantidades;
+    }
+
+    public void cambiarBotonTallerEnabled(){
+        if (AmbulanciaPararBoton.isEnabled())
+            AmbulanciaTallerBoton.setEnabled(!AmbulanciaTallerBoton.isEnabled());
+    }
+
+    public void cambiarBotonTallerTexto(){
+        if (AmbulanciaTallerBoton.getText().equals("Enviar a Taller")){
+            AmbulanciaTallerBoton.setText("Retornar a Clinica");
+        }
+        else AmbulanciaTallerBoton.setText("Enviar a Taller");
     }
 
     public void mostrarMensajeVentana(String mensaje) {

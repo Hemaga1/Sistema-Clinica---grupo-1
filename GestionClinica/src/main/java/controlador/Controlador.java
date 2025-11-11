@@ -20,9 +20,8 @@ import java.awt.event.ActionListener;
 public class Controlador implements ActionListener {
     private IVista vista;
     private SistemaFacade sistema;
-    private ObservadorAmbulancia observadorAmbulancia;
-    private ObservadorHilos observadorHilos;
-    private SimulacionAmbulancia simulacion = new SimulacionAmbulancia();
+    //private ObservadorHilos observadorHilos;
+    private SimulacionAmbulancia simulacion;
 
     FactoryMedico factoryMedico = new FactoryMedico();
     FactoryPaciente factoryPaciente = new FactoryPaciente();
@@ -46,6 +45,7 @@ public class Controlador implements ActionListener {
     {
         this.sistema = sistema;
         this.vista = vista;
+        this.simulacion = new SimulacionAmbulancia(this, vista);
         this.vista.addActionListener(this);
         try {
             sistema.registraMedico(medClinica);
@@ -75,8 +75,7 @@ public class Controlador implements ActionListener {
         this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
         this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
 
-        observadorAmbulancia = new ObservadorAmbulancia(Ambulancia.get_instance(),this);
-        observadorHilos = new ObservadorHilos(this);
+        //observadorHilos = new ObservadorHilos(this);
     }
 
 
@@ -234,12 +233,11 @@ public class Controlador implements ActionListener {
         if (comando.equals("AmbulanciaEmpezarBoton")){
             try {
                 this.simulacion.empezarAmbulancia(this.vista.getCantidadSolicitudes());
-                this.observadorHilos.agregarObservables(this.simulacion.getHilos());
+                this.vista.panelAmbulanciaParar();
             }
             catch (Exception ex) {
                 this.vista.mostrarMensajeVentana(ex.getMessage());
             }
-            this.vista.panelAmbulanciaParar();
         }
         else
         if  (comando.equals("AmbulanciaVolverBoton")){
@@ -248,13 +246,14 @@ public class Controlador implements ActionListener {
         }
         else
         if (comando.equals("AmbulanciaPararBoton")){
-            SimulacionAmbulancia.activo = false;
+            this.simulacion.pararSimulacion();
             this.vista.setBotonAmbulanciaPararNotEnabled();
         }
         else
         if (comando.equals("AmbulanciaTallerBoton")) {
             this.simulacion.enviarATaller();
-            this.observadorHilos.agregarObservables(this.simulacion.getHilos());
+            this.vista.cambiarBotonTallerEnabled();
+            this.vista.cambiarBotonTallerTexto();
         }
         else
         if (comando.equals("CrearTablasBoton")) {
@@ -263,16 +262,8 @@ public class Controlador implements ActionListener {
 
     }
 
-    public void eliminarHilo(Thread t) {
-        this.simulacion.eliminarHilo(t);
-        if (simulacion.getHilos().isEmpty()){
-            this.observadorHilos.eliminarObservables();
-            this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
-        }
-
+    public void terminarSimulacionVista() {
+        this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
     }
 
-    public void modificarDisponibilidad() {
-        this.vista.cambiarEstadoAmbulancia(Ambulancia.get_instance().getEstado());
-    }
 }

@@ -1,22 +1,23 @@
 package modelo.ambulancia;
 
 import controlador.Controlador;
+import controlador.IVista;
 
 import java.util.Observable;
 import java.util.Observer;
 
 public class ObservadorAmbulancia implements Observer {
     private Observable observable;
-    private Controlador controlador;
+    private IVista vista;
 
-    public ObservadorAmbulancia(Observable observable, Controlador controlador) {
+    public ObservadorAmbulancia(Observable observable, IVista vista) {
         this.observable = observable;
         this.observable.addObserver(this);
-        this.controlador = controlador;
+        this.vista = vista;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        this.controlador.modificarDisponibilidad();
+        this.vista.cambiarEstadoAmbulancia(Ambulancia.get_instance().getEstado());
     }
 }

@@ -31,10 +31,6 @@ public class Asociado extends Persona implements Runnable {
         } else {
             Ambulancia.get_instance().solicitaTraslado();
         }
-        UTIL.tiempoMuerto();
-        Ambulancia.get_instance().retornarAClinica();
-        UTIL.tiempoMuerto();
-        Ambulancia.get_instance().retornarAClinica();
     }
 
     public void notificarEspera() {

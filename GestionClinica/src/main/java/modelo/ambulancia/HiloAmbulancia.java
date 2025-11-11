@@ -32,7 +32,6 @@ public class HiloAmbulancia extends Thread {
             this.solicitante.run();
             i++;
         }
-        System.out.println("Hilo finalizado\n");
         this.observableHilo.avisarFinalizacion(this);
     }
 }

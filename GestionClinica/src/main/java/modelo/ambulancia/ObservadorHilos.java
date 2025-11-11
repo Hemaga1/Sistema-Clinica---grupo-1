@@ -6,24 +6,14 @@ import java.util.*;
 
 public class ObservadorHilos implements Observer {
     private ArrayList<Observable>  observableHilos = new ArrayList<>();
-    private Controlador controlador;
+    private SimulacionAmbulancia simulacion;
+    private Observable observableRetornoAutomatico;
 
-    public ObservadorHilos(List<Thread> hilos, Controlador controlador) {
-        this.controlador = controlador;
-        Iterator<Thread> iterator = hilos.iterator();
-        while (iterator.hasNext()) {
-            HiloAmbulancia hilo = (HiloAmbulancia) iterator.next();
-            Observable observable = hilo.getObservableHilo();
-            observableHilos.add(observable);
-            observable.addObserver(this);
-        }
+    public ObservadorHilos(SimulacionAmbulancia simulacion) {
+        this.simulacion = simulacion;
     }
 
-    public ObservadorHilos(Controlador controlador) {
-        this.controlador = controlador;
-    }
-
-    public void agregarObservables(List<Thread> hilos){
+    public void agregarObservables(List<Thread> hilos, Thread retorno){
         Iterator<Thread> iterator = hilos.iterator();
         while (iterator.hasNext()) {
             HiloAmbulancia hilo = (HiloAmbulancia) iterator.next();
@@ -33,14 +23,18 @@ public class ObservadorHilos implements Observer {
                 observable.addObserver(this);
             }
         }
+        RetornoAutomatico retornoAutomatico = (RetornoAutomatico) retorno;
+        this.observableRetornoAutomatico = retornoAutomatico.getObservableHilo();
+        observableRetornoAutomatico.addObserver(this);
     }
 
     public void eliminarObservables(){
         observableHilos.clear();
+        observableRetornoAutomatico = null;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        this.controlador.eliminarHilo((Thread) arg);
+        this.simulacion.eliminarHilo();
     }
 }

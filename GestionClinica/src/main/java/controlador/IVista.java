@@ -112,6 +112,9 @@ public interface IVista {
 
     void actualizarConsolaAsociado(ObservadorAsociado asociado, String mensaje);
 
+    void cambiarBotonTallerEnabled();
+
+    void cambiarBotonTallerTexto();
 
     void mostrarAmbulanciaCantidades(List<Asociado> asociados);
 

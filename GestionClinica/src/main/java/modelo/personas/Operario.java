@@ -9,13 +9,8 @@ import java.util.Random;
 public class Operario implements Runnable {
 
     public void solicitaAmbulancia() {
-        Random r = new Random();
         System.out.println("[Operario] Solicita taller");
         Ambulancia.get_instance().repararAmbulancia();
-        UTIL.tiempoMuerto();
-        Ambulancia.get_instance().repararAmbulancia();
-        UTIL.tiempoMuerto();
-        Ambulancia.get_instance().retornarAClinica();
     }
 
 
