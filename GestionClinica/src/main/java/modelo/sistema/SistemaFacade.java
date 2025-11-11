@@ -270,27 +270,31 @@ public class SistemaFacade {
 
 
     public void crearTablas() {
-        try {
-            db.abrirConexion();
-            db.crearTablaAsociados();
+        Set<Asociado> asociados = getAsociados();
 
-            this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
-            this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
-            this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
-
-            for (Asociado asociado : getAsociados()) {
-                db.agregarAsociado(AsociadoMapper.toDTO(asociado));
-            }
-        } catch (AsociadoDuplicadoExcepcion e) {
-
-        }
-         catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
+        if (asociados.isEmpty()) {
             try {
-                db.cerrarConexion();
-            } catch (SQLException e) {
+                db.abrirConexion();
+                db.crearTablaAsociados();
+
+                this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
+                this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
+                this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
+
+                for (Asociado asociado : getAsociados()) {
+                    db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+                }
+            } catch (AsociadoDuplicadoExcepcion e) {
+
+            }
+             catch (SQLException e) {
                 throw new RuntimeException(e);
+            } finally {
+                try {
+                    db.cerrarConexion();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

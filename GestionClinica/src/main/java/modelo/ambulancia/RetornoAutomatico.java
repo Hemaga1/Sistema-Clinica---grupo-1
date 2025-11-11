@@ -19,15 +19,12 @@ public class RetornoAutomatico extends Thread{
     @Override
     public void run() {
         while(SimulacionAmbulancia.getCantHilos() > 1 || !Ambulancia.get_instance().getEstado().equals("Ambulancia disponible")) {
-            System.out.println(SimulacionAmbulancia.getCantHilos());
             if ((!SimulacionAmbulancia.getActivo()) && (Ambulancia.get_instance().getEstado().equals("en el Taller"))){
                 Ambulancia.get_instance().repararAmbulancia();
             }
             UTIL.tiempoMuerto();
-            System.out.print("Solicita retorno\n");
             Ambulancia.get_instance().retornarAClinica();
         }
-        System.out.println("Hilo finalizado\n");
         this.observableHilo.avisarFinalizacion(this);
     }
 

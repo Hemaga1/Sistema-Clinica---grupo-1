@@ -25,7 +25,6 @@ public class Asociado extends Persona implements Runnable {
         boolean domicilio = r.nextBoolean();
         String tipo = domicilio ? "Atencion domiciliaria" : "Traslado";
         observableAsociado.avisarCambio(this.getNombre() + " (" + this.getDNI() + ") solicita: " + tipo);
-        System.out.println("[Asociado] " + this.getNombre() + " (" + this.getDNI() + ") solicita: " + tipo);
         if (domicilio) {
             Ambulancia.get_instance().solicitaAtencionDomicilio();
         } else {

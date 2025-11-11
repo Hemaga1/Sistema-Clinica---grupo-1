@@ -25,7 +25,6 @@ public class Ambulancia extends Observable {
 
     protected synchronized void setEstado(IAmbulanciaState estado) {
         this.estado = estado;
-        System.out.println("[Ambulancia] estado actual: " + this.getEstado());
         setChanged();
         notifyObservers();
         notifyAll(); // Notificar threads en wait()
