@@ -110,7 +110,6 @@ public class FactoryMedico {
 	 * @return El objeto IMedico decorado con el tipo de Posgrado, o el objeto base si el tipo no es reconocido.
 	 */
     public IMedico getPosgrado(String tipo, IMedico medico) {
-		assert tipo!=null && !tipo.isEmpty() : "El tipo de contratación no puede ser null ni estar vacía";
 		assert medico!=null : "El médico base no puede ser null";
 
 		IMedico decorado;

@@ -2,8 +2,8 @@ package modelo.sistema.ModuloEgreso;
 
 import modelo.excepciones.PacienteSinAtenderExcepcion;
 import modelo.excepciones.DesocupacionPacienteInexistenteExcepcion;
-import modelo.facturacion.Factura;
-import modelo.facturacion.RegistroPaciente;
+import modelo.facturacion_y_registros.Factura;
+import modelo.facturacion_y_registros.RegistroPaciente;
 import modelo.personas.Paciente;
 
 /**

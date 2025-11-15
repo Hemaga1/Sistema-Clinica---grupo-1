@@ -1,7 +1,7 @@
 package modelo.sistema;
 
 import modelo.excepciones.*;
-import modelo.facturacion.*;
+import modelo.facturacion_y_registros.*;
 import modelo.interfaces.IMedico;
 import modelo.personas.*;
 import modelo.lugares.*;
@@ -128,23 +128,13 @@ public class SistemaFacade {
      * @param paciente Es el objeto paciente, paciente!=null
      */
 
-    public void atiendePaciente(IMedico medico, Paciente paciente) {
+    public void atiendePaciente(IMedico medico, Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion, PacienteNoRegistradoExcepcion, MedicoNoRegistradoExcepcion{
         assert paciente!=null : "El paciente a ser atendido debe ser distinto a null";
         assert medico!=null : "El medico a atender debe ser distinto a null";
         if (sistemaAtencion.getRegistroPaciente(paciente) == null)
-            try {
-                sistemaIngreso.SacarPaciente(paciente);
-                System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " sacado de sala de espera correctamente\n");
-            }
-            catch (Exception e) {
-                System.out.print(e.getMessage() + "\n");
-            }
-        try {
-            sistemaAtencion.atender(medico, paciente);
-        }
-        catch (Exception e) {
-            System.out.print(e.getMessage() + "\n");
-        }
+            sistemaIngreso.sacarPaciente(paciente);
+        sistemaAtencion.atender(medico, paciente);
+
     }
 
     /**
@@ -158,19 +148,10 @@ public class SistemaFacade {
      * @param paciente Es el objeto paciente que ha sido derivado para internación, paciente!=null
      * @param habitacion La habitación a la que corresponde ser internado el paciente, habitacion != null
      */
-    public void internaPaciente(Paciente paciente, Habitacion habitacion) {
+    public void internaPaciente(Paciente paciente, Habitacion habitacion) throws PacienteSinAtenderExcepcion, InternacionCapacidadExcedidaExcepcion {
         assert paciente!=null : "El paciente a internar debe ser distinto a null";
         assert habitacion!=null : "La habitacion en la cula se internará al paciente no puede ser null";
-        try {
-            sistemaAtencion.internaPaciente(paciente, habitacion);
-            System.out.print("Internado\n");
-        }
-        catch (PacienteSinAtenderExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-        }
-        catch (InternacionCapacidadExcedidaExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-        }
+        sistemaAtencion.internaPaciente(paciente, habitacion);
     }
 
     /**
@@ -180,22 +161,15 @@ public class SistemaFacade {
      * @param paciente El paciente que egresa, paciente != null
      * @return La factura corespondiente al paciente
      */
-    public Factura egresaPaciente(Paciente paciente) {
-        assert paciente!=null : "El paciente a engresar no puede ser null";
-        try {
-            if (sistemaAtencion.getRegistroPaciente(paciente).getHabitacion() != null) {
-                sistemaAtencion.establecerDiasInternado(paciente);
-            }
+    public Factura egresaPaciente(Paciente paciente) throws PacienteSinAtenderExcepcion, DesocupacionPacienteInexistenteExcepcion{
+        assert paciente!=null : "El paciente a egresar no puede ser null";
+        if (sistemaAtencion.getRegistroPaciente(paciente).getHabitacion() != null) {
+            sistemaAtencion.establecerDiasInternado(paciente);
+        }
 
-            Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
-            sistemaAtencion.removerRegistroPaciente(paciente);
-            System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
-            return factura;
-        }
-        catch (PacienteSinAtenderExcepcion | DesocupacionPacienteInexistenteExcepcion e) {
-            System.out.print(e.getMessage() + "\n");
-            return null;
-        }
+        Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
+        sistemaAtencion.removerRegistroPaciente(paciente);
+        return factura;
     }
 
     /**
@@ -216,7 +190,6 @@ public class SistemaFacade {
         sistemaAtencion.establecerDiasInternado(paciente, cantDiasInternado);
         Factura factura = sistemaEgreso.egresar(paciente, sistemaAtencion.getRegistroPaciente(paciente));
         sistemaAtencion.removerRegistroPaciente(paciente);
-        System.out.print(paciente.getNombre() + " " + paciente.getApellido() + " egresado correctamente\n");
         return factura;
     }
    

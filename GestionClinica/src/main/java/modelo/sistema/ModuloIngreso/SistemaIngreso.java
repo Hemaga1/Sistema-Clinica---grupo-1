@@ -39,7 +39,7 @@ public class SistemaIngreso {
      * @throws SalaEsperaVaciaExcepcion
      * @throws PacienteNoEstaEsperandoExcepcion
      */
-    public void SacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
+    public void sacarPaciente(Paciente paciente) throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion {
         listaEspera.remove(paciente);
         salaDeEspera.sacarPaciente(paciente);
     }
@@ -51,7 +51,7 @@ public class SistemaIngreso {
      * @throws SalaEsperaVaciaExcepcion
      * @throws PacienteNoEstaEsperandoExcepcion
      */
-    public Paciente SacarPaciente() throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion{
+    public Paciente sacarPaciente() throws SalaEsperaVaciaExcepcion, PacienteNoEstaEsperandoExcepcion{
         return salaDeEspera.sacarPacienteConMenorOrden();
     }
 

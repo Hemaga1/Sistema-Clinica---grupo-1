@@ -2,9 +2,9 @@ package modelo.sistema.ModuloAtencion;
 
 import modelo.excepciones.*;
 
-import modelo.facturacion.ConsultaMedica;
-import modelo.facturacion.PacienteAtendido;
-import modelo.facturacion.RegistroPaciente;
+import modelo.facturacion_y_registros.ConsultaMedica;
+import modelo.facturacion_y_registros.PacienteAtendido;
+import modelo.facturacion_y_registros.RegistroPaciente;
 
 import modelo.interfaces.IMedico;
 

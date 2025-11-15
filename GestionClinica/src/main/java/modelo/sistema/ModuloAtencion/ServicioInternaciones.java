@@ -1,7 +1,7 @@
 package modelo.sistema.ModuloAtencion;
 
 import modelo.lugares.Habitacion;
-import modelo.facturacion.RegistroPaciente;
+import modelo.facturacion_y_registros.RegistroPaciente;
 import modelo.excepciones.PacienteSinAtenderExcepcion;
 import modelo.excepciones.InternacionCapacidadExcedidaExcepcion;
 import modelo.personas.Paciente;

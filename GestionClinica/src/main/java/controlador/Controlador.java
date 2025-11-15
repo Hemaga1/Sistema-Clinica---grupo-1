@@ -3,8 +3,8 @@ package controlador;
 import modelo.ambulancia.*;
 import modelo.factoria.FactoryMedico;
 import modelo.factoria.FactoryPaciente;
-import modelo.facturacion.Factura;
-import modelo.facturacion.ReporteActividadMedica;
+import modelo.facturacion_y_registros.Factura;
+import modelo.facturacion_y_registros.ReporteActividadMedica;
 import modelo.interfaces.IMedico;
 import modelo.lugares.Habitacion;
 import modelo.lugares.HabitacionCompartida;
@@ -13,72 +13,66 @@ import modelo.lugares.HabitacionTerapiaIntensiva;
 import modelo.personas.Asociado;
 import modelo.personas.Paciente;
 import modelo.sistema.SistemaFacade;
+import vista.IVista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase Controlador del patrón MVC.
+ * <p>
+ * Se encarga de gestionar todas las acciones generadas por la vista
+ * y coordinar las operaciones en el Sistema Facade. Recibe los
+ * eventos de usuario, ejecuta la lógica necesaria y actualiza la vista
+ * según corresponda.
+ * </p>
+ *
+ * <p>
+ * También inicializa datos de ejemplo (médicos, pacientes, habitaciones)
+ * y administra la simulación de ambulancias.
+ * </p>
+ */
+
 public class Controlador implements ActionListener {
     private IVista vista;
     private SistemaFacade sistema;
-    //private ObservadorHilos observadorHilos;
     private SimulacionAmbulancia simulacion;
-
-    FactoryMedico factoryMedico = new FactoryMedico();
-    FactoryPaciente factoryPaciente = new FactoryPaciente();
-
-    IMedico medClinica = factoryMedico.crearMedico("10000000", "Ana", "García", "Calle 1", 1, "CABA", "111-1111", "M-123", "CLINICA", "PERMANENTE", "MASTER");
-    IMedico medCirugia = factoryMedico.crearMedico("10000001", "Bruno", "Lopez", "Calle 2", 2, "CABA", "222-2222", "M-456", "CIRUGIA", "RESIDENTE", "DOCTORADO");
-    IMedico medPediatra = factoryMedico.crearMedico("10000002", "Bianca", "Gonzalez", "Calle 2", 2, "CABA", "222-2222", "M-456", "PEDIATRIA", "RESIDENTE", "DOCTORADO");
-
-    // Pacientes
-    Paciente p1 = factoryPaciente.crearPaciente("20000000", "Juan", "Pérez", "Calle 10", 10, "CABA", "300-0000", 12345, "JOVEN");
-    Paciente p2 = factoryPaciente.crearPaciente("20000001", "Lucía", "Suárez", "Calle 11", 11, "CABA", "300-0001", 22345, "NINIO");
-    Paciente p3 = factoryPaciente.crearPaciente("20000002", "Mario", "Gómez", "Calle 12", 12, "CABA", "300-0002", 32345, "MAYOR");
-
-    Habitacion habPrivada1 = new HabitacionPrivada(2000);
-    Habitacion habPrivada2 = new HabitacionPrivada(3000);
-    Habitacion habCompartida1 = new HabitacionCompartida(1500, 2);
-    Habitacion habTerapiaIntensiva1 = new HabitacionTerapiaIntensiva(2000);
+    private FactoryMedico factoryMedico;
+    private FactoryPaciente  factoryPaciente;
 
 
-    public Controlador(IVista vista, SistemaFacade sistema)
+    /**
+     * Constructor del controlador.
+     * <p>
+     * Inicializa la vista, registra los listeners, carga datos iniciales
+     * y actualiza los listados visibles en la interfaz. También configura
+     * la simulación de ambulancia.
+     * </p>
+     *
+     * @param vista   instancia de la vista principal
+     * @param sistema fachada del sistema encargada de la lógica del modelo
+     */
+    public Controlador(IVista vista, SistemaFacade sistema, FactoryMedico factoryMedico, FactoryPaciente factoryPaciente)
     {
-        this.sistema = sistema;
         this.vista = vista;
-        this.simulacion = new SimulacionAmbulancia(this, vista);
         this.vista.addActionListener(this);
-        try {
-            sistema.registraMedico(medClinica);
-            sistema.registraMedico(medCirugia);
-            sistema.registraMedico(medPediatra);
-            sistema.registraPaciente(p1);
-            sistema.registraPaciente(p2);
-            sistema.registraPaciente(p3);
-            this.sistema.cargarDesdeBD();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        sistema.agregarHabitacion(habPrivada1);
-        sistema.agregarHabitacion(habPrivada2);
-        sistema.agregarHabitacion(habCompartida1);
-        sistema.agregarHabitacion(habTerapiaIntensiva1);
-        this.vista.actualizarPacientesRegistradosLista(this.sistema.getPacientesRegistrados());
-        this.vista.actualizarMedicosRegistradosLista(this.sistema.getMedicos());
-        this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
-        this.vista.actualizarIngresarPacienteLista(this.sistema.getPacientesRegistrados(), "");
-        this.vista.actualizarAtenderPacienteLista(this.sistema.getListaEspera(), this.sistema.getPacientesAtendidos(), "");
-        this.vista.actualizarAtenderMedicoLista(this.sistema.getMedicos(), "");
-        this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
-        this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
-        this.vista.actualizarReporteMedicoLista(this.sistema.getMedicos(), "");
-        this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
-
-        //observadorHilos = new ObservadorHilos(this);
+        this.sistema = sistema;
+        this.simulacion = new SimulacionAmbulancia(this, vista);
+        this.factoryMedico = factoryMedico;
+        this.factoryPaciente = factoryPaciente;
     }
 
-
+    /**
+     * Maneja todos los eventos generados desde la vista.
+     * <p>
+     * Dependiendo del comando recibido, se ejecuta una acción específica
+     * sobre el modelo (registrar pacientes, médicos, asociados, ingresar
+     * pacientes, internación, egreso, generación de facturas, reportes,
+     * manejo de ambulancias, etc).
+     * </p>
+     *
+     * @param e evento recibido desde la interfaz gráfica
+     */
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -152,9 +146,14 @@ public class Controlador implements ActionListener {
         if (comando.equals("AtenderPacienteBoton")) {
             Paciente paciente = this.vista.getPacienteAtender();
             if (paciente != null) {
-                this.sistema.atiendePaciente(this.vista.getMedicoAtender(), paciente);
-                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(), "");
+                try {
+                    this.sistema.atiendePaciente(this.vista.getMedicoAtender(), paciente);
+                    this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+                    this.vista.actualizarEgresarLista(this.sistema.getPacientesAtendidos(), "");
+                }
+                catch (Exception ex) {
+                    this.vista.mostrarMensajeVentana(ex.getMessage());
+                }
             }
         }
         else
@@ -165,9 +164,14 @@ public class Controlador implements ActionListener {
         if (comando.equals("InternarPacienteBoton")) {
             Paciente paciente = this.vista.getPacienteInternar();
             if (paciente != null) {
-                this.sistema.internaPaciente(paciente, this.vista.getHabitacion());
-                this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
-                this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
+                try {
+                    this.sistema.internaPaciente(paciente, this.vista.getHabitacion());
+                    this.vista.actualizarInternarPacienteLista(this.sistema.getPacientesAtendidos(), this.vista.getInternarPacienteBusqueda());
+                    this.vista.actualizarHabitaciones(this.sistema.getHabitaciones());
+                }
+                catch (Exception ex) {
+                    this.vista.mostrarMensajeVentana(ex.getMessage());
+                }
             }
         }
         else
@@ -178,8 +182,13 @@ public class Controlador implements ActionListener {
         if (comando.equals("EgresarBoton")) {
             Paciente paciente = this.vista.getPacienteEgresar();
             if (paciente != null) {
-                Factura f = this.sistema.egresaPaciente(paciente);
-                this.vista.mostrarFactura(f);
+                try {
+                    Factura f = this.sistema.egresaPaciente(paciente);
+                    this.vista.mostrarFactura(f);
+                }
+                catch (Exception ex){
+                    this.vista.mostrarMensajeVentana(ex.getMessage());
+                }
             }
         }
         else
@@ -261,7 +270,11 @@ public class Controlador implements ActionListener {
         }
 
     }
-
+    /**
+     * <p>
+     * Restaura la vista al panel principal de selección de asociados.
+     * </p>
+     */
     public void terminarSimulacionVista() {
         this.vista.panelAmbulanciaAsociados(this.sistema.getAsociados());
     }

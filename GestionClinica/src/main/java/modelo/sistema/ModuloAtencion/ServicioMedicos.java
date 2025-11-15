@@ -2,8 +2,7 @@ package modelo.sistema.ModuloAtencion;
 
 import modelo.excepciones.MedicoDuplicadoExcepcion;
 import modelo.interfaces.IMedico;
-import modelo.facturacion.PacienteAtendido;
-import modelo.personas.Medico;
+import modelo.facturacion_y_registros.PacienteAtendido;
 
 import java.util.*;
 import java.text.ParseException;

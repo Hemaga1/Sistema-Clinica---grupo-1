@@ -2,7 +2,7 @@ package modelo.sistema.ModuloAtencion;
 
 import modelo.excepciones.PacienteDuplicadoExcepcion;
 import modelo.personas.Paciente;
-import modelo.facturacion.RegistroPaciente;
+import modelo.facturacion_y_registros.RegistroPaciente;
 import java.util.*;
 
 /**

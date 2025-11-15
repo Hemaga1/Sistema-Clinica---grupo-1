@@ -1,16 +1,21 @@
 package modelo.ambulancia;
 
 import controlador.Controlador;
-import controlador.IVista;
+import vista.IVista;
 import modelo.excepciones.CantidadSolicitudesInvalidaExcepcion;
+import modelo.observadores_y_observables.ObservadorHilos;
 import modelo.personas.Asociado;
-import modelo.personas.ObservadorOperario;
+import modelo.observadores_y_observables.ObservadorOperario;
 import modelo.personas.Operario;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Clase principal encargada de coordinar y ejecutar la simulación de solicitudes
+ * Utiliza un contador de hilos activos para determinar cuándo la simulación debe finalizar.
+ */
 public class SimulacionAmbulancia {
         public static boolean activo;
         private List<Asociado> asociados = new ArrayList<>();
@@ -22,12 +27,22 @@ public class SimulacionAmbulancia {
         private static int cantHilos;
         private Operario operario = new Operario();
 
+
+    /**
+     * @param controlador Controlador general del sistema.
+     * @param vista Vista para actualizar interfaz durante la simulación.
+     */
         public SimulacionAmbulancia(Controlador controlador, IVista vista) {
             this.controlador = controlador;
             this.vista = vista;
             this.activo = false;
         }
 
+    /**
+     * Prepara la lista de asociados que participarán en la simulación.
+     *
+     * @param asociadosAmbulancia lista de asociados seleccionados.
+     */
         public void prepararAsociados(List<Asociado> asociadosAmbulancia) {
             Iterator<Asociado> iterator = asociadosAmbulancia.iterator();
             while(iterator.hasNext()){
@@ -36,6 +51,9 @@ public class SimulacionAmbulancia {
             }
         }
 
+    /**
+     * Envía la ambulancia al taller, generando un hilo especial.
+     */
         public void enviarATaller() {
             HiloAmbulancia hilo = new HiloAmbulancia(operario, 1);
             observadorOperario.agregarOperario(hilo);
@@ -43,6 +61,9 @@ public class SimulacionAmbulancia {
             hilo.start();
         }
 
+    /**
+     * Reduce la cantidad de hilos activos y decide si la simulación debe finalizar.
+     */
         public void eliminarHilo() {
             cantHilos--;
             if (cantHilos == 1 && !Ambulancia.get_instance().getEstado().equals("en el Taller")) {
@@ -56,6 +77,12 @@ public class SimulacionAmbulancia {
                 }
         }
 
+    /**
+     * Inicia la simulación de la ambulancia.
+     *
+     * @param cant Cantidad de solicitudes por asociado.
+     * @throws CantidadSolicitudesInvalidaExcepcion si los valores son inválidos.
+     */
         public void empezarAmbulancia(ArrayList<Integer> cant) throws CantidadSolicitudesInvalidaExcepcion {
             List<Thread> hilos = new ArrayList<>();
             activo = true;

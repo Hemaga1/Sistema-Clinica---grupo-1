@@ -1,5 +1,8 @@
 package persistencia;
 
+/**
+ * DTO  que representa los datos serializables de un Asociado para su persistencia en base de datos.
+ */
 public class AsociadoDTO {
     private String nombre;
     private String apellido;
@@ -10,7 +13,31 @@ public class AsociadoDTO {
     private String ciudad;
 
 
+    /**
+     * Construye un DTO con todos los datos relevantes del asociado.
+     *
+     * <b>Precondiciones:</b>
+     * <ul>
+     *     <li>Ninguno de los parámetros String debe ser null.</li>
+     * </ul>
+     *
+     * <b>Postcondición:</b> El DTO queda completamente inicializado.
+     * @param DNI dni!=null, dni!=""
+     * @param nombre nombre!=null, nombre!=""
+     * @param apellido apellido!=null, apellido!=""
+     * @param calle calle!=null, calle!=""
+     * @param numero numero>=o
+     * @param ciudad ciudad!=null, cidudad!=""
+     * @param telefono telefono!=null, telefono !=""
+     */
     public AsociadoDTO(String DNI, String nombre, String apellido, String calle, int numero, String ciudad, String telefono) {
+        assert DNI!=null && DNI!="": "El dni de la persona, ya sea medico o paciente no debe ser null ni estar vacío";
+        assert nombre!=null && nombre!="": "El nombre de la persona, ya sea medico o paciente no debe ser null ni estar vacío";
+        assert apellido!=null && apellido!="": "El apellido de la persona, ya sea medico o paciente no debe ser null ni estar vacío";
+        assert calle!=null && calle!="": "La calle del domicilio de la persona, ya sea medico o paciente no debe ser null ni estar vacía";
+        assert numero>=0 : "El numero del domicilio no puede ser negativo";
+        assert ciudad!=null && ciudad!="": "La ciudad del domicilio de la persona, ya sea medico o paciente no debe ser null ni estar vacía";
+        assert telefono!=null && telefono!="": "El telefono de la persona, ya sea medico o paciente no debe ser null ni estar vacío";
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = DNI;
@@ -25,6 +52,7 @@ public class AsociadoDTO {
     }
 
     public void setNombre(String nombre) {
+        assert nombre != null : "Nombre no puede ser null";
         this.nombre = nombre;
     }
 
@@ -33,6 +61,7 @@ public class AsociadoDTO {
     }
 
     public void setApellido(String apellido) {
+        assert apellido != null : "Apellido no puede ser null";
         this.apellido = apellido;
     }
 
@@ -41,6 +70,7 @@ public class AsociadoDTO {
     }
 
     public void setDni(String dni) {
+        assert dni != null : "DNI no puede ser null";
         this.dni = dni;
     }
 
@@ -49,6 +79,7 @@ public class AsociadoDTO {
     }
 
     public void setTelefono(String telefono) {
+        assert telefono != null : "telefono no puede ser null";
         this.telefono = telefono;
     }
 
@@ -65,14 +96,17 @@ public class AsociadoDTO {
     }
 
     public void setCalle(String calle) {
+        assert calle != null : "calle no puede ser null";
         this.calle = calle;
     }
 
     public void setNumero(int numero) {
+        assert numero>=0: "El numero del domicilio no puede ser negativo";
         this.numero = numero;
     }
 
     public void setCiudad(String ciudad) {
+        assert ciudad != null : "ciudad no puede ser null";
         this.ciudad = ciudad;
     }
 
