@@ -88,14 +88,36 @@ public class SistemaFacade {
         sistemaAtencion.registrarPaciente(paciente);
     }
 
-    public void registraAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion {
+    /**
+     * Registra un asociado en el sistema y en la base de datos.
+     * 
+     * @param asociado el asociado a registrar
+     * @throws AsociadoDuplicadoExcepcion si el asociado ya está registrado
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al guardar en la base de datos
+     */
+    public void registraAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion, ErrorPersistenciaExcepcion {
         sistemaAtencion.registrarAsociado(asociado);
-        db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+        try {
+            db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+        } catch (SQLException e) {
+            throw new ErrorPersistenciaExcepcion("Error al guardar el asociado en la base de datos: " + e.getMessage(), e);
+        }
     }
 
-    public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion {
+    /**
+     * Elimina un asociado del sistema y de la base de datos.
+     * 
+     * @param asociado el asociado a eliminar
+     * @throws AsociadoNoRegistradoExcepcion si el asociado no está registrado
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al eliminar de la base de datos
+     */
+    public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion, ErrorPersistenciaExcepcion {
         sistemaAtencion.eliminarAsociado(asociado);
-        db.eliminarAsociado(asociado.getDNI());
+        try {
+            db.eliminarAsociado(asociado.getDNI());
+        } catch (SQLException e) {
+            throw new ErrorPersistenciaExcepcion("Error al eliminar el asociado de la base de datos: " + e.getMessage(), e);
+        }
     }
 
     /**
@@ -242,7 +264,13 @@ public class SistemaFacade {
     }
 
 
-    public void crearTablas() {
+    /**
+     * Crea las tablas en la base de datos e inicializa con datos de ejemplo.
+     * Si ocurre un error, se propaga como ErrorPersistenciaExcepcion.
+     * 
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al crear las tablas o guardar datos
+     */
+    public void crearTablas() throws ErrorPersistenciaExcepcion {
         Set<Asociado> asociados = getAsociados();
 
         if (asociados.isEmpty()) {
@@ -250,39 +278,47 @@ public class SistemaFacade {
                 db.abrirConexion();
                 db.crearTablaAsociados();
 
-                this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
-                this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
-                this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
-
-                for (Asociado asociado : getAsociados()) {
-                    db.agregarAsociado(AsociadoMapper.toDTO(asociado));
-                }
-            } catch (AsociadoDuplicadoExcepcion e) {
-
-            }
-             catch (SQLException e) {
-                throw new RuntimeException(e);
-            } finally {
                 try {
-                    db.cerrarConexion();
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
+                    this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
+                    this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
+                } catch (AsociadoDuplicadoExcepcion e) {
+                    // Si ya existen, no es un error crítico, continuar
                 }
+
+                // Guardar todos los asociados en la BD
+                for (Asociado asociado : getAsociados()) {
+                    try {
+                        db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+                    } catch (SQLException e) {
+                        throw new ErrorPersistenciaExcepcion("Error al guardar asociado en la base de datos: " + e.getMessage(), e);
+                    }
+                }
+            } catch (SQLException e) {
+                throw new ErrorPersistenciaExcepcion("Error al crear las tablas en la base de datos: " + e.getMessage(), e);
             }
         }
     }
 
-    public void cargarDesdeBD() {
+    /**
+     * Carga los asociados desde la base de datos al sistema.
+     * Si un asociado ya existe en el sistema, se omite (no es un error).
+     * 
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al acceder a la base de datos
+     */
+    public void cargarDesdeBD() throws ErrorPersistenciaExcepcion {
         try {
             db.abrirConexion();
-            for (AsociadoDTO asociadoDTO : db.traerAsociados()) {
-                try {
-                    sistemaAtencion.registrarAsociado(AsociadoMapper.fromDTO(asociadoDTO));
-                } catch (AsociadoDuplicadoExcepcion e) {
-                    throw new RuntimeException(e);
+                for (AsociadoDTO asociadoDTO : db.traerAsociados()) {
+                    try {
+                        sistemaAtencion.registrarAsociado(AsociadoMapper.fromDTO(asociadoDTO));
+                    } catch (AsociadoDuplicadoExcepcion e) {
+                        // Si el asociado ya existe en el sistema, continuar con el siguiente
+                        // No es un error crítico
+                    }
                 }
-            }
         } catch (SQLException e) {
+            throw new ErrorPersistenciaExcepcion("Error al cargar asociados desde la base de datos: " + e.getMessage(), e);
         }
     }
 }

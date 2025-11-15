@@ -107,6 +107,7 @@ public class Ventana extends JFrame implements IVista {
     private JButton AmbulanciaPararBoton;
     private JButton AmbulanciaVolverBoton;
     private JTabbedPane PanelAmbulanciaTabbeado;
+    private JTabbedPane PanelTabbeado;
     private JButton AmbulanciaTallerBoton;
     private JButton CrearTablasBoton;
     private JPanel PanelAmbu = new JPanel();
@@ -887,18 +888,18 @@ public class Ventana extends JFrame implements IVista {
         MainPanel.setAlignmentX(0.5f);
         MainPanel.setDoubleBuffered(false);
         MainPanel.putClientProperty("html.disable", Boolean.FALSE);
-        JTabbedPane panelTabbeado = new JTabbedPane();
-        panelTabbeado.setBackground(new Color(-1579804));
-        panelTabbeado.setDoubleBuffered(false);
-        Font PanelTabbeadoFont = this.$$$getFont$$$("Roboto Light", -1, -1, panelTabbeado.getFont());
-        if (PanelTabbeadoFont != null) panelTabbeado.setFont(PanelTabbeadoFont);
-        panelTabbeado.setOpaque(false);
-        panelTabbeado.setVerifyInputWhenFocusTarget(true);
-        MainPanel.add(panelTabbeado, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(200, 200), null, 0, false));
+        PanelTabbeado = new JTabbedPane();
+        PanelTabbeado.setBackground(new Color(-1579804));
+        PanelTabbeado.setDoubleBuffered(false);
+        Font PanelTabbeadoFont = this.$$$getFont$$$("Roboto Light", -1, -1, PanelTabbeado.getFont());
+        if (PanelTabbeadoFont != null) PanelTabbeado.setFont(PanelTabbeadoFont);
+        PanelTabbeado.setOpaque(false);
+        PanelTabbeado.setVerifyInputWhenFocusTarget(true);
+        MainPanel.add(PanelTabbeado, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(200, 200), null, 0, false));
         JPanel panelPacientes = new JPanel();
         panelPacientes.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panelPacientes.setDoubleBuffered(false);
-        panelTabbeado.addTab("Pacientes", panelPacientes);
+        PanelTabbeado.addTab("Pacientes", panelPacientes);
         JTabbedPane panelPacientesTabbeado = new JTabbedPane();
         Font PanelPacientesTabbeadoFont = this.$$$getFont$$$(null, -1, -1, panelPacientesTabbeado.getFont());
         if (PanelPacientesTabbeadoFont != null) panelPacientesTabbeado.setFont(PanelPacientesTabbeadoFont);
@@ -1073,7 +1074,7 @@ public class Ventana extends JFrame implements IVista {
         panelPacientesLista.add(PacienteScrollPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         JPanel panelMedicos = new JPanel();
         panelMedicos.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panelTabbeado.addTab("Medicos", panelMedicos);
+        PanelTabbeado.addTab("Medicos", panelMedicos);
         JTabbedPane panelMedicosTabbeado = new JTabbedPane();
         panelMedicos.add(panelMedicosTabbeado, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         JPanel panelRegistroMedico = new JPanel();
@@ -1201,7 +1202,7 @@ public class Ventana extends JFrame implements IVista {
         panelMedicosLista.add(MedicoScrollPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         JPanel panelAsociados = new JPanel();
         panelAsociados.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panelTabbeado.addTab("Asociados", panelAsociados);
+        PanelTabbeado.addTab("Asociados", panelAsociados);
         JTabbedPane panelTabbeadoAsociado = new JTabbedPane();
         panelAsociados.add(panelTabbeadoAsociado, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(200, 558), null, 0, false));
         JPanel panelRegistroAsociado = new JPanel();
@@ -1272,7 +1273,7 @@ public class Ventana extends JFrame implements IVista {
         panelAsociadosLista.add(AsociadoScrollPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         JPanel panelAmbulancia = new JPanel();
         panelAmbulancia.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panelTabbeado.addTab("Ambulancia", panelAmbulancia);
+        PanelTabbeado.addTab("Ambulancia", panelAmbulancia);
         PanelAmbulanciaTabbeado = new JTabbedPane();
         panelAmbulancia.add(PanelAmbulanciaTabbeado, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         JPanel panelAmbulanciaSimulacion = new JPanel();
@@ -1319,7 +1320,7 @@ public class Ventana extends JFrame implements IVista {
         panelAmbulanciaSimulacion.add(AmbulanciaTallerBoton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_VERTICAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, 50), null, 0, false));
         JPanel panelCrearTablas = new JPanel();
         panelCrearTablas.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panelTabbeado.addTab("Creacion de Tablas", panelCrearTablas);
+        PanelTabbeado.addTab("Creacion de Tablas", panelCrearTablas);
         CrearTablasBoton = new JButton();
         Font CrearTablasBotonFont = this.$$$getFont$$$(null, -1, 20, CrearTablasBoton.getFont());
         if (CrearTablasBotonFont != null) CrearTablasBoton.setFont(CrearTablasBotonFont);
@@ -1348,12 +1349,4 @@ public class Ventana extends JFrame implements IVista {
         Font fontWithFallback = isMac ? new Font(font.getFamily(), font.getStyle(), font.getSize()) : new StyleContext().getFont(font.getFamily(), font.getStyle(), font.getSize());
         return fontWithFallback instanceof FontUIResource ? fontWithFallback : new FontUIResource(fontWithFallback);
     }
-
-    /**
-     * @noinspection ALL
-     */
-    public JComponent $$$getRootComponent$$$() {
-        return MainPanel;
-    }
-
 }

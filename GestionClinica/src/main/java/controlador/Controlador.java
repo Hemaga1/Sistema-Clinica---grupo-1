@@ -10,6 +10,7 @@ import modelo.lugares.Habitacion;
 import modelo.lugares.HabitacionCompartida;
 import modelo.lugares.HabitacionPrivada;
 import modelo.lugares.HabitacionTerapiaIntensiva;
+import modelo.excepciones.ErrorPersistenciaExcepcion;
 import modelo.personas.Asociado;
 import modelo.personas.Paciente;
 import modelo.sistema.SistemaFacade;
@@ -117,6 +118,9 @@ public class Controlador implements ActionListener {
                 this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
                 this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(),  this.vista.getBajaAsociadoBusqueda());
             }
+            catch (ErrorPersistenciaExcepcion ex) {
+                this.vista.mostrarMensajeVentana("Error de base de datos: " + ex.getMessage());
+            }
             catch (Exception ex) {
                 this.vista.mostrarMensajeVentana(ex.getMessage());
             }
@@ -206,6 +210,8 @@ public class Controlador implements ActionListener {
                         this.vista.actualizarAsociadosRegistradosLista(this.sistema.getAsociados());
                         this.vista.actualizarAmbulanciaAsociadosLista(this.sistema.getAsociados());
                         this.vista.actualizarBajaAsociadosLista(this.sistema.getAsociados(), this.vista.getBajaAsociadoBusqueda());
+                    } catch (ErrorPersistenciaExcepcion ex) {
+                        this.vista.mostrarMensajeVentana("Error de base de datos: " + ex.getMessage());
                     } catch (Exception ex) {
                         this.vista.mostrarMensajeVentana(ex.getMessage());
                     }
@@ -266,7 +272,12 @@ public class Controlador implements ActionListener {
         }
         else
         if (comando.equals("CrearTablasBoton")) {
-            this.sistema.crearTablas();
+            try {
+                this.sistema.crearTablas();
+                this.vista.mostrarMensajeVentana("Tablas creadas correctamente");
+            } catch (ErrorPersistenciaExcepcion ex) {
+                this.vista.mostrarMensajeVentana("Error al crear las tablas: " + ex.getMessage());
+            }
         }
 
     }

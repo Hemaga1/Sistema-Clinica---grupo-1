@@ -38,7 +38,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>modelo.prueba.Main2</mainClass>
+                    <mainClass>modelo.prueba.MainVentana</mainClass>
                     <classpathScope>runtime</classpathScope>
                 </configuration>
             </plugin>
