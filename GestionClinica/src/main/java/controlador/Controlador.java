@@ -27,11 +27,6 @@ import java.awt.event.ActionListener;
  * eventos de usuario, ejecuta la lógica necesaria y actualiza la vista
  * según corresponda.
  * </p>
- *
- * <p>
- * También inicializa datos de ejemplo (médicos, pacientes, habitaciones)
- * y administra la simulación de ambulancias.
- * </p>
  */
 
 public class Controlador implements ActionListener {
