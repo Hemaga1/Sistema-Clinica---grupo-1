@@ -49,7 +49,7 @@ public class dataBaseDAO {
      * Abre la conexión con la base de datos,
      * carga el driver y selecciona la base configurada.
      *
-     * @throws SQLException si ocurre un error de conexión o el driver no se encuentra
+     * @throws ErrorPersistenciaExcepcion si ocurre un error de conexión o el driver no se encuentra
      */
     public void abrirConexion() throws ErrorPersistenciaExcepcion {
         try {
@@ -63,16 +63,16 @@ public class dataBaseDAO {
             sentencia.execute("CREATE DATABASE IF NOT EXISTS " + DB_NAME);
             sentencia.execute("USE " + DB_NAME);
         }catch (SQLException e){
-            throw new ErrorPersistenciaExcepcion("No se puede conectar a la base de datos");
+            throw new ErrorPersistenciaExcepcion("No se pudo conectar a la base de datos");
         }
     }
 
     /**
      * Cierra la conexión limpiamente.
      *
-     * @throws SQLException si ocurre un error al cerrar
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al cerrar
      */
-    public void cerrarConexion() throws SQLException {
+    public void cerrarConexion() throws ErrorPersistenciaExcepcion {
         try {
             if (sentencia != null) {
                 sentencia.close();
@@ -81,7 +81,7 @@ public class dataBaseDAO {
                 connection.close();
             }
         } catch (SQLException e) {
-            throw new SQLException("Error al cerrar la conexión: " + e.getMessage(), e);
+            throw new ErrorPersistenciaExcepcion("Error al cerrar la conexión");
         }
     }
 
@@ -90,7 +90,7 @@ public class dataBaseDAO {
      */
     public void crearTablaAsociados() throws ErrorPersistenciaExcepcion {
         if (sentencia == null) {
-            throw new ErrorPersistenciaExcepcion("La conexión no está abierta. Llame a abrirConexion() primero.");
+            throw new ErrorPersistenciaExcepcion("La conexión no está abierta");
         }
 
         try{
@@ -113,12 +113,11 @@ public class dataBaseDAO {
      * Elimina un asociado por DNI.
      * 
      * @param DNIAsociado !=null
-     * @throws SQLException si ocurre un error al eliminar el asociado
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al eliminar el asociado
      */
     public void eliminarAsociado(String DNIAsociado) throws ErrorPersistenciaExcepcion {
-            asegurarConexionAbierta();
+        asegurarConexionAbierta();
 
-        
         String sql = "DELETE FROM asociados WHERE dni = '" + DNIAsociado + "'";
         try{
             sentencia.executeUpdate(sql);
@@ -131,7 +130,7 @@ public class dataBaseDAO {
      * Verifica si la conexión está abierta y el statement es válido.
      * Si no lo están, los crea/reabre.
      * 
-     * @throws SQLException si no se puede establecer la conexión
+     * @throws ErrorPersistenciaExcepcion si no se puede establecer la conexión
      */
     private void asegurarConexionAbierta() throws ErrorPersistenciaExcepcion {
         try {
@@ -154,7 +153,7 @@ public class dataBaseDAO {
      * Inserta un nuevo asociado en la tabla.
      * 
      * @param asociado el DTO del asociado a insertar
-     * @throws SQLException si ocurre un error al insertar el asociado
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al insertar el asociado
      */
     public void agregarAsociado(AsociadoDTO asociado) throws ErrorPersistenciaExcepcion {
         asegurarConexionAbierta();
@@ -178,7 +177,7 @@ public class dataBaseDAO {
      * Devuelve todos los asociados registrados.
      *
      * @return lista de DTOs (lista vacía si no hay asociados)
-     * @throws SQLException si ocurre un error al obtener los asociados
+     * @throws ErrorPersistenciaExcepcion si ocurre un error al obtener los asociados
      */
     public List<AsociadoDTO> traerAsociados() throws ErrorPersistenciaExcepcion {
         asegurarConexionAbierta();
@@ -203,5 +202,9 @@ public class dataBaseDAO {
             throw new ErrorPersistenciaExcepcion("Error al obtener los asociados");
         }           
         return asociados;
+    }
+
+    public boolean estaConectado(){
+        return connection != null;
     }
 }
