@@ -13,14 +13,12 @@ public class Config {
     static {
         InputStream input = null;
         try {
-            // try a few common locations for the resource to make runtime loading more robust
             input = Config.class.getClassLoader().getResourceAsStream("Config.properties");
             if (input == null) input = Config.class.getResourceAsStream("/Config.properties");
             if (input == null) input = Config.class.getResourceAsStream("Config.properties");
             if (input == null) input = Config.class.getResourceAsStream("/util/Config.properties");
 
             if (input == null) {
-                // Try common filesystem locations (useful when IDE didn't copy resources to out/production)
                 String userDir = System.getProperty("user.dir");
                 String[] candidates = new String[] {
                         userDir + "/Config.properties",
