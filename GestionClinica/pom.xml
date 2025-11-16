@@ -8,40 +8,31 @@
     <artifactId>GestorClinica</artifactId>
     <version>1.0-SNAPSHOT</version>
 
- <dependencies>
-     <dependency>
-         <groupId>com.mysql</groupId>
-         <artifactId>mysql-connector-j</artifactId>
-         <version>9.5.0</version>
-         <scope>system</scope>
-         <systemPath>${project.basedir}/lib/mysql-connector-j-9.5.0.jar</systemPath>
-     </dependency>
-     <dependency>
-         <groupId>com.jtattoo</groupId>
-         <artifactId>JTattoo</artifactId>
-         <version>1.6.13</version>
-         <scope>system</scope>
-         <systemPath>${project.basedir}/lib/JTattoo-1.6.13.jar</systemPath>
-     </dependency>
- </dependencies>
-
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <mainClass>modelo.prueba.MainVentana</mainClass>
-                    <classpathScope>runtime</classpathScope>
-                </configuration>
-            </plugin>
-        </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}</directory>
+                <includes>
+                    <include>*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>
