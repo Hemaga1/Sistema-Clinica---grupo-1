@@ -86,7 +86,6 @@ public class SimulacionAmbulancia {
         public void empezarAmbulancia(ArrayList<Integer> cant) throws CantidadSolicitudesInvalidaExcepcion {
             List<Thread> hilos = new ArrayList<>();
             activo = true;
-            //hilos.clear();
             for (int i = 0; i < asociados.size(); i++){
                 hilos.add(new HiloAmbulancia(asociados.get(i), cant.get(i)));
             }
@@ -130,3 +129,4 @@ public class SimulacionAmbulancia {
             return activo;
         }
 }
+
