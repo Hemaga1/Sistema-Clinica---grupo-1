@@ -175,57 +175,6 @@ public class dataBaseDAO {
     }
 
     /**
-     * Modifica los datos de un asociado ya existente.
-     * 
-     * @param asociado el DTO del asociado a modificar
-     * @throws SQLException si ocurre un error al modificar el asociado
-     */
-    /*public void modificarAsociado(AsociadoDTO asociado) throws SQLException {
-        asegurarConexionAbierta();
-        
-        String sql = "UPDATE asociados SET "
-                + "nombre = '" + asociado.getNombre() + "', "
-                + "apellido = '" + asociado.getApellido() + "', "
-                + "calle = '" + asociado.getCalle() + "', "
-                + "numero = " + asociado.getNumero() + ", "
-                + "ciudad = '" + asociado.getCiudad() + "', "
-                + "telefono = '" + asociado.getTelefono() + "' "
-                + "WHERE dni = '" + asociado.getDni() + "'";
-        sentencia.executeUpdate(sql);
-    }*/
-
-    /**
-     * Busca un asociado en la base según DNI.
-     *
-     * @param dni el DNI del asociado a buscar
-     * @return DTO encontrado o null si no existe
-     * @throws SQLException si ocurre un error al buscar el asociado
-     */
-    /*public AsociadoDTO obtenerAsociadoPorDNI(String dni) throws SQLException {
-        asegurarConexionAbierta();
-        
-        String sql = "SELECT * FROM asociados WHERE dni = '" + dni + "'";
-        ResultSet rs = null;
-        try {
-            rs = sentencia.executeQuery(sql);
-            if (rs.next()) {
-                return new AsociadoDTO(
-                        rs.getString("dni"),
-                        rs.getString("nombre"),
-                        rs.getString("apellido"),
-                        rs.getString("calle"),
-                        rs.getInt("numero"),
-                        rs.getString("ciudad"),
-                        rs.getString("telefono")
-                );
-            }
-        } catch (SQLException e) {
-            throw new SQLException("Error al buscar el asociado: " + e.getMessage(), e);
-        }
-        return null; // Si no se encuentra el asociado
-    }*/
-
-    /**
      * Devuelve todos los asociados registrados.
      *
      * @return lista de DTOs (lista vacía si no hay asociados)
