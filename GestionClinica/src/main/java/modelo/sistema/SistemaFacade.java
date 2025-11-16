@@ -97,7 +97,8 @@ public class SistemaFacade {
      */
     public void registraAsociado(Asociado asociado) throws AsociadoDuplicadoExcepcion, ErrorPersistenciaExcepcion {
         sistemaAtencion.registrarAsociado(asociado);
-        db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+        if (db.estaConectado())
+            db.agregarAsociado(AsociadoMapper.toDTO(asociado));
     }
 
     /**
@@ -109,7 +110,8 @@ public class SistemaFacade {
      */
     public void eliminarAsociado(Asociado asociado) throws AsociadoNoRegistradoExcepcion, ErrorPersistenciaExcepcion {
         sistemaAtencion.eliminarAsociado(asociado);
-        db.eliminarAsociado(asociado.getDNI());
+        if (db.estaConectado())
+            db.eliminarAsociado(asociado.getDNI());
     }
 
     /**
