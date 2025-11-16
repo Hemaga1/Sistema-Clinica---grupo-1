@@ -6,11 +6,24 @@ import util.UTIL;
 import java.util.Observable;
 
 /**
- * Hilo encargado de retornar automáticamente la ambulancia a la clínica
- * cuando ya no quedan solicitudes pendientes.
+ * Hilo supervisor encargado de solicitar cada cierto tiempo que la ambulancia
+ * retorne a la clínica, sin importar en qué estado se encuentre.
  *
- * Su función principal es garantizar que, al final de la simulación,
- * la ambulancia siempre vuelva al estado "Disponible".
+ * <p>Su función no es únicamente actuar al finalizar la simulación, sino que
+ * opera de forma continua mientras la simulación esté activa. Esto permite:
+ *
+ * <ul>
+ *     <li>Forzar el retorno a la clínica durante la simulación, lo cual puede
+ *     provocar que ciertos estados finalicen o que la ambulancia pase al estado
+ *     disponible cuando corresponde.</li>
+ *
+ *     <li>Garantizar que, cuando la simulación termine, la ambulancia no quede
+ *     bloqueada en estados como por ejemplo “En atención”.</li>
+ *
+ *     <li>Si la simulación finaliza y la ambulancia está en el taller,
+ *     el hilo solicita automáticamente la reparación para permitir que
+ *     todos los hilos cierren correctamente.</li>
+ * </ul>
  */
 public class RetornoAutomatico extends Thread{
     private ObservableHilo observableHilo;
@@ -30,11 +43,17 @@ public class RetornoAutomatico extends Thread{
     }
 
     /**
-     * Lógica principal del hilo:
+     * Lógica principal del hilo.
+     *
+     * <p>El hilo funciona de la siguiente manera:
      * <ul>
-     *     <li>Espera hasta que no haya más hilos activos atendiendo.</li>
-     *     <li>Retorna automáticamente la ambulancia a la clínica.</li>
-     *     <li>Si la ambulancia está en el taller y la simulación terminó, la repara.</li>
+     *     <li>Mientras la simulación siga activa o existan hilos de atención,
+     *     solicita cada cierto tiempo que la ambulancia retorne a la clínica.</li>
+     *
+     *     <li>Si la simulación terminó y la ambulancia se encuentra en el taller,
+     *     se solicita automáticamente su reparación para permitir un cierre limpio.</li>
+     *
+     *     <li>Realiza pausas simuladas utilizando util.UTIL#tiempoMuerto().</li>
      * </ul>
      */
     @Override
