@@ -3,6 +3,8 @@ package persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import modelo.excepciones.ErrorPersistenciaExcepcion;
 import util.Config;
 
 /**
@@ -49,16 +51,20 @@ public class dataBaseDAO {
      *
      * @throws SQLException si ocurre un error de conexión o el driver no se encuentra
      */
-    public void abrirConexion() throws SQLException {
+    public void abrirConexion() throws ErrorPersistenciaExcepcion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            throw new SQLException("No se pudo cargar el driver de MySQL: " + e.getMessage(), e);
+            throw new ErrorPersistenciaExcepcion("No se pudo cargar el driver de MySQL");
         }
-        connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        sentencia = connection.createStatement();
-        sentencia.execute("CREATE DATABASE IF NOT EXISTS " + DB_NAME);
-        sentencia.execute("USE " + DB_NAME);
+        try{
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            sentencia = connection.createStatement();
+            sentencia.execute("CREATE DATABASE IF NOT EXISTS " + DB_NAME);
+            sentencia.execute("USE " + DB_NAME);
+        }catch (SQLException e){
+            throw new ErrorPersistenciaExcepcion("No se puede conectar a la base de datos");
+        }
     }
 
     /**
@@ -82,20 +88,25 @@ public class dataBaseDAO {
     /**
      * Crea la tabla de asociados (eliminando una existente si ya estaba creada).
      */
-    public void crearTablaAsociados() throws SQLException {
+    public void crearTablaAsociados() throws ErrorPersistenciaExcepcion {
         if (sentencia == null) {
-            throw new IllegalStateException("La conexión no está abierta. Llame a abrirConexion() primero.");
+            throw new ErrorPersistenciaExcepcion("La conexión no está abierta. Llame a abrirConexion() primero.");
         }
-        
-        sentencia.execute("DROP TABLE IF EXISTS asociados");
-        sentencia.execute("CREATE TABLE IF NOT EXISTS asociados" +
-                " (dni VARCHAR(10) NOT NULL PRIMARY KEY, " +
-                " nombre VARCHAR(50) NOT NULL, " +
-                " apellido VARCHAR(50) NOT NULL, " +
-                " calle VARCHAR(100), " +
-                " numero INT, " +
-                " ciudad VARCHAR(50), " +
-                " telefono VARCHAR(15))");
+
+        try{
+            sentencia.execute("DROP TABLE IF EXISTS asociados");
+            sentencia.execute("CREATE TABLE IF NOT EXISTS asociados" +
+                    " (dni VARCHAR(10) NOT NULL PRIMARY KEY, " +
+                    " nombre VARCHAR(50) NOT NULL, " +
+                    " apellido VARCHAR(50) NOT NULL, " +
+                    " calle VARCHAR(100), " +
+                    " numero INT, " +
+                    " ciudad VARCHAR(50), " +
+                    " telefono VARCHAR(15))");
+        }catch (SQLException e){
+            throw new ErrorPersistenciaExcepcion("No se pudo crear la tabla de asociados");
+        }
+
     }
 
     /**
@@ -104,11 +115,16 @@ public class dataBaseDAO {
      * @param DNIAsociado !=null
      * @throws SQLException si ocurre un error al eliminar el asociado
      */
-    public void eliminarAsociado(String DNIAsociado) throws SQLException {
-        asegurarConexionAbierta();
+    public void eliminarAsociado(String DNIAsociado) throws ErrorPersistenciaExcepcion {
+            asegurarConexionAbierta();
+
         
         String sql = "DELETE FROM asociados WHERE dni = '" + DNIAsociado + "'";
-        sentencia.executeUpdate(sql);
+        try{
+            sentencia.executeUpdate(sql);
+        }catch (SQLException e){
+            throw new ErrorPersistenciaExcepcion("Error al eliminar el asociado de la base de datos");
+        }
     }
 
     /**
@@ -117,7 +133,7 @@ public class dataBaseDAO {
      * 
      * @throws SQLException si no se puede establecer la conexión
      */
-    private void asegurarConexionAbierta() throws SQLException {
+    private void asegurarConexionAbierta() throws ErrorPersistenciaExcepcion {
         try {
             // Verificar si la conexión está cerrada o es null
             if (connection == null || connection.isClosed()) {
@@ -130,7 +146,7 @@ public class dataBaseDAO {
                 sentencia = connection.createStatement();
             }
         } catch (SQLException e) {
-             throw new SQLException("Error al recuperar la conexión : " + e.getMessage(), e);
+             throw new ErrorPersistenciaExcepcion("Error al recuperar la conexión");
         }
     }
 
@@ -140,9 +156,9 @@ public class dataBaseDAO {
      * @param asociado el DTO del asociado a insertar
      * @throws SQLException si ocurre un error al insertar el asociado
      */
-    public void agregarAsociado(AsociadoDTO asociado) throws SQLException {
+    public void agregarAsociado(AsociadoDTO asociado) throws ErrorPersistenciaExcepcion {
         asegurarConexionAbierta();
-        
+
         String sql = "INSERT INTO asociados (dni, nombre, apellido, calle, numero, ciudad, telefono) VALUES ('"
                 + asociado.getDni() + "', '"
                 + asociado.getNombre() + "', '"
@@ -151,7 +167,11 @@ public class dataBaseDAO {
                 + asociado.getNumero() + ", '"
                 + asociado.getCiudad() + "', '"
                 + asociado.getTelefono() + "')";
-        sentencia.executeUpdate(sql);
+        try{
+            sentencia.executeUpdate(sql);
+        }catch (SQLException e){
+            throw new ErrorPersistenciaExcepcion("Error al guardar el asociado en la base de datos");
+        }
     }
 
     /**
@@ -160,7 +180,7 @@ public class dataBaseDAO {
      * @param asociado el DTO del asociado a modificar
      * @throws SQLException si ocurre un error al modificar el asociado
      */
-    public void modificarAsociado(AsociadoDTO asociado) throws SQLException {
+    /*public void modificarAsociado(AsociadoDTO asociado) throws SQLException {
         asegurarConexionAbierta();
         
         String sql = "UPDATE asociados SET "
@@ -172,7 +192,7 @@ public class dataBaseDAO {
                 + "telefono = '" + asociado.getTelefono() + "' "
                 + "WHERE dni = '" + asociado.getDni() + "'";
         sentencia.executeUpdate(sql);
-    }
+    }*/
 
     /**
      * Busca un asociado en la base según DNI.
@@ -181,7 +201,7 @@ public class dataBaseDAO {
      * @return DTO encontrado o null si no existe
      * @throws SQLException si ocurre un error al buscar el asociado
      */
-    public AsociadoDTO obtenerAsociadoPorDNI(String dni) throws SQLException {
+    /*public AsociadoDTO obtenerAsociadoPorDNI(String dni) throws SQLException {
         asegurarConexionAbierta();
         
         String sql = "SELECT * FROM asociados WHERE dni = '" + dni + "'";
@@ -203,7 +223,7 @@ public class dataBaseDAO {
             throw new SQLException("Error al buscar el asociado: " + e.getMessage(), e);
         }
         return null; // Si no se encuentra el asociado
-    }
+    }*/
 
     /**
      * Devuelve todos los asociados registrados.
@@ -211,7 +231,7 @@ public class dataBaseDAO {
      * @return lista de DTOs (lista vacía si no hay asociados)
      * @throws SQLException si ocurre un error al obtener los asociados
      */
-    public List<AsociadoDTO> traerAsociados() throws SQLException {
+    public List<AsociadoDTO> traerAsociados() throws ErrorPersistenciaExcepcion {
         asegurarConexionAbierta();
         
         ArrayList<AsociadoDTO> asociados = new ArrayList<AsociadoDTO>();
@@ -231,7 +251,7 @@ public class dataBaseDAO {
                 asociados.add(asociado);
             }
         } catch (SQLException e) {
-            throw new SQLException("Error al obtener los asociados: " + e.getMessage(), e);
+            throw new ErrorPersistenciaExcepcion("Error al obtener los asociados");
         }           
         return asociados;
     }
