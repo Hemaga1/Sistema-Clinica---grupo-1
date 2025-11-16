@@ -40,9 +40,8 @@ public class Controlador implements ActionListener {
     /**
      * Constructor del controlador.
      * <p>
-     * Inicializa la vista, registra los listeners, carga datos iniciales
-     * y actualiza los listados visibles en la interfaz. También configura
-     * la simulación de ambulancia.
+     * Inicializa la vista, registra los listeners, actualiza los listados visibles en la interfaz.
+     * También configura la simulación de ambulancia.
      * </p>
      *
      * @param vista   instancia de la vista principal
