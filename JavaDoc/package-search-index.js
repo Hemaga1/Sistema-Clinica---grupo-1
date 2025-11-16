@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"excepciones"},{"l":"factoria"},{"l":"facturacion"},{"l":"honorarios"},{"l":"interfaces"},{"l":"lugares"},{"l":"personas"},{"l":"prueba"},{"l":"sistema"},{"l":"sistema.ModuloAtencion"},{"l":"sistema.ModuloEgreso"},{"l":"sistema.ModuloIngreso"}];updateSearchResults();
