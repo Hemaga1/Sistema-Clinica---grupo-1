@@ -134,7 +134,7 @@ public class Ventana extends JFrame implements IVista {
         setContentPane(MainPanel);
         setTitle("Sistema Clínica");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1600, 800);
+        setSize(1200, 800);
         setLocationRelativeTo(null);
         setVisible(true);
         EstadoText.setText("DISPONIBLE");
@@ -884,7 +884,7 @@ public class Ventana extends JFrame implements IVista {
      */
     private void $$$setupUI$$$() {
         MainPanel = new JPanel();
-        MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 200, 0, 200), -1, -1, false, true));
+        MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1, false, true));
         MainPanel.setAlignmentX(0.5f);
         MainPanel.setDoubleBuffered(false);
         MainPanel.putClientProperty("html.disable", Boolean.FALSE);
