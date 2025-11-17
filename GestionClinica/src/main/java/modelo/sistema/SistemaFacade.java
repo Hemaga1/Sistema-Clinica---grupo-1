@@ -267,22 +267,23 @@ public class SistemaFacade {
     public void crearTablas() throws ErrorPersistenciaExcepcion {
         Set<Asociado> asociados = getAsociados();
 
+        db.abrirConexion();
+        db.crearTablaAsociados();
+
         if (asociados.isEmpty()) {
-                db.abrirConexion();
-                db.crearTablaAsociados();
-
-                try {
-                    this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
-                    this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
-                    this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
-                } catch (AsociadoDuplicadoExcepcion e) {
-                    // Si ya existen, no es un error crítico, continuar
-                }
-
-                // Guardar todos los asociados en la BD
-                for (Asociado asociado : getAsociados()) {
-                    db.agregarAsociado(AsociadoMapper.toDTO(asociado));
-                }
+            try {
+                this.registraAsociado(new Asociado("30000000", "Camilo", "Fernández", "Calle 15", 12, "CABA", "100-0001"));
+                this.registraAsociado(new Asociado("30000001", "Paola", "Benítez", "Calle 20", 100, "CABA", "100-0002"));
+                this.registraAsociado(new Asociado("30000002", "Mariano", "Martínez", "Calle 37", 230, "CABA", "100-0003"));
+            } catch (AsociadoDuplicadoExcepcion e) {
+                // Si ya existen, no es un error crítico, continuar
+            }
+        }
+        else {
+            // Guardar todos los asociados en la BD
+            for (Asociado asociado : getAsociados()) {
+                db.agregarAsociado(AsociadoMapper.toDTO(asociado));
+            }
         }
     }
 
