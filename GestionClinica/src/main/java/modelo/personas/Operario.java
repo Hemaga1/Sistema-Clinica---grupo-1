@@ -18,7 +18,6 @@ public class Operario implements Runnable {
      * <b>Postcondición:</b> la ambulancia pasa al estado de reparación si corresponde.
      */
     public void solicitaAmbulancia() {
-        System.out.println("[Operario] Solicita taller");
         Ambulancia.get_instance().repararAmbulancia();
     }
 
